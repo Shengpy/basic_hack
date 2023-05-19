@@ -1,0 +1,11 @@
+không cần phải hiểu code chạy như nào 
+xem input với output rồi đoán quy luật
+
+gửi payload dài để timing attack
+https://hackmd.io/@to016/litctf2022   --> Secure website
+https://nguyendt.hashnode.dev/webhackingkr
+
+https://nguyendt.hashnode.dev/webhackingkr
+bypass preg_match(): compare
+
+\r\n to add header

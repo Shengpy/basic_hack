@@ -1,0 +1,46 @@
+chmod +x <filename>
+tail -f <filename>
+
+env
+cat /etc/environment
+cat /home/sheng/.bashrc           #the file the system will exec before OS open
+
+find medium2/ -type f -size +200c 2>/dev/null
+2>/dev/null để redirect std error vào /dev/null -> tránh print lỗi ra terminal
+find hard1/ -type f -size -150c -perm 777 -user root -group medium3 2>/dev/null
+find . -type f -size 1033c ! -executable -exec {} + | grep ASCII
+cat data.txt | sort | uniq -u    (line of text that occurs only once)
+cat data.txt | strings | grep ^= (Dùng grep với ^= để tìm các dòng bắt đầu với =)
+file ./*
+
+openssl passwd <your_passwd>
+upload /etc/passwd  
+ssh root@128.199.190.141 -p2223
+ssh -i id_rsa medium3@localhost
+ssh -L <your port>:<web IP target>:<web port target> ubuntu@team6.ascis.vn (port forwarding)
+ssh -L 9000:10.254.6.2:4001 ubuntu@team6.ascis.vn
+-> có thể access đến web ng khác thông qua port của chính mình http://127.0.0.1:9000 
+
+cat input.txt | nc localhost 30002 >> output.txt  
+grep -v "Wrong" để loại bỏ các trường hợp này
+diff fileA.txt fileB.txt
+xxd -r data.txt dump (reverse lại file hexdump)
+tr 'A-Za-z' 'N-ZA-Mn-za-m'   (decode rot13)
+echo 'shengngu' | nc -l localhost 2222   
+Ctrl + Z   --> bg  --> ps aux
+
+./medium4; echo $?  #regconize the errors
+
+smbclient -L //192.168.1.5/Mydata -U testusers
+
+git log -p  (history of commit)
+git branch -r   (list branch)
+git checkout <name>  (cd into branch)
+git tag
+
+htop
+ps aux | grep nginx 
+kill <PID>
+
+psql -h 192.168.163.47 -p 5437 -U postgres  ( default Username: postgres, password: postgres)
+\du  (list acclist all users in PostrgeSQL)

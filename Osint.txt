@@ -1,0 +1,20 @@
+util:2007-01-31 since:2007-01-01
+.union -> darkweb
+check github
+
+https://anonyviet.com/google-dork-la-gi-cap-danh-google-hacking-dork/
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+inurl: file_used_by_plugin.php và xem có bao nhiêu trang web có thể bị ảnh hưởng bởi lỗ hổng này
+inurl:adminpanel site:*.in
+intitle: index.of cisco anyconnect   #download file without permission
+after:<date> before:<date>
+
+https://github.com/thewhiteh4t/nexfil    --find username on 350 website
+ghunt     find info with email
+ghunt jasminenguyen12387@gmail.com
+holehe jasminenguyen12387@gmail.com
+3401 Charleston Pl Ct, Valley Park
+osintgram  ---instagram osint
+NExfil  --find by username
+spiderfoot --find by username
+maltego

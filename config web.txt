@@ -1,0 +1,55 @@
+https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
+https://www.youtube.com/@toannai3042/videos
+httpd.conf
+php.ini
+
+cat /proc/cpuinfo
+/etc/nginx/nginx.conf
+set worker_processes to be equal to the number of CPUs or cores.
+
+//neu co nhieu hon 1 web tren server
+/etc/nginx/conf.d/default.conf
+
+sudo service apache2 start
+service apache2 status
+service --status-all
+
+php-fpm
+/etc/php/8.2/fpm
+/run/php/php8.2-fpm.sock
+liên quan đến mạng thì xài tcp socket 
+còn trên cùng máy tính thì file socket 
+sudo systemctl restart php8.2-fpm
+ln <src> <des>
+tail -100 /var/log/nginx/error.log
+
+python3 -m http.server 8000
+chạy lệnh ở đường dẫn nào thì chỗ đó là document root
+
+redis --port 6379
+https://viblo.asia/p/phan-1-cai-dat-redis-co-ban-turning-redis-bWrZnADYKxw#_p4-tang-connection-ket-noi-6
+/opt/redis/conf
+/opt/redis/data
+/opt/redis/log
+#---check status
+sudo sysctl --system
+redis-cli --user default --pass matkhau -p 6800
+acl list
+#tao acc
+https://viblo.asia/p/phan-4-access-list-redis-tinh-nang-moi-o-ban-6-E375zAJ2lGW
+
+https://viblo.asia/s/di-nghien-code-thuat-van-dap-JzKmg8nPl9N
+Cái này cài thực tế sẽ phức tạp chứ k dễ hiểu nữa, 
+load balancing em có thể tìm hiểu k8s, hay docker swarm. 
+In Memory Cache em có thể dùng thư viện tùy theo ngôn ngữ. 
+Còn phần redis replicaset hay cluster thì em có thể tìm hiểu cái cài trên google. 
+Reverse proxy thì có thể dùng nginx...
+
+leader election
+election leader etcd hoặc zookeeper
+
+hệ thống ELK Stack để ghi log
+-----------------------------------insecure config
+https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/
+location ~ \.php$
+https://nguyendt.hashnode.dev/pbctf-2023-writeup

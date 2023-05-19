@@ -1,0 +1,25 @@
+session_start();
+if(!$_SESSION['uid']) $_SESSION['uid'] = "guest";
+if($_SESSION['uid'] == "admin") include "/flag";
+if($_FILES['upload']){
+  $path = $_FILES['upload']['tmp_name'];
+  var_dump("ok tmp_name");
+  $zip = new ZipArchive;
+  if ($zip->open($_FILES['upload']['tmp_name']) === true){
+    var_dump("ok open");
+    for($i = 0; $i < $zip->numFiles; $i++){
+      $filename = $zip->getNameIndex($i);
+      $filename_ = $filename.rand(10000000,99999999);
+      if(strlen($filename) > 240) exit("file name too long");
+      if(preg_match('/[\x00-\x1F\x7F-\xFF]/',$filename)) exit("no hack");
+      if(copy("zip://{$_FILES['upload']['tmp_name']}#{$filename}", "./upload/{$filename_}")) echo "{$filename_} uploaded.<br>";
+      else echo "{$filename_} upload failed.<br>";
+    }
+    $zip->close();
+  }
+}
+highlight_file(__FILE__);
+?><hr><form enctype="multipart/form-data" method="post">  
+<input name="upload" type="file" />  
+<input type="submit">
+</form>

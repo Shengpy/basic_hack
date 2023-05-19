@@ -1,0 +1,58 @@
+https://duthanhduoc.com/blog/toi-hoc-lai-git-tu-dau
+#run only in git folder
+git config --local --list
+
+git config --global --list
+git config --global user.name "Du Thanh Duoc"
+git config --global user.email duthanhduoc@gmail.com
+#connect
+git remote add origin git@github.com:duthanhduoc/123.git
+
+#run only in git folder
+git status
+git reset index.html
+git reset index.html app.js
+git reset .
+git reset <commit_name>        #tro ve commit nao do
+
+git commit -m "Title" -m "Description"
+git clone https://username:password@github.com/dreact04072022/git-can-ban.git
+
+git log  #hien thi commit gan day
+file .gitignore
+
+git pull orgin master #update your code from respo
+git pull origin feature/Register
+https://duthanhduoc.com/blog/toi-hoc-lai-git-tu-dau-part-2
+
+git restore --source=3c13cc8 TenFile  --Hoàn tác những file nào đó từ những commit trong quá khứ
+------------------------------------branch
+https://duthanhduoc.com/blog/toi-hoc-lai-git-tu-dau-part-2
+git checkout -b TenNhanhMoi        #tao va vao branch moi
+git push origin :remoteBranchName  #xoa branch
+git checkout TenBranch
+git branch -m TenMoi --rename a branch in present branch
+git branch -m TenNhanhCu TenNhanhMoi
+
+git branch #check list branch
+git push -u origin "nameBranch"
+
+git stash                         #luu lai phien lam viec tren nhanh hien tai
+git stash apply stash@{0}         #vo lai
+
+git fetch -p                      #branchs không còn trên remote cũng sẽ xóa khỏi local repo của bạn
+git push -u origin feature
+#Làm 1 lần thôi, lần sau chỉ cần ở nhánh feature và nhấn git push là code tự lên.
+-----------------------------------merge
+#merge alpha -> beta
+git checkout Beta
+git merge Alpha
+
+rebase
+---------------------------------Cập nhật code ở local giống hệt trên remote
+1 Cập nhật tất cả các origin/branch ở local
+git fetch --all
+2 Backup branch hiện tại cho an toàn (ví dụ master). Cái này là optional thôi, anh em tự tin thì khỏi cần backup.
+git branch backup-master
+3 Nhảy để commit mới nhất của origin/master.
+git reset --hard origin/master

