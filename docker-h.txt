@@ -7,6 +7,40 @@ docker cp <containerId>:/file/path/within/container /host/path/target
 
 https://vnsys.wordpress.com/2018/08/20/co-ban-ve-docker/
 https://viblo.asia/p/dev-hien-dai-phan-1-setup-moi-truong-dev-voi-docker-djeZ1RpQlWz
+#cau hinh mang
+https://xuanthulab.net/mang-network-bridge-trong-docker-ket-noi-cac-container-voi-nhau.html
+
+jenkins
+https://www.youtube.com/watch?v=6YZvp2GwT0A
+
+elasaticsearch & kibana
+https://viblo.asia/p/phan-5-elasticsearch-modeling-data-and-handling-relationships-V3m5W2qQlO7
+https://viblo.asia/p/tich-hop-elasticsearch-va-kibana-vao-docker-compose-Az45bymqlxY
+https://www.youtube.com/watch?v=JOZ41DtKcNw&list=PLwJr0JSP7i8AgjUjKnecVUN2i3txuS-1J&index=4
+GET _cat/indices?v
+PUT /product?pretty      #create index 
+PUT /product/_doc/1      #create data in a index
+{
+  "name":"sheng",
+  "age":20
+}
+GET /product/_doc/1?pretty    #access data in a index
+POST /_bulk                   #update or create many data
+{"index":{"_index":"product","_id":3}}
+{"name": "ten3","age":20}
+{"index":{"_index":"product","_id":4}}
+{"name": "ten4","age":20}
+curl -XPOST localhost:9200/bank/_bulk?pretty --data-binary @accounts.json -H 'Content-Type: application/json'
+#--------search
+https://www.youtube.com/watch?v=SsJjZUSAcFo&list=PLwJr0JSP7i8AgjUjKnecVUN2i3txuS-1J&index=4
+GET /bank/_search
+{
+  "query": {"match_all": {}}
+}
+https://xuanthulab.net/lap-trinh-chuc-nang-tim-kiem-trong-php-voi-elasticsearch.html
+
+kubernetes
+https://nhattruong.blog/2023/01/19/tan-cong-cac-cum-kubernetes-qua-loi-api-kubelet-misconfigure/
 
 //vmware
 bcdedit /set hypervisorlaunchtype off

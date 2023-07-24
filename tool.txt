@@ -2,10 +2,36 @@ split, pdfinfo, pdfimages, pdfcrack, pdfdetach, Keepass, Magic Numbers, hexed.it
 photorec, TestDisk, pngcheck, pngcsum, Registry Dumper, Dnscat2, pefile, Wireshark, Network Miner, PCAPNG, tcpflow, 
 PcapXray, qpdf, Audacity, sonic visualiser, ffmpeg strings, file, grep, scalpel, bgrep, hexdump, xxd, base64, xplico 
 framework, zsteg, gimp, Memory dump - volatility, ethscan, and many more.
-exiftool
+
+dnspy là một tool dùng để phân tích các file .net.
+
+open apkfile by jadX ( installed in desktop)
+
+MEMORY.DMP
+python vol.py -f MEMORY.DMP windows.pslist
+vol -f MEMORY.DMP windows.filescan > a.txt
+vol.exe -f "MEMORY.DMP" windows.handles.Handles --pid 1736
+vol -f MEMORY.DMP windows.dumpfiles --physaddr 0x7e3e2070
+vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736 
+#read memory bash from .mem file
+python3 vol.py -f forensics.mem linux.bash
+https://hackmd.io/@Automic-Kaiii/By6L3Qil2
+volatility_gpg
+
+http://www.decalage.info/python/oletools
+oleid: to analyze OLE files to detect specific characteristics usually found in malicious files.
+olevba: to extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
+MacroRaptor: to detect malicious VBA Macros
+msodde: to detect and extract DDE/DDEAUTO links from MS Office documents, RTF and CSV
+pyxswf: to detect, extract and analyze Flash objects (SWF) that may be embedded in files such as MS Office documents (e.g. Word, Excel) and RTF, which is especially useful for malware analysis.
+oleobj: to extract embedded objects from OLE files.
+rtfobj: to extract embedded objects from RTF files.
 
 hexedit // dump hex of a file
 
+exiftool
+
+if a file contains many file let use binwalk
 binwalk --dd='.*' wallet.jpeg
 Ta được file _wallet.jpg.extracted . Sau đó check file ta thấy có 2 file 0 và 2E11E
 Ta sẽ đổi đuôi file 2E11E thành .pdf
@@ -21,10 +47,16 @@ steghide extract -sf stegoCat.jpg -xf extractSecret.txt
 wireshark
 Follow UDP Stream
 tshark -Y "mysql contains db_m3149.users" -r capture.pcap -Tjson --no-duplicate-keys > result.json
+tshark -r TrivialFTP.pcapng -Y "udp.dstport == 58813 && frame.number > 2972" -Tfields -e data.data  > hex.txt
+
+networkminer to see all file in wiresharktransport ( installed in desktop)
+
+pydumpck to unpack exe file to .py
+pydumpck <filename>.exe   
+go to folder find pyreverser.pyc.cdc.py
 
 file.wav
 Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
-
 --------------------------------decode
 rainbowcrack            #hash
 hashcat   #jwt,...
@@ -56,3 +88,5 @@ seeker     -----find location
 grabify(may not good as seeker)
 DFIRtriage -- extract info from victim's computer
 proxychain --hide IP
+zphisher --phising
+osintifyX

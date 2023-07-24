@@ -21,6 +21,10 @@ https://nguyendt.hashnode.dev/crewctf-2022 --race condition
 tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
 test?guess[length]=9999999999999999999 
 ----------------------------------------------------------------------path traversal
+https://hackmd.io/@endy/rkcs_lYF2#Magic-Login-Harder
+https://viblo.asia/p/php-magic-ctf-writeups-gwd43kpK4X9
+pearcmd.php (hay peclcmd.php)
+
 encode 1 or 2 url
 ..../..../..../
 ...//...//
@@ -48,6 +52,7 @@ ln -s originfile  newfile
 zip -r --symlinks demo.zip symlinkfile
 zip -y demo.zip symlinkfile 
 #-------------------------------------------------
+https://viblo.asia/p/directory-traversal-vulnerabilities-cac-lo-hong-directory-traversal-path-traversal-phan-5-EvbLbkY1Vnk
 Luôn thực hiện input validation: Kiểm tra đồng thời tên file, content-type, header, file size mỗi khi thực hiện kiểm tra các file upload
 Phân quyền các thư mục upload, nếu là chức năng upload ảnh thì cần chặn quyền thực thi ở thư mục chứa ảnh
 Tránh để lộ đường dẫn file được upload lên

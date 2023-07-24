@@ -1,0 +1,7 @@
+https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA --> keylogger,bypass antivirus   .bashrc .vimrc file
+https://viblo.asia/p/share-libraries-hijacking-tren-linux-gAm5yEVX5db  --> lib injection
+
+https://viblo.asia/p/linux-lateral-movement-leo-quyen-ngang-tren-linux-1Je5EzX1KnL  --> decode rsa_id
+Pamspy "bắt" được mật khẩu
+
+https://viblo.asia/p/bypass-applocker-tren-windows-XL6lAen4lek

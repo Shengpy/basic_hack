@@ -1,9 +1,14 @@
 chmod +x <filename>
 tail -f <filename>
 
+#set up security system
+https://viblo.asia/p/linux-hardening-and-system-auditing-p1-bJzKm4G659N 
+
 env
 cat /etc/environment
 cat /home/sheng/.bashrc           #the file the system will exec before OS open
+.profile được thực thi ngay từ khi đăng nhập ban đầu vào hệ thống (đăng nhập lần đầu vào máy, hay kết nối SSH) còn .bashrc được thực thi khi có một Terminal mới được khởi tạo
+https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA --> keylogger,bypass antivirus
 
 find medium2/ -type f -size +200c 2>/dev/null
 2>/dev/null để redirect std error vào /dev/null -> tránh print lỗi ra terminal
@@ -33,14 +38,13 @@ Ctrl + Z   --> bg  --> ps aux
 
 smbclient -L //192.168.1.5/Mydata -U testusers
 
-git log -p  (history of commit)
-git branch -r   (list branch)
-git checkout <name>  (cd into branch)
-git tag
-
 htop
 ps aux | grep nginx 
 kill <PID>
 
 psql -h 192.168.163.47 -p 5437 -U postgres  ( default Username: postgres, password: postgres)
 \du  (list acclist all users in PostrgeSQL)
+#---------------------------------------------------------------Windows
+accesschk.exe "<Account-name>" C:\Windows -wus    #find the folder can write
+icacls <file/folder name>   #show permission
+RX - nghĩa là bất kỳ người dùng nào trên hệ thống sẽ có cả quyền đọc và thực thi trong thư mục

@@ -1,0 +1,6 @@
+ssh-keygen -t rsa
+ssh-keygen -y -f id_rsa
+ssh sheng@192.168.1.14
+
+#connect without passowrd
+add public key client -> user authorized file  

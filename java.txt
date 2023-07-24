@@ -23,3 +23,6 @@ __sleep() sẽ được gọi khi chúng ta thực hiện serialize() đối tư
 __wakeup() sẽ được gọi khi chúng ta unserialize() 
 __invoke() sẽ được gọi khi chúng ta sử đối tượng như một hàm. $<name class>(argument or not)
 __get() is utilized for reading data from inaccessible (protected or private) or non-existing properties.
+__construct()
+__destruct
+__toString

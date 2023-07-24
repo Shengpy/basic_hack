@@ -6,6 +6,7 @@
 4 Host, Header, https, another name of certificate
 
 /.git/config
+/.git/logs/HEAD
 /robots.txt
 /.htaccess
 massscan

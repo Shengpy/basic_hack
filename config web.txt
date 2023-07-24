@@ -1,3 +1,4 @@
+php -S 127.0.0.1:8000
 https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
 https://www.youtube.com/@toannai3042/videos
 httpd.conf
@@ -37,6 +38,7 @@ redis-cli --user default --pass matkhau -p 6800
 acl list
 #tao acc
 https://viblo.asia/p/phan-4-access-list-redis-tinh-nang-moi-o-ban-6-E375zAJ2lGW
+https://xuanthulab.net/su-dung-redis-lam-server-de-cache-du-lieu.html
 
 https://viblo.asia/s/di-nghien-code-thuat-van-dap-JzKmg8nPl9N
 Cái này cài thực tế sẽ phức tạp chứ k dễ hiểu nữa, 
@@ -50,6 +52,7 @@ election leader etcd hoặc zookeeper
 
 hệ thống ELK Stack để ghi log
 -----------------------------------insecure config
+https://viblo.asia/u/viblo.security
 https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/
 location ~ \.php$
 https://nguyendt.hashnode.dev/pbctf-2023-writeup

@@ -19,6 +19,7 @@ git commit -m "Title" -m "Description"
 git clone https://username:password@github.com/dreact04072022/git-can-ban.git
 
 git log  #hien thi commit gan day
+git log --oneline
 file .gitignore
 
 git pull orgin master #update your code from respo
@@ -30,11 +31,13 @@ git restore --source=3c13cc8 TenFile  --Hoàn tác những file nào đó từ n
 https://duthanhduoc.com/blog/toi-hoc-lai-git-tu-dau-part-2
 git checkout -b TenNhanhMoi        #tao va vao branch moi
 git push origin :remoteBranchName  #xoa branch
+git push -u origin namebranch   #the next time we just need to run: git push
 git checkout TenBranch
 git branch -m TenMoi --rename a branch in present branch
 git branch -m TenNhanhCu TenNhanhMoi
 
 git branch #check list branch
+git branch -a   #list branch in remote
 git push -u origin "nameBranch"
 
 git stash                         #luu lai phien lam viec tren nhanh hien tai
@@ -56,3 +59,41 @@ git fetch --all
 git branch backup-master
 3 Nhảy để commit mới nhất của origin/master.
 git reset --hard origin/master
+
+.git/
+├── COMMIT_EDITMSG
+├── config
+├── description
+├── HEAD
+├── hooks
+│   ├── applypatch-msg.sample
+│   ├── commit-msg.sample
+│   ├── post-commit.sample
+│   ├── post-receive.sample
+│   ├── post-update.sample
+│   ├── pre-applypatch.sample
+│   ├── pre-commit.sample
+│   ├── prepare-commit-msg.sample
+│   ├── pre-push.sample
+│   ├── pre-rebase.sample
+│   ├── pre-receive.sample
+│   └── update.sample
+├── index
+├── info
+│   └── exclude
+├── logs
+│   ├── HEAD
+│   └── refs
+│       ├── heads
+│       │   └── master
+│       └── remotes
+│           └── origin
+│               └── master
+├── objects
+│   └── info
+└── refs
+    ├── heads
+    │   └── master
+    └── remotes
+        └── origin
+            └── master

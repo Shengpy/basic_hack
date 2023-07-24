@@ -1,6 +1,23 @@
 không cần phải hiểu code chạy như nào 
 xem input với output rồi đoán quy luật
 
+có thể xem cookie trong phpinfo
+
+tra vulneribility từ những thư viện được import nhưng không dùng
+
+C:\Users\Admin\AppData\Roaming\Microsoft\Word
+Open .asd file in this location
+
+|Out-String 
+\Software\Microsoft\Windows\CurrentVersion\Run
+NTUSER.DAT open by regist editor
+raw inflate
+
+https://hackmd.io/@onsra03/SkiBeaed3 
+no space in url --> bypass <url>#<space>
+302 to redirect and get info
+file:///proc/mounts
+
 gửi payload dài để timing attack
 https://hackmd.io/@to016/litctf2022   --> Secure website
 https://nguyendt.hashnode.dev/webhackingkr
@@ -8,4 +25,22 @@ https://nguyendt.hashnode.dev/webhackingkr
 https://nguyendt.hashnode.dev/webhackingkr
 bypass preg_match(): compare
 
+https://nhattruong.blog/2022/10/27/mot-so-payload-khi-test-truong-email/  --test email
+https://nhattruong.blog/2022/12/25/tan-cong-social-engineering-toan-tap-part-2/ ---social engineering
+
 \r\n to add header
+admın
+Turkish character
+
+Đẩy code lên mà chưa thao tác gì => lỗi nằm ở server: service, code, ...
+sau khi set up operate => lỗi nằm ở operate
+
+file không mở được => sai file extension, sai file signature
+
+https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA
+-----dangerous func
+---php
+extract() 
+https://nhattruong.blog/2022/12/01/write-up-kcsc-ctf-web/    240610708 QNKCDZO
+sha256 34250003024812
+preg_replace()    php 5.5<=

