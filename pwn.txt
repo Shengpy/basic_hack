@@ -1,0 +1,6 @@
+string format %s %x %p
+https://owasp.org/www-community/attacks/Format_string_attack
+https://whitehat.vn/threads/gioi-thieu-loi-format-string.8212/
+
+ghidra
+https://sourceforge.net/projects/easypythondecompiler/

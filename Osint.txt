@@ -1,6 +1,16 @@
+twitter, facebook, linkedin
 util:2007-01-31 since:2007-01-01
 .union -> darkweb
 check github
+add .patch into commmit
+https://gist.github.com/
+
+Gửi email tới email đã biết
+block của gg drive
+check những type file khác nếu gây nhiễu bằng nhiều file.
+https://vi.wikipedia.org/wiki/Cicada_3301
+OutGuess là một chương trình ẩn số được thiết kế để ẩn tin nhắn trong hình ảnh
+https://www.boxentriq.com/code-breaking/outguess
 
 https://anonyviet.com/google-dork-la-gi-cap-danh-google-hacking-dork/
 https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
@@ -10,6 +20,7 @@ intitle: index.of cisco anyconnect   #download file without permission
 after:<date> before:<date>
 
 https://github.com/thewhiteh4t/nexfil    --find username on 350 website
+sherlock   --find username
 ghunt     find info with email
 ghunt jasminenguyen12387@gmail.com
 holehe jasminenguyen12387@gmail.com

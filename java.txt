@@ -5,12 +5,28 @@ Content-Type: application/json
 https://sheon.hashnode.dev/web-hacking-prototype-pollution-attack
 https://sheon.hashnode.dev/ctf-imaginary-2022-web-category-login-please-write-up
 https://hackmd.io/@taidh/PWN2WIN-2021
+https://hackmd.io/@endy/S1ZrLClOs   high level
+unflatten
+merge
 
+--------------------Prototype + cmdi = RCE
+https://hackmd.io/@endy/B1C24TlOj
 ----python
 https://viblo.asia/p/ban-da-biet-ve-lo-hong-class-pollution-trong-python-hay-chua-p1-3kY4g5zxLAe
 {{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls').read() }}
 --------------------------------------------deserialize
+https://hackmd.io/@endy/r1sYTUYOh  
+Ta có thể dùng jdeserialize-1.2.jar để hiển thị serialized data một cách dễ nhìn hơn
+java -jar jdeserialize-1.2.jar datas.ser
+
 java -jar ysoserial-all.jar CommonsCollections5 'apt install curl -y' | base64 -w 0 
+
+https://hackmd.io/@endy/SJsTmhaIs
+PHP sẽ không dùng dấu . để gọi tới private(protected) property như hiển thị ở trên mà PHP sẽ dùng \0
+
+https://hackmd.io/@devme4f/BJqaWika3#BadAttributeValueExpException-solution
+https://hackmd.io/@endy/B1zOJfSTh
+
 Ngoài readObject(), chúng ta cũng nên tìm thêm:
 readResolve()
 toString()

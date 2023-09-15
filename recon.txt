@@ -5,6 +5,9 @@
 3 gõ tìm các file có thể xảy ra trên đường dẫn
 4 Host, Header, https, another name of certificate
 
+md5sum <file>
+#get md5 all file
+for i in $(git log <filename>|grep ^commit|awk '{print $2}'); do git checkout $i -- <filename>; echo -n "$i "; md5sum <filename> done
 /.git/config
 /.git/logs/HEAD
 /robots.txt
@@ -27,6 +30,7 @@ show hosts
 ssh root@128.199.190.141 -p2223
 Password: recon_cbjslab
 nmap -T4 -A -v
+nmap -sC -sV -oA <ip>
 nmap -p 8008 --open 192.168.0.1/24
 rustscan -a 178.128.19.56 --range 0-65535 --ulimit 5000
 rustscan -a 127.0.0.1,0.0.0.0
@@ -60,6 +64,9 @@ searchsploit struts
 ----bind
 dig +short -e chaos -t txt @"z.hackycorp.com" version.bind
 
+#find info DNS
+dig @<ip> localhost
+
 dig txt key.z.hackycorp.com
 (zone transfer)
 dig axfr int @z.hackycorp.com
@@ -71,8 +78,11 @@ nikto -h http://shop.cyberjutsu-lab.tech/ -Tuning x
 ----scan directory
 nikto -h http://shop.cyberjutsu-lab.tech/ -Cgidirs all
 -----------
+WPScan  #scan wordpress
+https://viblo.asia/p/tim-kiem-va-tieu-diet-ma-doc-tren-wordpress-site-07LKXk7D5V4
 FinalRecon  
 nginxpwner   --Nginx misconfigurations and vulnerabilitiesNginx misconfigurations and vulnerabilities
+https://github.com/doyensec/electronegativity   #identify mixconfig
 nuclei    --SSTI  --https://gitbook.seguranca-informatica.pt/fuzzing-and-web/cache-poisoning-using-nuclei
 broken-link-checker
 https://github.com/anshumanpattnaik/http-request-smuggling
@@ -88,3 +98,4 @@ aws s3 ls s3://foodhut-storage2 --no-sign-request
 aws s3 cp s3://foodhut-storage2/internal/cong-thuc-bi-mat-ga-kfc.txt
 
 https://anonyviet.com/cach-dung-reconftw-de-do-tham-mang-tim-lo-hong-bao-mat/
+fast google dork scan

@@ -1,0 +1,65 @@
+----------------------vmware
+https://github.com/bquanman/CTF-Writeup/blob/main/Class%20Project%20-%20Forensics%20-%20UMDCTF2022.md
+
+----------------------------
+MEMORY.DMP
+python vol.py -f MEMORY.DMP windows.pslist
+vol -f MEMORY.DMP windows.filescan > a.txt
+vol.exe -f "MEMORY.DMP" windows.handles.Handles --pid 1736
+vol -f MEMORY.DMP windows.dumpfiles --physaddr 0x7e3e2070
+vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736 
+#read memory bash from .mem file
+python3 vol.py -f forensics.mem linux.bash
+https://hackmd.io/@Automic-Kaiii/By6L3Qil2
+volatility_gpg
+https://gist.github.com/1259iknowthat/8cb818f0a37566b1fc25151ef074d9af
+#----------------------------xem lịch sử trình duyệt
+https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/L34K%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
+#------------dump the screen from memorydump
+https://www.rootusers.com/google-ctf-2016-forensic-for1-write-up/
+
+https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/Another%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
+dùng PECmd để phân tích prefetch file tìm dấu hiệu của các chương trình đã được chạy
+
+
+http://www.decalage.info/python/oletools
+oleid: to analyze OLE files to detect specific characteristics usually found in malicious files.
+olevba: to extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
+MacroRaptor: to detect malicious VBA Macros
+msodde: to detect and extract DDE/DDEAUTO links from MS Office documents, RTF and CSV
+pyxswf: to detect, extract and analyze Flash objects (SWF) that may be embedded in files such as MS Office documents (e.g. Word, Excel) and RTF, which is especially useful for malware analysis.
+oleobj: to extract embedded objects from OLE files.
+rtfobj: to extract embedded objects from RTF files.
+-----file word
+https://ctf.krloer.com/writeups/cybergon/hide_and_seek/
+--------------------------------------------------------
+read command
+https://labs.jumpsec.com/no-logs-no-problem-incident-response-without-windows-event-logs/
+C:\Users\Admin\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
+|Out-String 
+\Software\Microsoft\Windows\CurrentVersion\Run
+NTUSER.DAT open by regist editor
+https://www.kali.org/tools/regripper/
+raw inflate  (cyberchef)
+
+C:\Users\Admin\AppData\Roaming\Microsoft\Word
+Open .asd file in this location
+
+https://drive.google.com/file/d/1q2NvG2gCkj18R67Dxzf47mT_WPENvBT4/view
+https://cehvietnam.com/2021/04/08/digital-forensics-investigation-using-os-forensics-chfi-plus-ceh-vietnam/
+
+----------------------------------------------------video image processing
+https://diendanit.net/threads/amped-five-professional-edition-2020-build-16112-full-cai-thien-chat-luong-video-hinh-anh-phap-y.12742/
+--------hide seletion
+manual tracking #move to seted position
+dynamic         #move to face 
+
+Amped DVRConv   #chuyển đổi một số lượng lớn các video giám sát   
+https://biomedic.com.vn/san-pham/chuong-trinh-chuyen-doi-va-phat-cctv-cho-dieu-tra-vien-copy/
+
+Amped Replay   # xem video mà không cần đến phần mềm trình phát không tương thích
+https://biomedic.com.vn/san-pham/chuong-trinh-chuyen-doi-va-phat-cctv-cho-dieu-tra-vien/
+
+Amped Authenticate   #phát hiện giả mạo và dấu vết của camera trên hình ảnh kỹ thuật số
+https://biomedic.com.vn/san-pham/phan-mem-phat-hien-gia-mao-hinh-anh-va-nhan-dang-may-anh-nguon/

@@ -1,3 +1,4 @@
+docker -   #check docker version
 docker-compose up
 ps
 docker exec -ti 4a71b94c7180 bash
@@ -41,6 +42,8 @@ https://xuanthulab.net/lap-trinh-chuc-nang-tim-kiem-trong-php-voi-elasticsearch.
 
 kubernetes
 https://nhattruong.blog/2023/01/19/tan-cong-cac-cum-kubernetes-qua-loi-api-kubelet-misconfigure/
+jenkins
+https://podalirius.net/en/ctf-writeups/heroctf-2021-devops-box-writeup/
 
 //vmware
 bcdedit /set hypervisorlaunchtype off

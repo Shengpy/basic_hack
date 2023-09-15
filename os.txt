@@ -1,14 +1,19 @@
+export PATH="$PATH:$HOME/.local/bin"
+
+nl = cat
+ss -lntp   #check all connection
+Kiểm tra log bằng journalctl
 chmod +x <filename>
 tail -f <filename>
 
 #set up security system
 https://viblo.asia/p/linux-hardening-and-system-auditing-p1-bJzKm4G659N 
 
+echo $0     #check shell is being used
 env
 cat /etc/environment
 cat /home/sheng/.bashrc           #the file the system will exec before OS open
 .profile được thực thi ngay từ khi đăng nhập ban đầu vào hệ thống (đăng nhập lần đầu vào máy, hay kết nối SSH) còn .bashrc được thực thi khi có một Terminal mới được khởi tạo
-https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA --> keylogger,bypass antivirus
 
 find medium2/ -type f -size +200c 2>/dev/null
 2>/dev/null để redirect std error vào /dev/null -> tránh print lỗi ra terminal
@@ -17,14 +22,11 @@ find . -type f -size 1033c ! -executable -exec {} + | grep ASCII
 cat data.txt | sort | uniq -u    (line of text that occurs only once)
 cat data.txt | strings | grep ^= (Dùng grep với ^= để tìm các dòng bắt đầu với =)
 file ./*
+find ./ -type f -mtime -15   #sửa đổi gần đây  15 ngày qua:
+find / -iname backup.py 2>/dev/null   #find the file with name backup.py from /
+strings  <filename> | grep '\$' -B5 -A5  #find 4 line before and after the line contain '\$'
 
-openssl passwd <your_passwd>
-upload /etc/passwd  
-ssh root@128.199.190.141 -p2223
-ssh -i id_rsa medium3@localhost
-ssh -L <your port>:<web IP target>:<web port target> ubuntu@team6.ascis.vn (port forwarding)
-ssh -L 9000:10.254.6.2:4001 ubuntu@team6.ascis.vn
--> có thể access đến web ng khác thông qua port của chính mình http://127.0.0.1:9000 
+|jq .  #json decode
 
 cat input.txt | nc localhost 30002 >> output.txt  
 grep -v "Wrong" để loại bỏ các trường hợp này
@@ -39,6 +41,7 @@ Ctrl + Z   --> bg  --> ps aux
 smbclient -L //192.168.1.5/Mydata -U testusers
 
 htop
+ps -ef --forest
 ps aux | grep nginx 
 kill <PID>
 

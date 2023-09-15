@@ -3,20 +3,20 @@ http://wordpress-site/wp-json/wp/v2/posts/1234?id=5 thì id là 5 chứ không p
 
 focus on session --> no session --> vulnerability
 
-document.cookie k the nam tren url
-http-only flag is on, you can’t steal cookie, but you can get it from phpinfo!
-
 switch-case là true thì mặc định nó sẽ chạy vào case đầu tiên
 
 app', 'something'),];}}system('curl http://localhost:12134');__halt_compiler();. 
 function __halt_compiler để dừng quá trình compile ở sau.
 
-cấu hình CSP nên tôi sẽ không tạo được các thẻ script mà có src từ nguồn nào khác ngoài http://cdn.jsdelivr.net
-https://gomakethings.com/how-to-turn-any-github-repo-into-a-cdn/
-github.com/CanardMandarin/csp-bypass
-https://sheon.hashnode.dev/ctf-hack-the-boo-2022-web-category-write-up
-
-By default, PHP stores its sessions in a serialized format in the directory /var/lib/php/sessions, in a file named sess_[session ID]
-https://nguyendt.hashnode.dev/webhackingkr
-
 undefined < 1e+300 is false
+
+https://hackmd.io/@endy/Skxms9eW2
+Khi ta thêm cái ký tự không hợp lệ của base64 vào ciphertext thì cả 2 đều sẽ tự động bỏ qua các ký tự đó rồi thực hiện decode.
+$ php -r "echo base64_decode('ZW5keW5l');"
+endyne
+$ php -r "echo base64_decode('@@_ZW5keW5l');"
+endyne
+
+convert.base64-decode không thể tự động bỏ dấu = ở giữa ciphertext
+php -r "echo file_get_contents('php://filter/convert.iconv.UTF8.UTF7/convert.base64-decode/resource=test.txt');"
+dấu = từ UTF-8 được chuyển sang UTF-7 sẽ thành chuỗi ký tự không hợp lệ trong Base64

