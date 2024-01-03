@@ -2,93 +2,90 @@ split, pdfinfo, pdfimages, pdfcrack, pdfdetach, Keepass, Magic Numbers, hexed.it
 photorec, TestDisk, pngcheck, pngcsum, Registry Dumper, Dnscat2, pefile, Wireshark, Network Miner, PCAPNG, tcpflow, 
 PcapXray, qpdf, Audacity, sonic visualiser, ffmpeg strings, file, grep, scalpel, bgrep, hexdump, xxd, base64, xplico 
 framework, zsteg, gimp, Memory dump - volatility, ethscan, and many more.
+de4dot,reconftw,
 
 libreoffice --writer path/to/your/file.docm
 
-#find the type of file
-detach it easy (die.exe)
-
-dnspy là một tool dùng để phân tích các file .net.
-
+autospy    #analyse memory file
+pestudio        #analyze malware
+hashmyfile      #check hash and other info of file
+detach it easy (die.exe)   #find the type of file
+dnspy là một tool dùng để phân tích các file .net, .exe
+hexedit // dump hex of a file
+https://cp04042k.github.io/posts/cookie-han-hoan-writeup/
 open apkfile by jadX ( installed in desktop)
 or rex2jar
-
-hexedit // dump hex of a file
-
+networkminer to see all file in wiresharktransport ( installed in desktop)
+https://github.com/xnl-h4ck3r/waymore   #dump web from waybackmachine
+---------------------------------------linux tool
 exiftool
-
 if a file contains many file let use binwalk
 binwalk --dd='.*' wallet.jpeg
 Ta được file _wallet.jpg.extracted . Sau đó check file ta thấy có 2 file 0 và 2E11E
 Ta sẽ đổi đuôi file 2E11E thành .pdf
 
+https://github.com/daffainfo/ctf-writeup/tree/main/ASC%20Cyber%20Wargames%20Qualification%202023/Father's%20Light
 flask-unsign --decode --cookie <session_cookie>
 flask-unsign --unsign --cookie <session_cookie> --wordlist cookies.txt
 flask-unsign --sign --cookie "{'very_auth': 'admin'}" --secret 'kiss'
 
-steghide
+https://www.provos.org/tags/steganography/  #steghide detact
+StegAlyzerAS
 steghide embed -ef secret.txt -cf StegoCat.jpg -e none -Z
 steghide extract -sf stegoCat.jpg -xf extractSecret.txt
-
-wireshark
-Follow UDP Stream
-tshark -Y "mysql contains db_m3149.users" -r capture.pcap -Tjson --no-duplicate-keys > result.json
-tshark -r TrivialFTP.pcapng -Y "udp.dstport == 58813 && frame.number > 2972" -Tfields -e data.data  > hex.txt
-
-networkminer to see all file in wiresharktransport ( installed in desktop)
+stegseek --seed out.jpeg -xf out.res    #brute force pass  default list
+stegseek out.jpg rockyou.txt
 
 pydumpck to unpack exe file to .py
 pydumpck <filename>.exe   
 go to folder find pyreverser.pyc.cdc.py
-
-file.wav
-Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
 --------------------------------decode
 rainbowcrack            #hash
-hashcat   #jwt,...
 hashcat -a 0 -m 13600 sheng.txt ./rockyou.txt    #-a attack mode   0 is md5
 hashcat <filename> ./rockyou.txt
 hashcat -a 3 -1 ?l -i -m 10500 '<hashcode>' ?1?1?1?1?1?1  #6 character
+-m 16500 jwt    -m 500  md5    -m 10500 pdf
 join need_hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5
 https://owasp.org/www-pdf-archive/OWASPBristol-2018-02-19-practical-password-cracking.pdf
 https://nicholaslyz.com/blog-posts/2021-07-23-cracking-pdf-hashes/
 https://hashcat.net/wiki/doku.php?id=hashcat
-
-https://github.com/Mebus/cupp  #generate password
+zip2john vulnerable-flask-app.zip > zip_hash.txt
+john -w=/usr/share/wordlists/rockyou.txt zip_hash.txt
+john hashes.txt --format=md5crypt-long --wordlist=rockyou.txt --mask="UDCTF{?w}"
+for i in $(cat rockyou.txt) ; do echo "UDCTF{$i}" >> new_rockyou ; done
+crackmapexec smb 10.129.95.210 -u svc-alfresco -p s3rvice -d htb.local
+https://axcheron.github.io/writeups/htb/forest/
+-----------------------------generate password
+https://github.com/Mebus/cupp
+cewl -d 3 -m 5 -w passwd.txt http://10.10.10.191/   #Đây là một công cụ tự động genarate password dựa vào những thông tin nó nhận được từ URL
+https://github.com/t3l3machus/psudohash
 https://github.com/cycurity/wister
+https://github.com/t3l3machus/BabelStrike
+https://gist.github.com/superkojiman/11076951
 crunch
 crunch bằng lênh crunch 10 10 alomanAlOMAN x@@@@@@@123
+uniq   #filter same password
+
+https://hackmd.io/@phgvee/B1zHDYhsh#Lookey-here
+openssl des3 -d -salt -in file.des3 -out file.txt -k supersecretpassword123
+https://hackmd.io/@phgvee/Skr808L3n#UnforgottenBits
+openssl aes-256-cbc -d -K a9f86b874bd927057a05408d274ee3a88a83ad972217b81fdc2bb8e8ca8736da -S 2350e88cbeaf16c9 -iv 908458e48fc8db1c5a46f18f0feb119f -in 7.bmp.out -out flag.txt
 #-----------------------------------------brute force
 https://github.com/Mebus/cupp   #create list brute force by name
 hydra 192.168.8.200 ssh -l admin -P file_src -s 22 -vV
                                         (port) (only show usr pass)
 hydra -l admin -P /home/kali/Desktop/pass.txt -u -f 192.168.8.200 -s 80 http-post-form "/DVWA/login.php:username=^USER^&password=^PASS^:F=<form name='login'"
+hydra -L /usr/share/brutex/wordlists/simple-users.txt -P /password.lst domain.htb http-post-form "/path/index.php:name=^USER^&password=^PASS^&enter=Sign+in:Login name or password is incorrect"
+https://www.golinuxcloud.com/brute-force-attack-web-forms/
 ---------------------------------------------------------check firewall
 wafw00f <url>
----------------------smb
-#enumerating information from Windows and Samba systems
-enum4linux 192.168.134.40
-nmapAutomator.sh -H 192.168.66.42 -t vulns
-nmapAutomator.sh -H 192.168.66.42 -t full
-------------------------------------------------------------------------------OSINT
-domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
-
-domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
-jasminenguyen12387
-
-osintifyX
-seeker     -----find location
-https://github.com/spyboy-productions/r4ven   #same seeker but can edit
-./ngrok http 8080
-grabify(may not good as seeker)
-
 -------------------------------------------------------------------------------phishing
 markphish  ---create phising link
 zphisher --phising
 #xịn
 https://anonyviet.com/demo-tan-cong-phishing-voi-evilginx2/#ftoc-cach-hoat-dong-cua-cong-cu-evilginx2
 https://github.com/trustedsec/social-engineer-toolkit   --> https://viblo.asia/p/huong-dan-tan-cong-web-phishing-aWj53nzel6m
-
+https://anonyviet.com/pyphisher-cong-cu-phishing-de-su-dung-voi-65-trang-web-co-san/
 #-------------------------------------------------------------------------------toolkit
 fsociety   
 https://github.com/black-software-Com/black-tool
@@ -97,6 +94,7 @@ https://github.com/D4RK-4RMY/DARKARMY
 https://github.com/trustedsec/social-engineer-toolkit
 https://github.com/kgretzky/evilginx2   phising
 #---------------------------------------------------------------------------------wifi
+https://www.youtube.com/watch?v=noRV2VVrnaM   Get password from captured wifi packet
 https://github.com/D3Ext/WEF
 airgeddon  evil-twin
 https://github.com/topics/evil-twin
@@ -105,8 +103,15 @@ airdump   #theo doi
 https://github.com/byteSalgado/router-kill
 https://anonyviet.com/wifiphisher-phishing-mat-khau-wifi-bang-kali-linux/
 https://github.com/P0cL4bs/wifipumpkin3
+https://0xdf.gitlab.io/2018/09/22/htb-olympus.html#exploiting-create-container---shell-as-www-data
+aircrack-ng -e Too_cl0se_to_th3_Sun -w /usr/share/wordlists/rockyou.txt olympia_loot/caputred.cap
 
+https://github.com/0x646e78/bluesniff
 https://github.com/Yariya/Zmap-ProxyScanner
+-----------------------------------------------------------------------------msfconsole
+https://www.youtube.com/watch?v=QXyKYpSV3M0&list=PL-HdylJurvuigkcPF7XZaWA2DLJ4plI1p&index=6
+ssh enumeration
+telnet check version
 #---------------------------------------------------------------------------malware
 https://github.com/screetsec/TheFatRat
 cobalt strike

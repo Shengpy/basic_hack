@@ -2,3 +2,5 @@ https://twitter.com/naglinagli/status/1639343866313601024
 https://gitbook.seguranca-informatica.pt/fuzzing-and-web/cache-poisoning-using-nuclei
 
 https://endy21.hashnode.dev/hcmus-2023-final-write-up
+https://viblo.asia/p/web-cache-poisoning-reborn-by-james-kettle-yMnKMMXEK7P
+Param Miner

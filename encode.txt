@@ -1,7 +1,76 @@
+Shamir’s Secret Sharing Scheme   (share key for people)
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+ciphey -v -f enc.txt
 #---------------------------don't understand
 https://hackmd.io/@endy/ryjPiwO-h
 
 --------------------------------------crypto
 http://point-at-infinity.org/ssss/?ref=connortumbleson.com
-mã hóa RSA 
-mã hóa AES
+mã hóa RSA
+---------------------------------------------jwt
+https://viblo.asia/p/json-web-tokens-jwt-co-de-bi-gay-khong-07LKXqBJZV4
+Jwt web token   #Bstore
+forget verify signature -> change user normally
+Accepting tokens with no signature  -> "alg":"none"
+https://viblo.asia/p/json-web-tokens-jwt-co-de-bi-gay-khong-phan-2-WAyK8qONZxX
+https://github.com/wallarm/jwt-secrets/blob/master/jwt.secrets.list
+sudo hashcat -a 0 -m 16500 jwt_token.txt jwt.secrets.list --force
+JWT editor key   #Bstore
+jwk  (không white list public key được sử dụng để verify trên server mà thay vào đó dùng public key người dùng cung cấp để verify)
+https://hackmd.io/@CP04042K/ryyqJeXx2#Orbital
+https://github.com/ticarpi/jwt_tool
+https://www.youtube.com/watch?v=0GeN-HxO9GE
+https://hackmd.io/@to016/rkUGDPVZ3
+HS256  --> hashcat jwt
+https://www.4rth4s.xyz/2019/10/picoctf2019webexploitation-write-up.html
+--------------------------jwt tool
+https://www.4rth4s.xyz/2020/06/nahamcon-ctf-web-exploitation-writeup.html   #jwk
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+python jwt_tool.py
+--------------------------------------------mã hóa AES  (IV và content) dạng mã hóa khối
+https://hackmd.io/@phgvee/BJ03YEQ8j  (CBC  and ECB mode)
+https://sec.vnpt.vn/2019/09/crypt0graphy-pentesting/   (CTR mode)
+
+https://podalirius.net/en/writeups/fcsc2021-intro-lapin/
+https://cp04042k.github.io/posts/cookie-han-hoan-writeup/
+https://hackmd.io/@phgvee/BkNTAXKt3#Under-Control
+https://hackmd.io/@Automic-Kaiii/By6L3Qil2
+
+https://sec.vnpt.vn/2019/09/crypt0graphy-pentesting/    web pentest +  crypto
+AES-CBC mode bị ảnh hưởng bởi tấn công Padding Oracle
+Một dấu hiệu nhận biết Padding Oracle là chúng ta thay đổi 255 giá trị còn lại của byte cuối, gửi request lên server và quan sát các http response. Cần có các yếu tố như exception, timing, http status codes (30x, 500), hoặc điểm khác biệt giữa các response để biết được trường hợp nào padding chính xác, trường hợp nào padding sai.
+
+SHA256 -> lengh result không đổi
+
+test 
+AAAAAAAAAAAAA  BAAAAAAAAAAAA  ABAAAAAAAAAAA
+
+kí tự đầu tiên ở mỗi dòng
+https://github.com/alirezaomidi/ctf/blob/master/ringzer0team/steganography/victor-reloaded/README.md
+compare diff
+change level brightness
+
+https://axcheron.github.io/writeups/otw/natas/#natas-26-solution
+#------------------level 1
+vị trí 0 đại diện cho vị trí 11  --> vị trí 0 tăng thì vị trí 11 tăng
+#------------------level 3
+chọn key làm tăng hoặc giảm tại mỗi vị trí
+tính ra tổ hợp key để tất cả vị trí đều cùng số
+-----level 26
+The start/end of the string is always the same so, each block is encrypted independently with the same key.
+-------------------------------------------hash length extension attack  md5 vul
+https://quandqn.wordpress.com/tag/hash-length-extension-attack/
+https://github.com/iagox86/hash_extender
+
+base64 sẽ tự động remove %0D%0A khi decode
+----------------------------------------------------type judling
+https://viblo.asia/p/php-type-juggling-924lJPYWKPM
+{"action":0,"numbers":[true,true,true,true,true,true,true,true]}
+tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
+test?guess[length]=9999999999999999999 
+{"0":"a","999":"a","length":"1000"}
+{"length": "a","0": "a","NaN": "a"}
+---------------------------------------------------------------------
+https://archive.ph/QGwV3   các loại mật mã tượng hình
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
+https://www.dcode.fr/whitespace-lingu

@@ -4,7 +4,9 @@ github.dev
 không cần phải hiểu code chạy như nào 
 xem input với output rồi đoán quy luật
 
+https://nhattruong.blog/2021/12/21/write-up-uit-ctf-wannagame/
 tra vulneribility từ những thư viện được import nhưng không dùng
+thêm %0a thử  vào những chỗ bị filter
 #------------------------------------url
 <?php
 // single slash case
@@ -17,18 +19,15 @@ $uri = "//upload?/home/binarycloud/";
 $data = parse_url($uri);
 print_r($data);
 ?>
+
 no space in url --> bypass <url>#<space>
+https://nhattruong.blog/2023/06/22/write-up-kma-ctf-2023/  #another way
 https://hackmd.io/@onsra03/SkiBeaed3 
 302 to redirect and get info
 file:///proc/mounts
 
 https://hackmd.io/@endy/r1AHaERDo
 hàm require trong nodejs chỉ require 1 file dc 1 lần, require lần 2 k có tác dụng
-
-https://nhattruong.blog/2022/10/27/mot-so-payload-khi-test-truong-email/  --test email
-
-tạo ra vòng lặp vô hạn bằng cách thay đổi para từ url từ string -> obj
-test?guess[length]=9999999999999999999 
 \r\n to add header
 admın
 Turkish character
@@ -38,8 +37,32 @@ sau khi set up operate => lỗi nằm ở operate
 
 file không mở được => sai file extension, sai file signature
 
-https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA
------dangerous func
+https://0xdf.gitlab.io/2021/06/08/htb-node.html
+cat myplace.backup | base64 -d > myplace.backup.decode   #backup is text file
+
+https://axcheron.github.io/writeups/otw/natas/
+---------------------level4
+Access disallowed. You are visiting from "" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/" 
+s.headers.update({'referer': "http://natas5.natas.labs.overthewire.org/" })
+---------------------level10   commandi with grep
+grep -i .* /etc/natas_webpass/natas11   or use subcommand
+---------------------level 24
+if(!strcmp($_REQUEST["passwd"],"<censored>"))
+passwd[]=0
+---------------------level 27
+http://r4stl1n.github.io/2014/12/30/OverTheWire-Natas25-28.html
+mysql_fetch_assoc
+---------------------level 29    bypass OS command filter with ""
+na""tas
+---------------------level 30    sqli in pearl
+{ "username": "natas31", "password": ["'' or 1", 2] }
+---------level 31
+$cgi->upload('file')
+---------------------level 33
+fopen(),copy(),file_exists(),filesize()
+https://github.com/s-n-t/presentations/blob/master/us-18-Thomas-It%27s-A-PHP-Unserialization-Vulnerability-Jim-But-Not-As-We-Know-It-wp.pdf
+level 26 33 don't understand
+-----------------------------------------------------------dangerous func
 ---php
 extract() 
 https://nhattruong.blog/2022/12/01/write-up-kcsc-ctf-web/    240610708 QNKCDZO
@@ -55,3 +78,9 @@ https://laxiisteam.blogspot.com/2023/04/sqli-lam-nao-e-bypass-ham-addslashes.htm
 0xbf5c27
 --------------------------bypass preg_match(): compare
 https://nguyendt.hashnode.dev/webhackingkr
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+PHP have PREG_BACKTRACK_LIMIT with default value of 1000000 to prevent DOS via regex
+
+--------------------------bypass disable_function  php 7.0-8.0
+https://hackmd.io/@notmtin/HJbGd2qZn
+https://github.com/mm0r1/exploits/blob/master/php-filter-bypass/exploit.php

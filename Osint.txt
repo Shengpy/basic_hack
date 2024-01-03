@@ -1,7 +1,17 @@
-twitter, facebook, linkedin
+https://www.google.co.uk/
+bing
+duckduckgo
+
+-----------------------------------------social network
+https://vjz3r.blogspot.com/2023/10/isitdtuctf2023-osint.html
+Threads
+id ->  facebook.com/id
+   ->  https://twitter.com/randomusername/status/id
+twitter, facebook, linkedin, instagram
+Threads
 util:2007-01-31 since:2007-01-01
 .union -> darkweb
-check github
+------------------------check github
 add .patch into commmit
 https://gist.github.com/
 
@@ -29,3 +39,19 @@ osintgram  ---instagram osint
 NExfil  --find by username
 spiderfoot --find by username
 maltego
+
+domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
+jasminenguyen12387
+
+osintifyX
+seeker     -----find location
+https://github.com/spyboy-productions/r4ven   #same seeker but can edit
+./ngrok http 8080
+grabify(may not good as seeker)
+-------------------------------------------------------------------------------------
+https://vjz3r.blogspot.com/2022/08/writeup-whitehat-play-11.html
+https://github.com/bquanman/CTF-Writeup/blob/main/Class%20Project%20-%20Forensics%20-%20UMDCTF2022.md
+https://viblo.asia/p/write-up-cyber-space-osint-playground-intro-audition-EvbLbbwmLnk#_new-domain---50-6
+https://cyberlances.wordpress.com/2021/08/18/osint-challenge-writeup-su-co-ro-ri-du-lieu/?fbclid=IwAR0plsCXBCDPyTVmi5MEDo4zWd5l0VBnn5T6tlKPN7sucs3Kh8w9dDGMXc0
+-------------------------------------------------flight
+https://medium.com/@0xMr_Robot/ascwg-2023-osint-challenge-7f625997867e

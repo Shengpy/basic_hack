@@ -1,6 +1,154 @@
+stack chỉ chứa địa chỉ
+----------------------------------------------------------------
+no read permission ---> GDB useless
+https://axcheron.github.io/writeups/mbe/lab6c/
+cat /proc/sys/kernel/randomize_va_space   # check ASLR (random stack)
+https://axcheron.github.io/writeups/mbe/lab5c/   
+#pattern_search   --> find buffer overflow point
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2000
+$ python
+# EIP: '6F43396E'
+# Convert to little endian
+>>> '\x6e\x39\x43\x6f'
+'n9Co'
+>>> payload = <pattern_create_payload>
+>>> payload.find('n9Co')
+
+Khi mà chỉ đọc vừa đủ thì chuyển qua dùng lỗi format string (write to stack)
+
 string format %s %x %p
 https://owasp.org/www-community/attacks/Format_string_attack
 https://whitehat.vn/threads/gioi-thieu-loi-format-string.8212/
+https://axcheron.github.io/exploit-101-format-strings/
+%p prints the first argument printf() will find on the stack. Let’s take a look at the stack before calling printf().
+printf("%2$x", 1, 2, 3) will print 2.
+int printf(const char *format, ...)
+int fprintf(FILE *stream, const char *format, ...)
+int sprintf(char *str, const char *format, ...)
+int vprintf(const char *format, va_list arg)
+int vsprintf(char *str, const char *format, va_list arg)
 
+ghi với %n
+xác định địa chỉ biến cần ghi, tìm chỗ chứa giá trị đọc input, vd AAAA%142\$p (vị trí offset 142 trong stack, ghi đè 4 vì length AAAA là 4)
+objdump -t ./<file_exec> | grep <variable_name>
+overwrite the func, in last example
+
+https://axcheron.github.io/writeups/otw/behemoth/     --level 3
+/tmp/find_addr SHELLCODE
+
+https://axcheron.github.io/writeups/mbe/lab4c/
+--------------------------------------------------------------------------------
 ghidra
 https://sourceforge.net/projects/easypythondecompiler/
+
+gcc -m32 bank1.c -o test -fno-stack-protector -z execstack -no-pie
+----------------------------------------gdb command
+file <filename>
+b*<addr>
+si    #run next intrucstion
+continue
+x/16x <addrr>
+x/16w $esp-0x28
+x/40x $esp-0x50
+run < <(python2 exploit.py)
+p 0x<hex>      #convert hex to decimal
+-------------------------------------------------
+(python exploit.py; cat -) | ./bank3
+ltrace ./narnia2 $(python -c 'print "A"*132')
+checksec
+https://axcheron.github.io/writeups/mbe/lab6c/
+cat /proc/sys/kernel/randomize_va_space   #2 is enable
+---------------------------------------NX flag khả năng cao dùng func trong lib
+https://axcheron.github.io/writeups/mbe/lab5c/
+NX (enable)  reuse the existing code! This technique is called ROP or Return Oriented Programming.
+https://drx.home.blog/2019/04/07/pwnable-tw-calc/
+NX (enable) sẽ không cho phép 1 vùng nhớ nào đó có cả 2 quyền writeable và executable. Vùng .text chứa code chỉ có thể execute mà không thể write
+--------------------------------------------------------------------------------------------
+https://drx.home.blog/2019/04/09/pwnable-tw-dubblesort/    #bypass canary
+canary found đây là một địa chỉ được thêm vào sau các biến để đảm bảo nếu ghi đè lên nó sẽ bị lỗi  stack smashing
+PIE enabled địa chỉ các lệnh và hàm của chương trình bị thay đổi ngẫu nhiên mỗi lần chạy.
+
+Fortify Source   nó sẽ sử dụng các biện pháp bảo vệ để đảm bảo rằng các hàm như strcpy và sprintf không thể bị lợi dụng
+https://axcheron.github.io/writeups/mbe/lab4b/   #GOT
+RELRO (Relocation Read-Only) is enabled and protects the Global Offset Table (GOT) in ELF. It means that we won’t be able to rewrite any address in this section  ( tức là ta có thể ghi đè địa chỉ gọi đến hàm hệ thống)
+
+https://hackmd.io/@Chivato/B112H_I18#Challenge-1
+--level 0
+gets
+scanf
+--level 1
+ret = getenv("EGG");
+ret();
+--level 2
+return addr to shell code
+strcpy(buf,argv[1]);
+--level 3
+liên  quan đến xử lý file
+https://axcheron.github.io/writeups/otw/narnia/
+--level 5   format strings
+snprintf(buffer, sizeof buffer, argv[1]);
+./narnia5 %x.%x.%x
+--level 6  ---call to a func  system()
+puts
+p system   --> list addr of func
+----level 7 
+overwrite stack 
+
+https://axcheron.github.io/writeups/otw/behemoth/
+-----------level 1
+#find the addr of environment variable
+-----------level 3
+overide stack return to shell code in env
+-----------level 4
+https://0xd4y.com/Writeups/Misc/Behemoth%20Writeup.pdf
+
+------------------------------------------------------Overwrite lib
+no read permission ---> GDB,objdump useless
+https://axcheron.github.io/playing-with-ld_preload/
+ldd     #check lib
+gcc -static demo.c -o demo_stc
+readelf -h demo_dyn    
+-->  Type: DYN (Shared object file)    (dynamic lib, import lib to use)
+-->  Type: EXEC (Executable file)      (static lib)
+gcc preload.c -o preload.so -fPIC -shared -ldl
+LD_PRELOAD="./preload.so" ./demo
+--------------------------------------------------call system in lib
+https://hackmd.io/@CP04042K/HJlA8zuW2
+p system   (gdb)
+https://bo8blog.wordpress.com/2016/11/07/vong-loai-svattt-2016-pwn200-c0ffee-write-up/   #example code
+https://axcheron.github.io/writeups/mbe/lab3c/    #find system func and call
+https://drx.home.blog/2019/04/09/pwnable-tw-dubblesort/    #leak info from stack and call system in lib
+https://bo8blog.wordpress.com/2017/04/09/asis-ctf-quals-2017-start-hard-pwn-201/   #find dangerous gadget
+https://github.com/david942j/one_gadget
+https://axcheron.github.io/writeups/mbe/lab5c/
+-------------------------------------------------------no debug mode
+https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/NewOverFlow-1.md
+objdump -D ./vuln | grep "<flag>"
+start
+https://ctftime.org/writeup/23778    #look ad ghidra addr
+--------------------------------------------------------
+https://0xdf.gitlab.io/2021/06/08/htb-node.html   #ASLR brute force
+readelf -s /lib32/libc.so.6 | grep ' system@@'
+strings -a -t x /lib32/libc.so.6 | grep '/bin/sh'
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-19-overthewire-maze/
+#level-1   #hooking func to lib
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-12-06-overthewire-manpage/   
+level 0   #set uid rewrite
+level 2   #read data from forget closed file
+level 3   #race condition, limited opened file
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-19-overthewire-maze/#level-1---level-2   #race condition
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-26-overthewire-semtex/   ptrace
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-26-overthewire-semtex/  level1 and 5 is socket
+https://0xdf.gitlab.io/2022/04/11/htb-tally.html#identify-firefox-exploit    #fix the payload from meterpreter
+https://kn0wledge.fr/write-ups/pwn-patchinko/    PLT(Procedure Linkage Table) check func and call another func
+https://drx.home.blog/2019/04/03/pwnable-tw-start/#more-646    #shell code write into stack
+https://drx.home.blog/2019/04/07/pwnable-tw-calc/   #lazy read code, test by try
+https://drx.home.blog/2019/04/03/pwnable-tw-orw/   #basic assemply write code
+
+# cày sau 
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-19-overthewire-maze/#level-1---level-2
+https://overthewire.org/wargames/
+https://l3ouu4n9.github.io/post/wargames/overthewire/2019-11-26-overthewire-semtex/  level3->4 k hiểu lắm  ptrace process con set uid và process cha dc hưởng uid đó
+https://h4niz.wordpress.com/category/ctf-2/page/2/
+------------------------------------------pwn tool
+https://www.youtube.com/watch?v=RaYU3hN88DA

@@ -1,0 +1,13 @@
+check changed port
+https://drx.home.blog/2019/03/26/ctf_write-up-securinets-prequals-2k19-23-3-2019/
+check certificate
+
+https://github.com/KMANVK/buuctf/blob/main/Misc/%5BGXYCTF2019%5Dgakki/Decode.py
+count word frequency and sort it
+https://github.com/KMANVK/Tenable-CTF-2023/blob/main/Tenable%20CTF%202023/stego/Cyberpunk%20Cafe/sol.md
+binary -> image QR code
+https://github.com/KMANVK/Tenable-CTF-2023/blob/main/Tenable%20CTF%202023/stego/pi%20is%20overratEd/sol.md
+euler number
+
+https://inseclab.uit.edu.vn/wannashare-writeups-asis-ctf-quals-2022-crypto-pwn-rev-forensics/
+qr

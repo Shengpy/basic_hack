@@ -5,11 +5,17 @@ docker exec -ti 4a71b94c7180 bash
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456x@X -p 3307:3306 -d mysql:8.0.29
 cd /etc/apache2/
 docker cp <containerId>:/file/path/within/container /host/path/target
+#build from Dockerfile
+docker build -t my-flask-app .
+docker run -p 4000:80 my-flask-app
 
 https://vnsys.wordpress.com/2018/08/20/co-ban-ve-docker/
 https://viblo.asia/p/dev-hien-dai-phan-1-setup-moi-truong-dev-voi-docker-djeZ1RpQlWz
 #cau hinh mang
 https://xuanthulab.net/mang-network-bridge-trong-docker-ket-noi-cac-container-voi-nhau.html
+
+https://hackmd.io/@G5gBRUCMTSyXe5unaAjjtA/BknQt7fOo#%C4%90%C3%B4i-l%E1%BB%9Di-t%C3%A2m-s%E1%BB%B1
+#config router proxy and service in docker
 
 jenkins
 https://www.youtube.com/watch?v=6YZvp2GwT0A
@@ -50,3 +56,15 @@ bcdedit /set hypervisorlaunchtype off
 
 dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
 bcdedit /set hypervisorlaunchtype auto
+----------------------------------------------docker pentest
+https://r2nw.github.io/posts/ASCIS2023WARMUP/
+sudo docker run --user root <image name>
+docker image save 7b1425204c8d -o flag
+
+https://0xdf.gitlab.io/2018/09/22/htb-olympus.html#pivot-to-hades--olympus---shell-as-prometheus
+#move the os into docker
+docker run -v /:/hostOS -i -t rodhes bash
+
+https://systemweakness.com/busqueda-hack-the-box-964fed1515a6
+docker container ls --format='{{jsoj .}}'
+docker-inspect '{{json .}}' mysql_db

@@ -59,6 +59,8 @@ git fetch --all
 git branch backup-master
 3 Nhảy để commit mới nhất của origin/master.
 git reset --hard origin/master
+-------------------------------------secure
+https://0xdf.gitlab.io/2019/05/04/htb-bighead.html#coffee
 
 .git/
 ├── COMMIT_EDITMSG

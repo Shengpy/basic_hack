@@ -1,3 +1,12 @@
 iptables
 https://whitehat.vn/threads/phong-chong-tan-cong-su-dung-iptables.4933/
+https://quantrimang.com/cong-nghe/bao-ve-may-tinh-linux-voi-iptables-137932
+https://viblo.asia/p/network-tim-hieu-ve-iptables-n7prv348RKod
 defend DDOS
+
+sudo iptables -A INPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+netsh /?
+netsh wlan show profile
+netsh wlan show profile HCMUS-I92 key=clear

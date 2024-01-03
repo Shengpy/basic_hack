@@ -1,3 +1,4 @@
+https://www.4rth4s.xyz/2020/11/learning-flask-framework-python-2.html  (simple flask app)
 php -S 127.0.0.1:8000
 https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
 https://www.youtube.com/@toannai3042/videos
@@ -7,14 +8,17 @@ php.ini
 cat /proc/cpuinfo
 /etc/nginx/nginx.conf
 set worker_processes to be equal to the number of CPUs or cores.
+/etc/nginx/sites-enabled/default
 
 //neu co nhieu hon 1 web tren server
 /etc/nginx/conf.d/default.conf
 
 sudo service apache2 start
 service apache2 status
-service --status-all
+ư
 
+https://hackmd.io/ers-v5oFQOivt-qIjZKqfA
+https://xuanthulab.net/tim-hieu-apache-handler-php-handler-cai-dat-va-su-dung.html
 php-fpm
 /etc/php/8.2/fpm
 /run/php/php8.2-fpm.sock
@@ -56,3 +60,6 @@ https://viblo.asia/u/viblo.security
 https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/
 location ~ \.php$
 https://nguyendt.hashnode.dev/pbctf-2023-writeup
+https://hackmd.io/ers-v5oFQOivt-qIjZKqfA   (php-fpm attack)
+https://tttang.com/archive/1775/
+listen = 0.0.0.0:9000 thay vì listen = 127.0.0.1:9000

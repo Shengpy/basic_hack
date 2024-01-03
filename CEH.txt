@@ -68,5 +68,7 @@ arpspoof -i the0 -t 192.168.8.207 192.168.8.203
 arpspoof -i the0 -t 192.168.8.203 192.168.8.207  
 //Kali bảo là 207(C) là mac của 203(A) là mac của kali(B)
 https://www.youtube.com/watch?v=iI8eAVloSYs
+--------------------------dns spoofing
+https://www.geeksforgeeks.org/how-to-make-a-dns-spoof-attack-using-scapy-in-python/
 --------------------------------
 searchsploit

@@ -1,44 +1,157 @@
-----------------------vmware
-https://github.com/bquanman/CTF-Writeup/blob/main/Class%20Project%20-%20Forensics%20-%20UMDCTF2022.md
+-----------------------------------------------------linux command
+https://podalirius.net/en/writeups/fcsc2021-intro-rituel-du-boutisme/
+for e in s S b l B L; do strings -e $e ewf1 | grep FCSC; done    #find with diffence data type
+https://sbasu7241.medium.com/otterctf-2018-memory-forensics-write-up-part-2-14bf86e3ab94
+xxd 708.dmp | grep "5a0c 0000"   #find hex from a file 
+---------------------------------------------------------------
+https://base64.guru/converter/decode/file  #base64 to file
+console.log(verifyUsername.toString())
 
-----------------------------
+PicoCTF 2023
+https://hackmd.io/@phgvee/Skr808L3n
+lsb  -> StegSolve
+50 4B 03 04  --> PKzip
+binwalk -R "\x50\x4b" output.bmp 
+xxd -s <hex> -l 16 -g 1 output.bmp     #các byte đc chèn vào để gây nhiễu
+stegracker                             #crack steghide file with wordlist
+file slack
+https://hackmd.io/@Automic-Kaiii/Sk2fMRRlh
+lsb
+
+https://hackmd.io/@phgvee/B1zHDYhsh
+File types     #check file and zip with many different type
+Sleuthkit
+53 61 6c 74   salt
+Torrent download là một phương pháp tải xuống tập tin hoặc dữ liệu thông qua việc chia nhỏ thành các phần nhỏ và tải từ nhiều nguồn khác nhau đồng thời. Phương pháp này sử dụng một loạt các máy tính tham gia vào việc chia sẻ tập tin, gọi là “peers” (đồng ngang), và một máy tính chủ điều khiển quá trình tải xuống, gọi là “seed” (hạt giống).
+
+https://hackmd.io/@endy/B1zOJfSTh#Texttext
+.war   extract by zip
+
+https://github.com/krx/CTF-Writeups/blob/master/CSAW%2016%20Quals/for250%20-%20Watchword/jk_actual_writeup.md
+extract img from .mp4
+foremost powpow.mp4
+cp output/png/00001069.png img1.png
+
+https://github.com/bquanman/CTF-Writeup/blob/main/Class%20Project%20-%20Forensics%20-%20UMDCTF2022.md  #vmware
+------------------------------------------------------wireshark
+https://hackmd.io/@Automic-Kaiii/SJ6VtbWo2    #fix pcap
+https://github.com/teebowie/ctf-writeups/blob/master/ISITDTU_CTF_2022/misc_T1M3/README.md    #wireshark -> sqli
+https://github.com/omriher/CapTipper   #extract file and time in pcap
+https://blog.checkpoint.com/security/captipper-malicious-http-traffic-explorer/ 
+https://github.com/omriher/CapTipper    #advance analyze http tool
+Follow UDP Stream
+tshark -Y "mysql contains db_m3149.users" -r capture.pcap -Tjson --no-duplicate-keys > result.json
+tshark -r TrivialFTP.pcapng -Y "udp.dstport == 58813 && frame.number > 2972" -Tfields -e data.data  > hex.txt
+https://medium.com/@0xMr_Robot/buckeye-ctf-2023-misc-challenges-43504de1264a
+extract SSID data from packet
+https://github.com/opabravo/security-writeups/blob/main/ctf/2023-11-17%20Intigriti%201337up%20CTF%202023.md
+
+https://www.youtube.com/watch?v=NwyjAT4TPPg
+have .log file -> TLS
+vhd file 
+https://www.youtube.com/watch?v=C7H03NMVxD4
+rtp
+
+https://github.com/KMANVK/PragyanCTF-2023/blob/main/Forensics/Listener.md
+ATT --> bluetooth
+https://hackmd.io/@Automic-Kaiii/By6L3Qil2
+Networkminer  #tool to analyze pcapfile info easier   https://www.netresec.com/?page=NetworkMinerv
+https://hackmd.io/@Automic-Kaiii/Sk2fMRRlh#FindAndOpen
+tshark -r dump.pcap -T fields -e data.data "data.data != 0" > 1.txt  (lấy hết các dữ liệu ở phần data đối với bài nhiều packet )
+https://github.com/KMANVK/CTF-WannaGame
+tshark -r Message.pcapng -Y "ip.dst==192.168.47.1" -T fields -e ip.id | cut -c 7-8 | xxd -p -r
+ccrypt -d flag.cpt 
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
+tshark -r bus.pcap -T fields -e modbus.data -Y "modbus != 0 and tcp.dstport == 502" > binary.txt
+#Crack SSL to get passwd from wireshark
+https://www.youtube.com/watch?v=aB_RG-1rYxQ&list=PL-HdylJurvuharFqv4bbnZeP9FBwmjNbV&index=2  
+---------------------------------------------volatility
+https://hackmd.io/@Automic-Kaiii/HkWmhmzH2#Linux-is-hurt    #build profile
+https://github.com/volatilityfoundation/volatility/wiki/Command-Reference
+https://andreafortuna.org/2017/07/31/volatility-my-own-cheatsheet-part-6-windows-registry/
+https://sbasu7241.medium.com/otterctf-2018-memory-forensics-write-up-part-2-14bf86e3ab94
+clipboard(pluggin)    #copy-paste
+https://odintheprotector.github.io/2023/09/20/hackthebox-truesecret.html
+python vol.py -f <filename> imageinfo
+python vol.py -f <filename> --profile=<profile_name> pslist
+cmdline
+python vol.py -f <filename> --profile=<profile_name> filescan | grep <sth>
 MEMORY.DMP
+------------------------vol 3
 python vol.py -f MEMORY.DMP windows.pslist
 vol -f MEMORY.DMP windows.filescan > a.txt
 vol.exe -f "MEMORY.DMP" windows.handles.Handles --pid 1736
 vol -f MEMORY.DMP windows.dumpfiles --physaddr 0x7e3e2070
-vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736 
-#read memory bash from .mem file
-python3 vol.py -f forensics.mem linux.bash
-https://hackmd.io/@Automic-Kaiii/By6L3Qil2
-volatility_gpg
+vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736
+-------------------------------------------compare 2 snapshot file
+regshot  #tool
+use for .hivu file
+--------------------vmem file
+https://github.com/KMANVK/CTF_Wu/blob/main/MGCI-WLMAC%20Joint%20CTF%20Contest%20'21/Forgetful/solved.md 
+Recycle.Bin
+https://www.4rth4s.xyz/2020/10/learning-memory-forensics-with.html
+volatility -f <file_dump.raw> --profile=PROFILE hivelist
+volatility -f <file_dump.raw> --profile=<profile> hashdump -y <SYSTEM offset> -s <SAM offset> > hashes.txt
+volatility -f <file_dump.raw> --profile=Win7SP1x86_23418 cmdscan
+vmem file
+userassist  (pluggin)  (Print userassist registry keys and information)
+https://blog.bi0s.in/2020/08/04/Forensics/Investigation-InCTFi2020/  (another way get info from registry ntuser.dat)
+volatility -f windows.vmem --profile=Win7SP1x64 dumpregistry -o 0xfffff8a00256d010 -D .
+python vol.py -f exemplar17_1.vmem iehistory
+
+https://odintheprotector.github.io/2023/09/20/hackthebox-truesecret.html
 https://gist.github.com/1259iknowthat/8cb818f0a37566b1fc25151ef074d9af
-#----------------------------xem lịch sử trình duyệt
+tc file
+https://www.varonis.com/blog/how-to-use-volatility
+network
+https://0xdf.gitlab.io/2019/09/07/htb-bastion.html
+vhd file
+guestmount --add 9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --inspector --ro /mnt/test
+or use autopsy
+
+https://hackmd.io/@Automic-Kaiii/By6L3Qil2
+vhdx file
+https://github.com/Malandrone/PowerDecode?
+python3 vol.py -f forensics.mem linux.bash
+volatility_gpg      #test xem thử file mem có chứa pass ko
+python3 vol.py -f forensics.mem -p volatility-gpg gpg_full
+gpg --batch --yes -r "RansomKey" -o qgffrqdGlfhrdoE -e RxgXlDqP0h3baha
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md   #find hostname
+https://github.com/moaistory/WinSearchDBAnalyzer   recover deleted records in Windows.edb
+#----------------------------browser history
+\Users\DuyTan-KMA\AppData\Local\Google\Chrome\User Data\Default\History
 https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/L34K%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
 #------------dump the screen from memorydump
 https://www.rootusers.com/google-ctf-2016-forensic-for1-write-up/
 
-https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/Another%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
-dùng PECmd để phân tích prefetch file tìm dấu hiệu của các chương trình đã được chạy
-
-
 http://www.decalage.info/python/oletools
 oleid: to analyze OLE files to detect specific characteristics usually found in malicious files.
+https://hackmd.io/@phgvee/BkNTAXKt3#Under-Control
 olevba: to extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
 MacroRaptor: to detect malicious VBA Macros
 msodde: to detect and extract DDE/DDEAUTO links from MS Office documents, RTF and CSV
 pyxswf: to detect, extract and analyze Flash objects (SWF) that may be embedded in files such as MS Office documents (e.g. Word, Excel) and RTF, which is especially useful for malware analysis.
 oleobj: to extract embedded objects from OLE files.
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
 rtfobj: to extract embedded objects from RTF files.
 -----file word
 https://ctf.krloer.com/writeups/cybergon/hide_and_seek/
+https://hackmd.io/@Automic-Kaiii/HkWmhmzH2
+.docm
 --------------------------------------------------------
+https://df.irlab.vn/docs/resources/
+
 read command
 https://labs.jumpsec.com/no-logs-no-problem-incident-response-without-windows-event-logs/
 C:\Users\Admin\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/Another%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
+dùng PECmd để phân tích prefetch file tìm dấu hiệu của các chương trình đã được chạy
+./PECmd.exe -d ./prefetch/ | grep -i Downloads | grep EXE
 
 |Out-String 
 \Software\Microsoft\Windows\CurrentVersion\Run
+https://hackmd.io/@phgvee/BkNTAXKt3
 NTUSER.DAT open by regist editor
 https://www.kali.org/tools/regripper/
 raw inflate  (cyberchef)
@@ -48,7 +161,6 @@ Open .asd file in this location
 
 https://drive.google.com/file/d/1q2NvG2gCkj18R67Dxzf47mT_WPENvBT4/view
 https://cehvietnam.com/2021/04/08/digital-forensics-investigation-using-os-forensics-chfi-plus-ceh-vietnam/
-
 ----------------------------------------------------video image processing
 https://diendanit.net/threads/amped-five-professional-edition-2020-build-16112-full-cai-thien-chat-luong-video-hinh-anh-phap-y.12742/
 --------hide seletion
@@ -63,3 +175,70 @@ https://biomedic.com.vn/san-pham/chuong-trinh-chuyen-doi-va-phat-cctv-cho-dieu-t
 
 Amped Authenticate   #phát hiện giả mạo và dấu vết của camera trên hình ảnh kỹ thuật số
 https://biomedic.com.vn/san-pham/phan-mem-phat-hien-gia-mao-hinh-anh-va-nhan-dang-may-anh-nguon/
+-----------------------------------------------------------mysql
+https://nhattruong.blog/2023/01/12/mssql-database-forensic-sql-server/
+---------------------------------------------------fix png
+https://www.4rth4s.xyz/2020/09/picoctf-forensics-challenge-picogym.html
+.e01  file
+.bmc
+https://github.com/ctfs/write-ups-2015/tree/master/seccon-quals-ctf-2015/stegano/steganography-2
+pngcheck <img>
+-----------------obfuscated image
+https://github.com/nullchilly/ctf/blob/main/WannaGame-2023/st3go/merge.py
+https://github.com/nemanja-m/gaps
+---------------------------------------------------------------
+https://hackmd.io/@Automic-Kaiii/rykUrnEih
+https://github.com/omerbenamram/evtx
+evtx file
+for file in ./*.evtx;do evtx_dump.py "$file" > converted/"${file%.evtx}.xml";done
+https://hackmd.io/@Automic-Kaiii/HkWmhmzH2  (KSCS CTF 2023)
+https://hackmd.io/@Automic-Kaiii/HkWmhmzH2#Linux-is-hurt
+ffmpeg -i 0.gif -r 10 -vsync 0 Frame_%d.png
+get frame from gif
+https://github.com/extremecoders-re/pyinstxtractor   #decompile python code
+https://github.com/rocky/python-uncompyle6/#installation
+https://github.com/KMANVK/Tenable-CTF-2023/blob/main/Tenable%20CTF%202023/stego/Ancient%20Scrawls/sol.md
+extract big gif to small gif
+https://hackmd.io/@Automic-Kaiii/SJ6VtbWo2
+firefox,zilla
+https://github.com/KMANVK/Tenable-CTF-2023/blob/main/Tenable%20CTF%202023/for/Lost%20Evidence/sol.md
+obfuscated file
+LUKS
+--------------------------------------------------pdf file
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
+---------------------------------------------------file sound
+Wed hướng dẫn giải mã file âm thanh ra hình ảnh bằng sửa dụng qsstv : https://ourcodeworld.com/articles/read/956/how-to-convert-decode-a-slow-scan-television-transmissions-sstv-audio-file-to-images-using-qsstv-in-ubuntu-18-04
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
+--------------------------------
+https://github.com/KMANVK/PragyanCTF-2023/blob/main/Forensics/Nuclearophine.md
+https://parsiya.net/blog/2018-06-05-contextis-xmas-ctf-writeup/#a-closer-look-at-wave-files (fix .wav file)   
+DTMF  http://dialabc.com/sound/detect/
+(Tín hiệu đa tần kép là một hệ thống tín hiệu viễn thông sử dụng)
+stegolsb wavsteg -r -i 1.wav -o output.txt -n 1 -b 1000  (get secret from wav)
+Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
+morse code
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md    #giảm tốc độ phát
+------------------------------------------------keyboard and mouse
+https://github.com/KMANVK/PragyanCTF-2023/blob/main/Forensics/Listener.md  (bluetooth keyboard)
+https://github.com/kshoji/pxt-bluetooth-keyboard/blob/master/BluetoothKeyboardService.h
+https://github.com/Wh1t3Rh1n0/xinput-keylog-decoder
+https://github.com/KMANVK/hitcon-ctf-2023/blob/main/Foren/Not%20just%20pcap/Sol.md   
+--------------------------------------------------bluetooth audio
+https://github.com/KMANVK/hitcon-ctf-2023/blob/main/Foren/Not%20just%20pcap/Sol.md
+usb hid
+-----------------------------------------------event log
+https://www.youtube.com/watch?v=UMogme3rDRA
+https://drive.google.com/file/d/1pYXzPgtKExNlZlJgflWYpJYVT0gwGfxO/view
+impacket exec command cheet sheet
+----------------------------------------------------malware
+https://sec.vnpt.vn/2022/07/14552/   #scan malware automatic
+https://github.com/ocatak/malware_api_class
+https://sec.vnpt.vn/2022/06/windows-forensic-malware-persistence/
+Autostart Registry Key 
+Windows Services
+Scheduled Tasks
+https://github.com/KMANVK/Persistance_of_malware/blob/main/C%C6%A1%20ch%E1%BA%BF%20c%E1%BB%A7a%20n%C3%B3.txt
+https://hackmd.io/aCrLO6jlROimpAFISpxeDw
+--------------------------malware analyse
+https://vmtien.id.vn/ben-trong-ma-doc-danh-cap-tai-khoan-mang-xa-hoi-co-gi/
+https://blog.viettelcybersecurity.com/mustang-panda-va-mot-so-bien-the-cua-ma-doc-plugx-duoc-su-dung-pho-bien-trong-thoi-gian-gan-day/?fbclid=IwAR1JnBME5xK-dV9ZZBSKkOp7REQZGy3ACcv5psUQbDQa3On3fUPCK2M8kSA

@@ -2,3 +2,9 @@
 "/^03[2-9][0-9]{7}$/"
 "?:xe ga|xe bo"
 preg_match("/on(?!error)[a-zA-Z]+$/i", $content)
+
+https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html
+smbclient -N -L \\\\10.10.10.103 | grep Disk | sed 's/^\s*\(.*\)\s*Disk.*/\1/' 
+
+https://splint.gitbook.io/cyberblog/hackthebox-writeups/web-challenge-expressionalrebel
+https://diary.shift-js.info/blind-regular-expression-injection/

