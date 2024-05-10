@@ -15,7 +15,6 @@ set worker_processes to be equal to the number of CPUs or cores.
 
 sudo service apache2 start
 service apache2 status
-ư
 
 https://hackmd.io/ers-v5oFQOivt-qIjZKqfA
 https://xuanthulab.net/tim-hieu-apache-handler-php-handler-cai-dat-va-su-dung.html

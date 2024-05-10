@@ -2,6 +2,8 @@ https://www.google.co.uk/
 bing
 duckduckgo
 
+https://github.com/vjz3r/CTF-WRITEUP/blob/main/WolvCTF%202024%20-%20OSINT/WOLPHV%20V%3A%20luvh4ck573.md
+https://webcache.googleusercontent.com/search?q=cache:<url>
 -----------------------------------------social network
 https://vjz3r.blogspot.com/2023/10/isitdtuctf2023-osint.html
 Threads
@@ -43,6 +45,7 @@ maltego
 domainfy -n eccountcil -t all  #retrieve all the domains along with their IP address
 jasminenguyen12387
 
+https://anonyviet.com/mr-holmes-cong-cu-thu-thap-thong-tin-danh-cho-dan-osint/
 osintifyX
 seeker     -----find location
 https://github.com/spyboy-productions/r4ven   #same seeker but can edit

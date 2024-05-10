@@ -72,8 +72,10 @@ https://hackmd.io/@phgvee/Skr808L3n#UnforgottenBits
 openssl aes-256-cbc -d -K a9f86b874bd927057a05408d274ee3a88a83ad972217b81fdc2bb8e8ca8736da -S 2350e88cbeaf16c9 -iv 908458e48fc8db1c5a46f18f0feb119f -in 7.bmp.out -out flag.txt
 #-----------------------------------------brute force
 https://github.com/Mebus/cupp   #create list brute force by name
+https://crypt0ace.github.io/posts/Gift-HackMyVM-Walkthrough/
 hydra 192.168.8.200 ssh -l admin -P file_src -s 22 -vV
                                         (port) (only show usr pass)
+
 hydra -l admin -P /home/kali/Desktop/pass.txt -u -f 192.168.8.200 -s 80 http-post-form "/DVWA/login.php:username=^USER^&password=^PASS^:F=<form name='login'"
 hydra -L /usr/share/brutex/wordlists/simple-users.txt -P /password.lst domain.htb http-post-form "/path/index.php:name=^USER^&password=^PASS^&enter=Sign+in:Login name or password is incorrect"
 https://www.golinuxcloud.com/brute-force-attack-web-forms/
@@ -86,6 +88,8 @@ zphisher --phising
 https://anonyviet.com/demo-tan-cong-phishing-voi-evilginx2/#ftoc-cach-hoat-dong-cua-cong-cu-evilginx2
 https://github.com/trustedsec/social-engineer-toolkit   --> https://viblo.asia/p/huong-dan-tan-cong-web-phishing-aWj53nzel6m
 https://anonyviet.com/pyphisher-cong-cu-phishing-de-su-dung-voi-65-trang-web-co-san/
+httrack -> mirror all web 
+#cai nay de xai
 #-------------------------------------------------------------------------------toolkit
 fsociety   
 https://github.com/black-software-Com/black-tool

@@ -1,3 +1,4 @@
+https://viblo.asia/p/leo-thang-dac-quyen-ngang-tren-active-directory-GyZJZdjNVjm
 tiến trình CExecSvc.exe -> in docker container
 netstat -tulpn  #check port are opening
 netstat -ano | findstr LISTEN
@@ -47,7 +48,7 @@ ldapsearch -x -b "dc=htb,dc=local" "*" -H ldap://10.129.110.245 | grep userPrinc
 https://0xdf.gitlab.io/2020/07/18/htb-sauna.html
 ldapsearch -x -H ldap://10.129.95.180 -s base namingcontexts
 ----------------------------steal NTLM response
--------------------------check signing  (kí số vào các thôgn điệp SMB)
+-------------------------check signing  (kí số vào các thông điệp SMB)
 https://www.thehacker.recipes/ad/movement/ntlm/relay
 crackmapexec smb $target
 --------------------------
@@ -164,7 +165,7 @@ Chưa biết:
 4/ so sánh với NTLM Reponse, nếu bằng nhau -> đây là password đúng
 --------------------
 ticket granting ticket (AS-REP Roasting)
-để usr lấy service ticcket, khỏi nhập passwd mỗi lần auth, domain biết usr là ai
+để usr lấy service ticket, khỏi nhập passwd mỗi lần auth, domain biết usr là ai
 xài dc khi admin tắt chế độ pre-auth cho user
 để debug và support cho hệ thống cũ
 Encrypted Session Key = encrypt(session key, user key)

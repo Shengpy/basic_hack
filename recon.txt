@@ -104,6 +104,7 @@ nuclei còn quét được nhiều CVE khác
 nuclei -u <url>
 broken-link-checker
 https://github.com/anshumanpattnaik/http-request-smuggling
+https://github.com/defparam/smuggler
 JSFinderPlus    #find the sensitive info like email
 ------------------------------------------------XSS
 https://anonyviet.com/cach-scan-lo-hong-xss-tu-dong-voi-dalfox/

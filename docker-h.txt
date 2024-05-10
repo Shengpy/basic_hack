@@ -13,6 +13,7 @@ https://vnsys.wordpress.com/2018/08/20/co-ban-ve-docker/
 https://viblo.asia/p/dev-hien-dai-phan-1-setup-moi-truong-dev-voi-docker-djeZ1RpQlWz
 #cau hinh mang
 https://xuanthulab.net/mang-network-bridge-trong-docker-ket-noi-cac-container-voi-nhau.html
+https://viblo.asia/p/huong-dan-ve-docker-selenium-tutorial-cach-tich-hop-selenium-grid-voi-docker-oOVlYWvVK8W
 
 https://hackmd.io/@G5gBRUCMTSyXe5unaAjjtA/BknQt7fOo#%C4%90%C3%B4i-l%E1%BB%9Di-t%C3%A2m-s%E1%BB%B1
 #config router proxy and service in docker
@@ -20,30 +21,6 @@ https://hackmd.io/@G5gBRUCMTSyXe5unaAjjtA/BknQt7fOo#%C4%90%C3%B4i-l%E1%BB%9Di-t%
 jenkins
 https://www.youtube.com/watch?v=6YZvp2GwT0A
 
-elasaticsearch & kibana
-https://viblo.asia/p/phan-5-elasticsearch-modeling-data-and-handling-relationships-V3m5W2qQlO7
-https://viblo.asia/p/tich-hop-elasticsearch-va-kibana-vao-docker-compose-Az45bymqlxY
-https://www.youtube.com/watch?v=JOZ41DtKcNw&list=PLwJr0JSP7i8AgjUjKnecVUN2i3txuS-1J&index=4
-GET _cat/indices?v
-PUT /product?pretty      #create index 
-PUT /product/_doc/1      #create data in a index
-{
-  "name":"sheng",
-  "age":20
-}
-GET /product/_doc/1?pretty    #access data in a index
-POST /_bulk                   #update or create many data
-{"index":{"_index":"product","_id":3}}
-{"name": "ten3","age":20}
-{"index":{"_index":"product","_id":4}}
-{"name": "ten4","age":20}
-curl -XPOST localhost:9200/bank/_bulk?pretty --data-binary @accounts.json -H 'Content-Type: application/json'
-#--------search
-https://www.youtube.com/watch?v=SsJjZUSAcFo&list=PLwJr0JSP7i8AgjUjKnecVUN2i3txuS-1J&index=4
-GET /bank/_search
-{
-  "query": {"match_all": {}}
-}
 https://xuanthulab.net/lap-trinh-chuc-nang-tim-kiem-trong-php-voi-elasticsearch.html
 
 kubernetes
@@ -57,6 +34,12 @@ bcdedit /set hypervisorlaunchtype off
 dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
 bcdedit /set hypervisorlaunchtype auto
 ----------------------------------------------docker pentest
+https://i.blackhat.com/USA-19/Thursday/us-19-Edwards-Compendium-Of-Container-Escapes-up.pdf
+https://sec.vnpt.vn/2023/07/container-breakout-overview/
+https://takahiro-oda.medium.com/docker-security-an-overview-of-docker-security-essentials-4a536e485729
+https://viblo.asia/p/co-hang-ngan-bi-mat-duoc-giau-trong-docker-hub-yZjJYGGDVOE
+leak credentials from dockerhub
+
 https://r2nw.github.io/posts/ASCIS2023WARMUP/
 sudo docker run --user root <image name>
 docker image save 7b1425204c8d -o flag
@@ -68,3 +51,6 @@ docker run -v /:/hostOS -i -t rodhes bash
 https://systemweakness.com/busqueda-hack-the-box-964fed1515a6
 docker container ls --format='{{jsoj .}}'
 docker-inspect '{{json .}}' mysql_db
+
+https://vmtien.id.vn/tim-hieu-10-cach-tan-cong-ci-cd-thong-qua-ctf-phan-1/
+https://vmtien.id.vn/chien-luoc-backup-3-2-1/

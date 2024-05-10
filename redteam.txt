@@ -54,6 +54,9 @@ https://viblo.asia/p/cac-phuong-phap-bypass-av-co-ban-bWrZnQgvKxw?fbclid=IwAR0eo
 https://topdev.vn/blog/huong-dan-cai-dat-clamav-tren-linux-de-quet-virus-malware-trojan/
 https://0xdf.gitlab.io/2020/02/01/htb-re.html
 https://github.com/danielbohannon/Invoke-Obfuscation   #powershell obfuscation
+https://anonyviet.com/cach-hacker-bypass-av-xam-nhap-windows-voi-autoit/
+https://www.batch-obfuscator.tk/
+https://anonyviet.com/minh-da-bypass-av-xam-nhap-windows-10-voi-metasploit-va-python-nhu-the-nao/
 
 https://docs.google.com/presentation/d/1Fdcbv9U1qywIZSl2AhXJAlx61pyEITKfcbbwpJMvkcQ/edit#slide=id.g8d8b1cad0d_1_27
 1.Use non-malicious software in malicious ways (preferred)

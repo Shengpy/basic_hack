@@ -1,13 +1,15 @@
------------------------------------------------------linux command
+# linux command
 https://podalirius.net/en/writeups/fcsc2021-intro-rituel-du-boutisme/
 for e in s S b l B L; do strings -e $e ewf1 | grep FCSC; done    #find with diffence data type
 https://sbasu7241.medium.com/otterctf-2018-memory-forensics-write-up-part-2-14bf86e3ab94
 xxd 708.dmp | grep "5a0c 0000"   #find hex from a file 
----------------------------------------------------------------
+
+# Tips
 https://base64.guru/converter/decode/file  #base64 to file
 console.log(verifyUsername.toString())
 
 PicoCTF 2023
+
 https://hackmd.io/@phgvee/Skr808L3n
 lsb  -> StegSolve
 50 4B 03 04  --> PKzip
@@ -32,8 +34,11 @@ extract img from .mp4
 foremost powpow.mp4
 cp output/png/00001069.png img1.png
 
+https://medium.com/btlo-investigation-solutions/btlo-countdown-b7092360917f
+decryption key to unlock the SQLite database
+
 https://github.com/bquanman/CTF-Writeup/blob/main/Class%20Project%20-%20Forensics%20-%20UMDCTF2022.md  #vmware
-------------------------------------------------------wireshark
+# wireshark
 https://hackmd.io/@Automic-Kaiii/SJ6VtbWo2    #fix pcap
 https://github.com/teebowie/ctf-writeups/blob/master/ISITDTU_CTF_2022/misc_T1M3/README.md    #wireshark -> sqli
 https://github.com/omriher/CapTipper   #extract file and time in pcap
@@ -63,9 +68,12 @@ tshark -r Message.pcapng -Y "ip.dst==192.168.47.1" -T fields -e ip.id | cut -c 7
 ccrypt -d flag.cpt 
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
 tshark -r bus.pcap -T fields -e modbus.data -Y "modbus != 0 and tcp.dstport == 502" > binary.txt
-#Crack SSL to get passwd from wireshark
+## Crack SSL to get passwd from wireshark
 https://www.youtube.com/watch?v=aB_RG-1rYxQ&list=PL-HdylJurvuharFqv4bbnZeP9FBwmjNbV&index=2  
----------------------------------------------volatility
+
+# volatility
+https://kcsc.edu.vn/tetctf-2024-write-up?fbclid=IwAR1yM0QvWucCUD-dgpkk6YM2vQZTyc8OYLhaq0wzjYuUXcBVrlbqHfx6bk4#heading-preface
+.ad file
 https://hackmd.io/@Automic-Kaiii/HkWmhmzH2#Linux-is-hurt    #build profile
 https://github.com/volatilityfoundation/volatility/wiki/Command-Reference
 https://andreafortuna.org/2017/07/31/volatility-my-own-cheatsheet-part-6-windows-registry/
@@ -77,16 +85,21 @@ python vol.py -f <filename> --profile=<profile_name> pslist
 cmdline
 python vol.py -f <filename> --profile=<profile_name> filescan | grep <sth>
 MEMORY.DMP
-------------------------vol 3
+## vol 3
 python vol.py -f MEMORY.DMP windows.pslist
 vol -f MEMORY.DMP windows.filescan > a.txt
 vol.exe -f "MEMORY.DMP" windows.handles.Handles --pid 1736
 vol -f MEMORY.DMP windows.dumpfiles --physaddr 0x7e3e2070
 vol.exe -f "MEMORY.DMP" dumpfiles --pid 1736
--------------------------------------------compare 2 snapshot file
+## Autospy
+https://medium.com/btlo-investigation-solutions/btlo-countdown-b7092360917f
+## compare 2 snapshot file
 regshot  #tool
 use for .hivu file
---------------------vmem file
+## vmem file
+#dump creadentials by hash
+https://odintheprotector.github.io/2024/02/17/bitsctf2024-dfir.html
+python3 volatility3-2.5.0/vol.py -f memdump-001.mem windows.hashdump
 https://github.com/KMANVK/CTF_Wu/blob/main/MGCI-WLMAC%20Joint%20CTF%20Contest%20'21/Forgetful/solved.md 
 Recycle.Bin
 https://www.4rth4s.xyz/2020/10/learning-memory-forensics-with.html
@@ -118,13 +131,18 @@ python3 vol.py -f forensics.mem -p volatility-gpg gpg_full
 gpg --batch --yes -r "RansomKey" -o qgffrqdGlfhrdoE -e RxgXlDqP0h3baha
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md   #find hostname
 https://github.com/moaistory/WinSearchDBAnalyzer   recover deleted records in Windows.edb
-#----------------------------browser history
+## browser history
+https://kcsc.edu.vn/tetctf-2024-write-up?fbclid=IwAR1yM0QvWucCUD-dgpkk6YM2vQZTyc8OYLhaq0wzjYuUXcBVrlbqHfx6bk4#heading-preface
+https://systemweakness.com/extracting-saved-passwords-from-web-browser-1444dbfb6551
 \Users\DuyTan-KMA\AppData\Local\Google\Chrome\User Data\Default\History
 https://github.com/bquanman/CTF-Writeup/blob/main/ISITDTU%20CTF%20Final%202022/L34K%20-%20Misc(Forensics)%20-%20ISITDTUCTF%20Final%202022.md
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
-#------------dump the screen from memorydump
+https://www.inversecos.com/2022/10/recovering-cleared-browser-history.html
+https://odintheprotector.github.io/2024/01/28/tetctf2024-writeup.html
+## dump the screen from memorydump
 https://www.rootusers.com/google-ctf-2016-forensic-for1-write-up/
 
+# Office file
 http://www.decalage.info/python/oletools
 oleid: to analyze OLE files to detect specific characteristics usually found in malicious files.
 https://hackmd.io/@phgvee/BkNTAXKt3#Under-Control
@@ -135,10 +153,14 @@ pyxswf: to detect, extract and analyze Flash objects (SWF) that may be embedded 
 oleobj: to extract embedded objects from OLE files.
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
 rtfobj: to extract embedded objects from RTF files.
------file word
+## file word
 https://ctf.krloer.com/writeups/cybergon/hide_and_seek/
 https://hackmd.io/@Automic-Kaiii/HkWmhmzH2
 .docm
+## pdf file
+https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
+pdf-parser to parse all things inside
+https://github.com/odintheprotector/HackTheOn-Sejong-Writeup/blob/main/2024_HackTheOnSejong_write-up_all-solved.pdf?fbclid=IwZXh0bgNhZW0CMTEAAR1ph8Jp68lJVv3Reev3RgyMK-C7uP5Ug5JH-9xfCTgaJVwSs47jhXUPLCk_aem_AcS3FetbMi92LPY2HXS_MrWlgA_0LpLdHcyk_ydd5wZruX0H-8ktitcDVaavuTuYbduQ0m1qteuJicyIOQdTYLTY
 --------------------------------------------------------
 https://df.irlab.vn/docs/resources/
 
@@ -175,18 +197,18 @@ https://biomedic.com.vn/san-pham/chuong-trinh-chuyen-doi-va-phat-cctv-cho-dieu-t
 
 Amped Authenticate   #phát hiện giả mạo và dấu vết của camera trên hình ảnh kỹ thuật số
 https://biomedic.com.vn/san-pham/phan-mem-phat-hien-gia-mao-hinh-anh-va-nhan-dang-may-anh-nguon/
------------------------------------------------------------mysql
+# mysql
 https://nhattruong.blog/2023/01/12/mssql-database-forensic-sql-server/
----------------------------------------------------fix png
+
+# Image
+zsteg -a <file>        #check secret
+## Fix png
 https://www.4rth4s.xyz/2020/09/picoctf-forensics-challenge-picogym.html
 .e01  file
 .bmc
 https://github.com/ctfs/write-ups-2015/tree/master/seccon-quals-ctf-2015/stegano/steganography-2
 pngcheck <img>
------------------obfuscated image
-https://github.com/nullchilly/ctf/blob/main/WannaGame-2023/st3go/merge.py
-https://github.com/nemanja-m/gaps
----------------------------------------------------------------
+
 https://hackmd.io/@Automic-Kaiii/rykUrnEih
 https://github.com/omerbenamram/evtx
 evtx file
@@ -204,12 +226,23 @@ firefox,zilla
 https://github.com/KMANVK/Tenable-CTF-2023/blob/main/Tenable%20CTF%202023/for/Lost%20Evidence/sol.md
 obfuscated file
 LUKS
---------------------------------------------------pdf file
-https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
----------------------------------------------------file sound
+
+# obfuscated 
+## image
+https://github.com/nullchilly/ctf/blob/main/WannaGame-2023/st3go/merge.py
+https://github.com/nemanja-m/gaps
+## powershell
+https://medium.com/btlo-investigation-solutions/btlo-malicious-powershell-analysis-350bee4606b6
+https://medium.com/ce-digital-forensics/analysing-metasploit-framework-shellcode-e66b89411000
+
+# IDA Analyst
+https://medium.com/ce-malware-analysis/lab-5-ida-pro-bb7c7772dd99
+https://medium.com/ce-malware-analysis/lab-6-c-code-constructs-in-assembly-e8f22078600c
+
+# file sound
 Wed hướng dẫn giải mã file âm thanh ra hình ảnh bằng sửa dụng qsstv : https://ourcodeworld.com/articles/read/956/how-to-convert-decode-a-slow-scan-television-transmissions-sstv-audio-file-to-images-using-qsstv-in-ubuntu-18-04
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md
---------------------------------
+
 https://github.com/KMANVK/PragyanCTF-2023/blob/main/Forensics/Nuclearophine.md
 https://parsiya.net/blog/2018-06-05-contextis-xmas-ctf-writeup/#a-closer-look-at-wave-files (fix .wav file)   
 DTMF  http://dialabc.com/sound/detect/
@@ -218,19 +251,22 @@ stegolsb wavsteg -r -i 1.wav -o output.txt -n 1 -b 1000  (get secret from wav)
 Sound đang ở đạng Waveform ta chỉnh sang Spectrogram là ra flag
 morse code
 https://github.com/KMANVK/CTF_Trainee/blob/main/Task%201.md    #giảm tốc độ phát
-------------------------------------------------keyboard and mouse
+# keyboard and mouse
 https://github.com/KMANVK/PragyanCTF-2023/blob/main/Forensics/Listener.md  (bluetooth keyboard)
 https://github.com/kshoji/pxt-bluetooth-keyboard/blob/master/BluetoothKeyboardService.h
 https://github.com/Wh1t3Rh1n0/xinput-keylog-decoder
 https://github.com/KMANVK/hitcon-ctf-2023/blob/main/Foren/Not%20just%20pcap/Sol.md   
---------------------------------------------------bluetooth audio
+# bluetooth audio
 https://github.com/KMANVK/hitcon-ctf-2023/blob/main/Foren/Not%20just%20pcap/Sol.md
 usb hid
------------------------------------------------event log
+https://odintheprotector.github.io/2024/02/17/bitsctf2024-dfir.html
+
+# event log
 https://www.youtube.com/watch?v=UMogme3rDRA
 https://drive.google.com/file/d/1pYXzPgtKExNlZlJgflWYpJYVT0gwGfxO/view
 impacket exec command cheet sheet
-----------------------------------------------------malware
+
+# malware
 https://sec.vnpt.vn/2022/07/14552/   #scan malware automatic
 https://github.com/ocatak/malware_api_class
 https://sec.vnpt.vn/2022/06/windows-forensic-malware-persistence/
@@ -239,6 +275,6 @@ Windows Services
 Scheduled Tasks
 https://github.com/KMANVK/Persistance_of_malware/blob/main/C%C6%A1%20ch%E1%BA%BF%20c%E1%BB%A7a%20n%C3%B3.txt
 https://hackmd.io/aCrLO6jlROimpAFISpxeDw
---------------------------malware analyse
+## malware analyse
 https://vmtien.id.vn/ben-trong-ma-doc-danh-cap-tai-khoan-mang-xa-hoi-co-gi/
 https://blog.viettelcybersecurity.com/mustang-panda-va-mot-so-bien-the-cua-ma-doc-plugx-duoc-su-dung-pho-bien-trong-thoi-gian-gan-day/?fbclid=IwAR1JnBME5xK-dV9ZZBSKkOp7REQZGy3ACcv5psUQbDQa3On3fUPCK2M8kSA

@@ -1,3 +1,4 @@
+https://tinyxss.terjanq.me/
 .html .svg .swf  FILE exec js
 https://tsublogs.wordpress.com/2017/04/26/pentest-qa-cung-tsu-3-xss-upload-style/
 
